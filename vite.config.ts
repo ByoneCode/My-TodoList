@@ -12,7 +12,9 @@ function pathResolve(dir: string) {
 export default defineConfig({
   plugins: [
     vue(),
-    VitePWA({})
+    VitePWA({
+      
+    })
   ],
   resolve: {
     alias: [

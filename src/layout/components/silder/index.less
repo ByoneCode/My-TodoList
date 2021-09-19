@@ -1,0 +1,142 @@
+.container__sidebar {
+  width: 280px;
+  background-color: #212425;
+  height: 100vh;
+  .sidebar {
+    .side_title {
+      color: #939393;
+      padding:0  1rem .5rem 1rem;
+      font-size: 10px;
+    }
+    .side_user {
+      padding:.8rem 0 0 1rem;
+      display: flex;
+      align-items: center;
+      .avatar {
+        background-color: #2d89ef;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        text-align: center;
+        font-size: 10px;
+        line-height: 30px;
+        color: #fff;
+      }
+      .info{
+        margin-inline-start: 8px;
+        p{
+          margin: 0;
+          color: #fff;
+          font-size: 14px;
+          margin-bottom: 2px;
+          &:last-child{
+            color: #939393;
+            font-size: 8px;
+          }
+        }
+      } 
+      .search{
+        display: flex;
+        cursor: pointer;
+        flex-grow: 1;
+        align-items: center;
+        justify-content: flex-end;
+        i.icon-serch{
+          font-size: 25px;
+          color: #939393;
+          padding: .5rem;
+          &:hover{
+            background-color: #282828;
+          }
+        }
+      }
+    }
+    // 列表
+    .list{
+      padding: .8rem 1rem;
+      display: flex;
+      align-items: center;
+      &:hover{
+        background-color: #282828;
+      }
+    }
+    .title{
+      margin-inline-start: 10px;
+      color: #fff;
+      font-size: 15px;
+      user-select: none;
+    }
+    .side_content{
+      nav>ul{
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        li div.list-item{
+         .list();
+          i{
+            font-size: 20px;
+          }
+          i.icon-taiyang{
+            color: #8795a0;
+          }
+          i.icon-star{
+            color: #f5b6c2;
+          }
+          i.icon-jihua{
+            color: #8bd3ce;
+          }
+          i.icon-people{
+            color: #9ad2ba;
+          }
+          i.icon-home{
+            color: #788cde;
+          }
+          span.item-title{
+            .title();
+          }
+        }
+      }
+    }
+    // 分割线
+    .side_hr{
+      background-color: #3d3d40;
+      height: 1px;
+      width: 90%;
+      margin: 1rem auto;
+    }
+    // 任务列表
+    .side_list{
+      ul{
+        .list-items{
+          .list();
+          .list-icon>i{
+            font-style: normal;
+          }
+          .list-title{
+            .title();
+          }
+          .list-count{
+            display: flex;
+            flex-grow: 1;
+            justify-content: flex-end;
+            color: #939393;
+            font-size: 12px;
+          }
+        }
+      }
+    }
+    // 添加任务
+    .side_add{
+      .list();
+      i.icon-add{
+        color: #939393;
+        font-size: 20px;
+      }
+      span{
+        .title();
+        font-size: 15px;
+        color: #939393;
+      }
+    }
+  }
+}
