@@ -2,6 +2,14 @@
   width: 280px;
   background-color: #212425;
   height: 100vh;
+  position: relative;
+  @media (max-width: 768px) {
+    position: absolute;
+    left: -999px;
+    top: 0;
+    z-index: 10;
+    transition: left .5s ease-in-out;
+  }
   .sidebar {
     .side_title {
       color: #939393;
@@ -139,4 +147,8 @@
       }
     }
   }
+}
+
+.open_side{
+  left: 0;
 }
