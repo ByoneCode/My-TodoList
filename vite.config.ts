@@ -18,6 +18,43 @@ export default defineConfig({
         name: 'My TodoList',
         short_name: 'todoList',
         description: 'This is TodoList PWA',
+        icons: [
+          {
+            src: '/images/icons/icon-48-48.png',
+            sizes: '48x48',
+            type: 'image/png',
+          },
+          {
+            src: '/images/icons/icon-72-72.png',
+            sizes: '72x72',
+            type: 'image/png',
+          },
+          {
+            src: '/images/icons/icon-96-96.png',
+            sizes: '96x96',
+            type: 'image/png',
+          },
+          {
+            src: '/images/icons/icon-128-128.png',
+            sizes: '128x128',
+            type: 'image/png',
+          },
+          {
+            src: '/images/icons/icon-144-144.png',
+            sizes: '144x144',
+            type: 'image/png',
+          },
+          {
+            src: '/images/icons/icon-192-192.png',
+            sizes: '192x192',
+            type: 'image/png',
+          },
+          {
+            src: '/images/icons/icon-512-512.png',
+            sizes: '512x512',
+            type: 'image/png',
+          }
+        ],
         lang: 'zh',
         scope: '/',
         start_url: '/',

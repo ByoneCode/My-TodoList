@@ -5,15 +5,15 @@
   position: relative;
   @media (max-width: 768px) {
     position: absolute;
-    left: -999px;
+    left: -100%;
     top: 0;
     z-index: 10;
-    transition: left .5s ease-in-out;
+    transition: left .5s ease;
   }
   .sidebar {
     .side_title {
       color: #939393;
-      padding:0  1rem .5rem 1rem;
+      padding:.5rem  1rem .5rem 1rem;
       font-size: 10px;
     }
     .side_user {
@@ -101,6 +101,13 @@
           }
           span.item-title{
             .title();
+          }
+          span.item-count{
+            display: flex;
+            flex-grow: 1;
+            justify-content: flex-end;
+            color: #939393;
+            font-size: 12px;
           }
         }
       }

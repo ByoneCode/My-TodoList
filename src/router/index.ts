@@ -9,7 +9,23 @@ const routes: RouteRecordRaw[] = [
     component: Layout,
     redirect: '/home',
     children:[
-      { path: '/home',component: () => import('/@/views/task/index.vue') },
+    { 
+      path: 'home',
+      component: () => import('/@/views/task/index.vue'),
+      meta: { title: 'Home', icon: 'home' }
+    }
+    ]
+  },
+  {
+    path: '/collect',
+    name: 'Collect',
+    component: Layout,
+    children:[
+    { 
+      path: 'index',
+      component: () => import('/@/views/collect/index.vue') ,
+      meta: { title: 'Collect', icon: 'star' }
+    }
     ]
   }
 ]

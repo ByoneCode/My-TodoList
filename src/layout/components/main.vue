@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <!-- Sidebar -->
-    <Silder />
+    <Silder :isopen="open" @closeSide="close"></Silder>
 
     <!-- Main -->
     <main class="container__main">
@@ -10,7 +10,7 @@
           <span>My TodoList</span>
         </div>
         <div class="app-side">
-          <i class="iconfont icon-silde"></i>
+          <i class="iconfont icon-silde" @click="open = true"></i>
         </div>
       </div>
      
@@ -21,6 +21,11 @@
 
 <script setup lang="ts">
   import Silder from './silder/index.vue'
+  import {ref} from 'vue'
+  const open = ref(false)
+  function close() {
+    open.value = false
+  }
 </script>
 
 <style scoped lang="less">
@@ -39,7 +44,7 @@
         }
         .app-title{
           color: #fff;
-          padding: .5rem 0 .5rem 1.5rem;
+          padding: .5rem 0 .5rem 1.2rem;
           font-size: 10px;
         }
         .app-side{

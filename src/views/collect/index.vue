@@ -6,42 +6,52 @@
           <i class="iconfont icon-home"></i>
         </div>
         <div class="tools-title">
-          <span>任务</span>
+          <span>重要</span>
         </div>
       </div>
     </div>
     <div class="taskList">
       <div class="task-container">
-        <task-item
-        :list="stat.task_list"
-        ></task-item>
+        <div class="taskList-item">
+          <div class="item-select">
+            <i class="iconfont icon-noselect"></i>
+          </div>
+          <div class="item-title">
+            <span>苹果</span>
+          </div>
+          <div class="item-star">
+            <i class="iconfont icon-star"></i>
+          </div>
+        </div>
+        <div class="taskList-item">
+          <div class="item-select">
+            <i class="iconfont icon-noselect"></i>
+          </div>
+          <div class="item-title">
+            <span>香蕉</span>
+          </div>
+          <div class="item-star">
+            <i class="iconfont icon-star"></i>
+          </div>
+        </div>
       </div>
       <div class="main-background">
         <div class="backgroundLines"></div>
       </div>
     </div>
-    <add-task></add-task>
+    <div class="task-add">
+      <div class="add">
+        <i class="iconfont icon-add"></i>
+        <span>添加任务</span>
+      </div>
+      
+    </div>
   </div>
   
 </template>
 
 <script setup lang="ts">
-import AddTask from '/@/components/addTask/index.vue'
-import TaskItem from '/@/components/taskItem/index.vue'
-import { reactive } from 'vue'
 
-const stat = reactive({
-  task_list: [
-    {
-      name: '苹果',
-      isok: 0,
-    },
-    {
-      name: '测试',
-      isok: 1,
-    }
-  ]
-})
 </script>
 
 <style lang="less" scoped>
@@ -68,6 +78,29 @@ const stat = reactive({
     overflow: hidden;
     transition: background-color 0.3s;
     position: relative;
+    .task-add{
+      background: #1a1b1c;
+      height: 100px;
+      position: absolute;
+      bottom: 0;
+      right: 2px;
+      left: 0;
+      .add{
+        .item();
+        margin-top: 15px;
+        background-color: #1f1f20;
+        @media (max-width: 768px){
+          width: 80%;
+        }
+        i.icon-add{
+          .icons();
+        }
+        span{
+          margin-left: 15px;
+          color: #fff;
+        }
+      }
+    }
   }
   .taskToolsbar{
     padding: 0 0 1rem 1rem;
@@ -112,6 +145,31 @@ const stat = reactive({
       &::-webkit-scrollbar-thumb{
         background: #858585;
         border-radius:10px;
+      }
+    }
+    .taskList-item{
+      .item();
+      background-color: #242426;
+      @media (max-width: 768px){
+        width: 80%;
+      }
+      &:hover { background-color: #292929;}
+      .item-select {
+        i.icon-noselect{
+          .icons();
+        }
+      }
+      .item-title{
+        margin-left: 15px;
+        color: #fff;
+      }
+      .item-star{
+        display: flex;
+        flex-grow: 1;
+        justify-content: flex-end;
+        i.icon-star{
+          .icons();
+        }
       }
     }
     .main-background{
