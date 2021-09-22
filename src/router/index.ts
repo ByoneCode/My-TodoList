@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import type { RouteRecordRaw } from 'vue-router';
 import Layout from '/@/layout/index.vue';
+import { useStore } from "vuex";
 
 const routes: RouteRecordRaw[] = [
   {
@@ -34,3 +35,11 @@ export const router = createRouter({
   history: createWebHashHistory(),
   routes
 })
+
+router.beforeEach((to,from,next) => {
+  // if (!store.state.openTaskInfo) {
+  //   store.commit('toggleTaskInfo')
+  // }
+  next()
+})
+

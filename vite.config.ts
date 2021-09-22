@@ -2,6 +2,7 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { resolve } from 'path'
 import { VitePWA } from 'vite-plugin-pwa'
+import { viteMockServe } from "vite-plugin-mock";
 
 function pathResolve(dir: string) {
   return resolve(process.cwd(), '.', dir);
@@ -12,6 +13,9 @@ function pathResolve(dir: string) {
 export default defineConfig({
   plugins: [
     vue(),
+    viteMockServe({
+      supportTs: false
+    }),
     VitePWA({
       registerType: 'autoUpdate',
       manifest: {

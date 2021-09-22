@@ -16,11 +16,14 @@
      
       <RouterView />
     </main>
+    <!-- TaskInfo -->
+    <task-info />
 </div>
 </template>
 
 <script setup lang="ts">
   import Silder from './silder/index.vue'
+  import TaskInfo from './taskInfo/index.vue'
   import {ref} from 'vue'
   const open = ref(false)
   function close() {

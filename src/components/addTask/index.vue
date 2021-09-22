@@ -6,28 +6,42 @@
       </div>
       <div class="add" v-show="!toggleValue">
         <i class="iconfont icon-noselect"></i>
-        <input class="add-task" type="text" ref="focus" @blur="toggle(2)" >
+        <input class="add-task" type="text" v-model="taskList.name" @keyup.enter="addTask" ref="focus" >
       </div>
     </div>
 </template>
 
 <script lang="ts" setup>
-import { ref, nextTick } from 'vue'
+import { ref, nextTick, reactive } from 'vue'
+import { useStore } from 'vuex'
 
+const store = useStore()
 const toggleValue = ref(true)
 const focus = ref(null)
-
+const taskList = ref({
+  name: '',
+  isok: 0
+})
 function toggle(num: number):void {
   toggleValue.value = !toggleValue.value
   if(num === 1){
     nextTick(function() {
       const { value }: any= focus
-      console.log(typeof value);
       value.focus()
     })
-    
   }
- 
+}
+
+function reset(){
+  taskList.value = {
+    name: '',
+    isok: 0
+  }
+}
+
+function addTask(){
+  store.commit('addTaskList',taskList.value)
+  reset()
 }
 </script>
 
@@ -77,14 +91,15 @@ function toggle(num: number):void {
         }
         span{
           margin-left: 10px;
-          color: #fff;
+          color: #d9d9d9;
         }
         input.add-task{
+          width: 100%;
           outline: none;
           background: transparent;
           margin-left: 10px;
           border: none;
-          color: #fff;
+          color: #d9d9d9;
         }
       }
     }
