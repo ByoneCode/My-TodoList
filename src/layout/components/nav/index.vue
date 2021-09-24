@@ -1,9 +1,6 @@
 <template>
     <aside class="container__sidebar" :class="{open_side:isopen}" @click="emit('closeSide')">
       <div class="sidebar">
-        <p class="side_title">
-          My TodoList
-        </p>
         <div class="side_user">
             <div class="avatar">
               <span>杰</span>
@@ -44,33 +41,15 @@ const props = defineProps({
 const stat = reactive({
   navList: [
   {
-    title: '我的一天',
-    icon: 'taiyang',
-    path: '/',
-    hidden: false
-  },
-  {
-    title: '重要',
+    title: '星标',
     icon: 'star',
-    path: '/collect/index',
-    hidden: false
-  },
-  {
-    title: '计划内',
-    icon: 'jihua',
-    path: '/',
-    hidden: false
-  },
-  {
-    title: '已分配给我',
-    icon: 'people',
-    path: '/',
+    path: '/star/index',
     hidden: false
   },
   {
     title: '便笺',
     icon: 'note',
-    path: '/sticky/index',
+    path: '/note/index',
     hidden: false
   },
   {

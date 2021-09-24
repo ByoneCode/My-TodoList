@@ -1,0 +1,43 @@
+@import "../common/style.less";
+
+.task-add {
+    position  : absolute;
+    bottom    : 0;
+    left      : 0;
+    right     : 2px;
+    height    : 100px;
+    background: #1a1b1c;
+
+    .add-container {
+        .item();
+        margin-top      : 15px;
+        background-color: #1f1f20;
+        cursor          : text;
+
+        // mobile
+        @media (max-width: 768px) {
+            width: 80%;
+        }
+
+        // add icon & undone icon
+        i {
+            .icon();
+        }
+
+        // placeholder
+        span {
+            margin-left: 10px;
+            color      : #d9d9d9;
+        }
+
+        // type-in area
+        input.type-in-area {
+            width      : 100%;
+            margin-left: 10px;
+            border     : none;
+            color      : #d9d9d9;
+            background : transparent;
+            outline    : none;
+        }
+    }
+}

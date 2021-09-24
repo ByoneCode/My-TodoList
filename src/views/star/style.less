@@ -1,0 +1,80 @@
+@import "../common/style.less";
+
+.heading {
+
+    i,
+    span {
+        color: #f5b6c2;
+    }
+}
+
+.taskList {
+    overflow      : hidden;
+    position      : relative;
+    display       : flex;
+    flex-direction: column;
+    flex          : 1 1 0px;
+    padding-bottom: 100px;
+
+    .task-container {
+        position  : relative;
+        overflow-y: auto;
+        overflow-x: hidden;
+
+        .scrollbar();
+    }
+
+    .taskList-item {
+        .item();
+        background-color: #242426;
+
+        @media (max-width: 768px) {
+            width: 80%;
+        }
+
+        &:hover {
+            background-color: #292929;
+        }
+
+        .item-isdone {
+            i.icon-undone {
+                .icon();
+            }
+        }
+
+        .item-title {
+            margin-left: 15px;
+            color      : #fff;
+        }
+
+        .item-star {
+            display        : flex;
+            flex-grow      : 1;
+            justify-content: flex-end;
+
+            i.icon-star {
+                .icon();
+            }
+        }
+    }
+
+    .main-background {
+        overflow      : hidden;
+        position      : relative;
+        display       : flex;
+        flex-direction: column;
+        flex          : 1 1 0px;
+
+        .backgroundLines {
+            margin: 0 24px;
+            flex  : 1;
+            background: linear-gradient(180deg,
+                    #1a1b1c,
+                    #1a1b1c 52px,
+                    #171819 52px,
+                    #171819 52px);
+            background-size: 100% 53px;
+            box-shadow     : inset 0 1px 0 0 #171819;
+        }
+    }
+}

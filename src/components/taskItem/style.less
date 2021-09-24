@@ -1,0 +1,39 @@
+@import "../common/style.less";
+
+.task-list-item {
+    .item();
+    background-color: #242426;
+
+    &:hover {
+        background-color: #292929;
+    }
+
+    // mobile
+    @media (max-width: 768px) {
+        width: 80%;
+    }
+
+    .item-isdone {
+
+        i {
+            .icon();
+        }
+
+    }
+
+    .item-title {
+        margin-left: 15px;
+        color      : #d9d9d9;
+    }
+
+    .item-star,
+    .item-del {
+        display        : flex;
+        justify-content: flex-end;
+        flex-grow      : 1;
+
+        i {
+            .icon();
+        }
+    }
+}
