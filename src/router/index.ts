@@ -28,6 +28,18 @@ const routes: RouteRecordRaw[] = [
       meta: { title: 'Collect', icon: 'star' }
     }
     ]
+  },
+  {
+    path: '/sticky',
+    name: 'Sticky',
+    component: Layout,
+    children:[
+    { 
+      path: 'index',
+      component: () => import('/@/views/sticky/index.vue') ,
+      meta: { title: 'Sticky', icon: 'star' }
+    }
+    ]
   }
 ]
 
