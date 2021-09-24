@@ -68,6 +68,12 @@ const stat = reactive({
     hidden: false
   },
   {
+    title: '便笺',
+    icon: 'note',
+    path: '/sticky/index',
+    hidden: false
+  },
+  {
     title: '任务',
     icon: 'home',
     path: '/',
