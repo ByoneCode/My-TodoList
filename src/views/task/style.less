@@ -19,45 +19,7 @@
         overflow-y: auto;
         overflow-x: hidden;
         .scrollbar();
-        // collapsed list
-        .collapsed {
-            .item();
-            padding-left : 0;
-            padding-right: 2rem;
-
-            @media (max-width: 768px) {
-                width: 80%;
-            }
-
-            .collapsed-btn {
-                display         : flex;
-                place-items     : center;
-                padding         : 0.5rem 0;
-                width           : 100px;
-                border-radius   : 5px;
-                font-size       : 15px;
-                color           : @text-color-black;
-                background-color: @btn-color;
-                user-select     : none;
-                cursor          : default;
-                .ease();
-
-                &:hover {
-                    background-color: @btn-color-hl;
-                    .ease();
-                }
-
-                i.icon-up {
-                    margin    : 0 0.3rem;
-                    transition: all 0.3s linear;
-                }
-
-                .btn-count {
-                    margin-left: 0.5rem;
-                }
-            }
-        }
     }
 
-    
+
 }
