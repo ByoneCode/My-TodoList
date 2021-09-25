@@ -1,5 +1,3 @@
-@import "../common/style.less";
-
 .heading {
 
     i,
@@ -26,14 +24,16 @@
 
     .taskList-item {
         .item();
-        background-color: #242426;
+        background-color: @bg-color-items;
+        .ease();
 
         @media (max-width: 768px) {
             width: 80%;
         }
 
         &:hover {
-            background-color: #292929;
+            background-color: @bg-color-items-hl;
+            .ease();
         }
 
         .item-isdone {
@@ -44,7 +44,7 @@
 
         .item-title {
             margin-left: 15px;
-            color      : #fff;
+            color      : @text-color-black;
         }
 
         .item-star {
@@ -58,23 +58,5 @@
         }
     }
 
-    .main-background {
-        overflow      : hidden;
-        position      : relative;
-        display       : flex;
-        flex-direction: column;
-        flex          : 1 1 0px;
-
-        .backgroundLines {
-            margin: 0 24px;
-            flex  : 1;
-            background: linear-gradient(180deg,
-                    #1a1b1c,
-                    #1a1b1c 52px,
-                    #171819 52px,
-                    #171819 52px);
-            background-size: 100% 53px;
-            box-shadow     : inset 0 1px 0 0 #171819;
-        }
-    }
+    
 }

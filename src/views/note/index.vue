@@ -14,12 +14,12 @@
       </div>
     </div>
     <!-- list -->
-    <div class="noteList scrollbar">
+    <div class="note-list scrollbar">
       <div class="note-container">
-        <div class="noteList-item note-add">
+        <div class="note-list-item note-add">
           <i class="iconfont icon-add"></i>
         </div>
-        <div class="noteList-item">
+        <div class="note-list-item">
           <div class="note-time">
             <span>2021/09/25</span>
           </div>

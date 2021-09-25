@@ -1,47 +1,238 @@
 // 页面初始化样式
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+	margin        : 0;
+	padding       : 0;
+	border        : 0;
+	font-size     : 100%;
+	font          : inherit;
 	vertical-align: baseline;
 }
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
 	display: block;
 }
+
 body {
 	line-height: 1;
 }
-ol, ul {
+
+ol,
+ul {
 	list-style: none;
 }
-blockquote, q {
+
+blockquote,
+q {
 	quotes: none;
 }
-blockquote:before, blockquote:after,
-q:before, q:after {
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
 	content: '';
 	content: none;
 }
+
 table {
 	border-collapse: collapse;
-	border-spacing: 0;
+	border-spacing : 0;
 }
+
 // end
-:root{
-  
+// :root {}
+
+// dark mode
+// @bg-color: #1a1b1c;
+// @text-color: #d9d9d9;
+// @icon-color: #929292;
+// @btn-color:#252627;
+// @btn-color-hl: #2e2f30;
+
+// light mode
+@bg-color         : #f1f3f9;
+@bg-color-items   : #fcfbfd;
+@bg-color-items-hl: #e8eaf0;
+@text-color-black : #1a1a1a;
+@text-color-grey  : #5f5f60;
+@side_hr          : #d6d6d6;
+@icon-color       : #929292;
+@btn-color        : #fdfbfb;
+@btn-color-hl     : #e8eaf0;
+
+.note,
+.task,
+.star {
+	display       : flex;
+	flex-direction: column;
+	flex          : 1 1 0px;
+	position      : relative;
+	overflow      : hidden;
+	transition    : background-color 0.3s;
+
+	.heading {
+		padding: 0 0 1rem 1rem;
+
+		// pc & tablet
+		@media (min-width: 768px) {
+			padding-top: 2rem;
+		}
+
+		.heading-main {
+			display    : flex;
+			align-items: center;
+
+			// icon
+			i {
+				font-size: 30px;
+			}
+
+			// title
+			.heading-title {
+				display    : flex;
+				align-items: center;
+
+				// text
+				span {
+					margin-left: 0.8rem;
+					font-size  : 30px;
+					font-weight: bold;
+				}
+			}
+		}
+	}
+}
+
+// isdone btn for item
+.icon {
+	font-size  : 20px;
+	font-weight: bold;
+	color      : @icon-color;
+}
+
+// to-do item
+.item {
+	display      : flex;
+	align-items  : center;
+	width        : 90%;
+	height       : 55px;
+	z-index      : 1;
+	margin       : 5px auto;
+	padding      : 0 1rem;
+	border-radius: 5px;
+	overflow     : hidden;
+}
+
+.scrollbar {
+	&::-webkit-scrollbar {
+		width: 2px;
+	}
+
+	&::-webkit-scrollbar-track {
+		background   : @bg-color;
+		border-radius: 2px;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background   : #858585;
+		border-radius: 10px;
+	}
+}
+
+.ease {
+	transition: all .2s ease;
+}
+
+.shadow {
+	box-shadow: 0 0 20px 2px #918f8f;
 }

@@ -37,7 +37,7 @@ function close() {
     flex: 1;
     flex-direction: column;
     overflow: auto;
-    background-color: #1a1b1c;
+    background-color: @bg-color;
     .app-tools {
       @media (min-width: 768px) {
         display: none;
@@ -52,8 +52,10 @@ function close() {
         i.icon-nav {
           font-size: 35px;
           color: #fff;
+          .ease();
           &:hover {
             background-color: #282828;
+            .ease();
           }
         }
       }

@@ -2,7 +2,8 @@
   position        : relative;
   width           : 280px;
   height          : 100vh;
-  background-color: #212425;
+  padding         : 0 10px;
+  background-color: @bg-color;
 
   @media (max-width: 768px) {
     position  : absolute;
@@ -41,11 +42,11 @@
         p {
           margin   : 0 0 2px 0;
           font-size: 14px;
-          color    : #d9d9d9;
+          color    : @text-color-black;
 
           &:last-child {
             font-size: 8px;
-            color    : #939393;
+            color    : @text-color-grey;
           }
         }
       }
@@ -58,12 +59,15 @@
         cursor         : pointer;
 
         i.icon-serch {
-          padding  : .5rem;
-          font-size: 25px;
-          color    : #939393;
+          padding      : .5rem;
+          font-size    : 25px;
+          color        : #939393;
+          border-radius: 5px;
+          .ease();
 
           &:hover {
-            background-color: #282828;
+            background-color: @btn-color-hl;
+            .ease();
           }
         }
       }
@@ -71,19 +75,22 @@
 
     // 列表
     .list {
-      display    : flex;
-      align-items: center;
-      padding    : .8rem 1rem;
+      display      : flex;
+      align-items  : center;
+      padding      : .8rem 1rem;
+      border-radius: 5px;
+      .ease();
 
       &:hover {
-        background-color: #282828;
+        background-color: @btn-color-hl;
+        .ease();
       }
     }
 
     .title {
       margin-inline-start: 10px;
       font-size          : 15px;
-      color              : #d9d9d9;
+      color              : @text-color-black;
       user-select        : none;
     }
 
@@ -134,6 +141,7 @@
             flex-grow      : 1;
             font-size      : 12px;
             color          : #939393;
+            user-select    : none;
           }
         }
       }
@@ -144,7 +152,7 @@
       margin          : 1rem auto;
       width           : 90%;
       height          : 1px;
-      background-color: #3d3d40;
+      background-color: @side_hr;
     }
 
     // 任务列表
@@ -167,6 +175,7 @@
             flex-grow      : 1;
             font-size      : 12px;
             color          : #939393;
+            user-select    : none;
           }
         }
       }
@@ -178,12 +187,12 @@
 
       i.icon-add {
         font-size: 20px;
-        color    : #939393;
+        color    : @text-color-grey;
       }
 
       span {
         .title();
-        color    : #939393;
+        color    : @text-color-grey;
         font-size: 15px;
       }
     }

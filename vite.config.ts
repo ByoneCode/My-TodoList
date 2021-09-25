@@ -2,19 +2,17 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { resolve } from 'path'
 import { VitePWA } from 'vite-plugin-pwa'
-import { viteMockServe } from "vite-plugin-mock";
+import { viteMockServe } from 'vite-plugin-mock'
 
 function pathResolve(dir: string) {
-  return resolve(process.cwd(), '.', dir);
+  return resolve(process.cwd(), '.', dir)
 }
-
-
 
 export default defineConfig({
   plugins: [
     vue(),
     viteMockServe({
-      supportTs: false
+      supportTs: false,
     }),
     VitePWA({
       registerType: 'autoUpdate',
@@ -57,7 +55,7 @@ export default defineConfig({
             src: '/images/icons/icon-512-512.png',
             sizes: '512x512',
             type: 'image/png',
-          }
+          },
         ],
         lang: 'zh',
         scope: '/',
@@ -66,24 +64,24 @@ export default defineConfig({
         orientation: 'any',
         theme_color: '#1a1b1c',
         background_color: '#1a1b1c',
-        prefer_related_applications: false
-      }
-    })
+        prefer_related_applications: false,
+      },
+    }),
   ],
   resolve: {
     alias: [
       {
         find: /\/@\//,
         replacement: pathResolve('src') + '/',
-      }
-    ]
+      },
+    ],
   },
   css: {
     preprocessorOptions: {
-      less: { 
+      less: {
         javascriptEnabled: true,
-        additionalData:  `@import "${pathResolve('src/assets/css/global.less')}";`
-      }
-    }
-  }
+        additionalData: `@import "${pathResolve('./src/assets/css/global.less')}";`,
+      },
+    },
+  },
 })

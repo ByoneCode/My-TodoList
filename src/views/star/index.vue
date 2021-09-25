@@ -23,9 +23,6 @@
           <task-item :list="stat.list" :done="1"></task-item>
         </collapsed>
       </div>
-      <div class="main-background">
-        <div class="background-lines"></div>
-      </div>
     </div>
   </div>
 </template>
