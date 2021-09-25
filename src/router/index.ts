@@ -8,10 +8,15 @@ const routes: RouteRecordRaw[] = [
     path: '/',
     name: 'Root',
     component: Layout,
-    redirect: '/home',
+    redirect: '/home/index'
+  },
+  {
+    path: '/home',
+    name: 'Home',
+    component: Layout,
     children:[
     { 
-      path: 'home',
+      path: 'index',
       component: () => import('/@/views/task/index.vue'),
       meta: { title: 'Home' }
     }

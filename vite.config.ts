@@ -77,5 +77,13 @@ export default defineConfig({
         replacement: pathResolve('src') + '/',
       }
     ]
+  },
+  css: {
+    preprocessorOptions: {
+      less: { 
+        javascriptEnabled: true,
+        additionalData:  `@import "${pathResolve('src/assets/css/global.less')}";`
+      }
+    }
   }
 })

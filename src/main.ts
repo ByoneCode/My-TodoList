@@ -3,7 +3,6 @@ import App from './App.vue'
 import { router } from '/@/router'
 import store from '/@/store'
 import 'normalize.css/normalize.css'
-import './assets/css/global.less'
 
 const app = createApp(App)
 app.use(router)

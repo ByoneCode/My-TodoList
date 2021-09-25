@@ -55,7 +55,7 @@ const stat = reactive({
   {
     title: '任务',
     icon: 'home',
-    path: '/',
+    path: '/home/index',
     hidden: false
   }]
 })

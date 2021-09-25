@@ -15,23 +15,19 @@
     </div>
     <!-- list -->
     <div class="task-list">
-      <div class="list-container" :class="{ 'done-visible': stat.isdone }">
+      <div class="list-container">
         <!-- undone item list -->
         <div class="undone-item-list">
           <task-item :list="allStore.taskList" :done="0"></task-item>
         </div>
         <!-- collapsed list -->
-        <div class="collapsed" v-if="okTaskCount !== 0">
-          <div class="collapsed-btn" @click="stat.isdone = !stat.isdone">
-            <i class="iconfont icon-up"></i>
-            <div class="btn-title">已完成</div>
-            <div class="btn-count">{{ okTaskCount }}</div>
-          </div>
-        </div>
-        <!-- done item list -->
-        <div class="done-item-list">
+        <collapsed
+        :list="allStore.taskList"
+        >
           <task-item :list="allStore.taskList" :done="1"></task-item>
-        </div>
+        </collapsed>
+        <!-- done item list -->
+       
       </div>
       <!-- background -->
       <div class="main-background">
@@ -46,12 +42,10 @@
 <script setup lang="ts">
 import AddTask from "/@/components/addTask/index.vue";
 import TaskItem from "/@/components/taskItem/index.vue";
-import { reactive, computed, onMounted } from "vue";
+import Collapsed from "/@/components/collapsed/index.vue";
+import { onMounted } from "vue";
 import { useStore } from "vuex";
 import { getTaskList } from "/@/api/tasklist";
-const stat = reactive({
-  isdone: true,
-});
 const store = useStore();
 const allStore = store.state;
 
@@ -60,9 +54,6 @@ onMounted(async () => {
   store.commit("getTaskList", data);
 });
 
-const okTaskCount = computed(() => {
-  return allStore.taskList.filter((item: any) => item.isok === 1).length;
-});
 </script>
 
 <style lang="less" scoped>

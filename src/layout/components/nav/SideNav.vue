@@ -3,7 +3,7 @@
     <nav aria-label="列表">
       <ul>
         <li v-for="(item,index) in list" :key="`navlist${index}`" @click="goto(item.path)">
-          <div class="list-item">
+          <div class="list-item" :class="{'active': route.path === item.path}">
             <i class="iconfont" :class="`icon-${item.icon}`"></i>
             <span class="item-title">{{item.title}}</span>
             <span class="item-count">6</span>
@@ -16,9 +16,10 @@
 
 
 <script setup lang="ts">
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 
 const router = useRouter()
+const route = useRoute()
 const props = defineProps({
   list: {
     type: Object,

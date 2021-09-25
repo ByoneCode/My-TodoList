@@ -16,28 +16,12 @@
     <!-- list -->
     <div class="taskList">
       <div class="task-container">
-        <div class="taskList-item">
-          <div class="item-isdone">
-            <i class="iconfont icon-undone"></i>
-          </div>
-          <div class="item-title">
-            <span>苹果</span>
-          </div>
-          <div class="item-star">
-            <i class="iconfont icon-star"></i>
-          </div>
-        </div>
-        <div class="taskList-item">
-          <div class="item-isdone">
-            <i class="iconfont icon-undone"></i>
-          </div>
-          <div class="item-title">
-            <span>香蕉</span>
-          </div>
-          <div class="item-star">
-            <i class="iconfont icon-star"></i>
-          </div>
-        </div>
+        <collapsed
+        :list="stat.list"
+        name="待办事项"
+        >
+          <task-item :list="stat.list" :done="1"></task-item>
+        </collapsed>
       </div>
       <div class="main-background">
         <div class="background-lines"></div>
@@ -47,6 +31,18 @@
 </template>
 
 <script setup lang="ts">
+import Collapsed from "/@/components/collapsed/index.vue";
+import TaskItem from "/@/components/taskItem/index.vue";
+import { reactive } from 'vue'
+
+const stat = reactive({
+  list:[
+    {
+      'name': '测试',
+      'isok': 1
+    }
+  ]
+})
 </script>
 
 <style lang="less" scoped>

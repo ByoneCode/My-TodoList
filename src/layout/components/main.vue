@@ -16,15 +16,11 @@
 
       <RouterView />
     </main>
-
-    <!-- TaskInfo -->
-    <task-info />
   </div>
 </template>
 
 <script setup lang="ts">
 import Nav from "./nav/index.vue";
-import TaskInfo from "./taskInfo/index.vue";
 import { ref } from "vue";
 const open = ref(false);
 function close() {
@@ -52,7 +48,7 @@ function close() {
         font-size: 10px;
       }
       .app-side {
-        padding: 0 1rem;
+        padding: 0 .8rem;
         i.icon-nav {
           font-size: 35px;
           color: #fff;
