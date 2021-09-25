@@ -17,7 +17,7 @@
     .side_title {
       padding  : .5rem 1rem .5rem 1rem;
       font-size: 10px;
-      color    : #939393;
+      color    : @text-color-grey;
     }
 
     .side_user {
@@ -51,7 +51,7 @@
         }
       }
 
-      .search {
+      .theme {
         display        : flex;
         justify-content: flex-end;
         align-items    : center;
@@ -61,8 +61,8 @@
         i.icon-theme {
           padding      : .5rem;
           font-size    : 20px;
-          font-weight: bold;
-          color        : #939393;
+          font-weight  : bold;
+          color        : @icon-color;
           border-radius: 5px;
           .ease();
 
@@ -74,27 +74,6 @@
       }
     }
 
-    // 列表
-    .list {
-      display      : flex;
-      align-items  : center;
-      padding      : .8rem 1rem;
-      border-radius: 5px;
-      .ease();
-
-      &:hover {
-        background-color: @btn-color-hl;
-        .ease();
-      }
-    }
-
-    .title {
-      margin-inline-start: 10px;
-      font-size          : 15px;
-      color              : @text-color-black;
-      user-select        : none;
-    }
-
     .side_content {
       nav>ul {
         margin    : 0;
@@ -102,7 +81,7 @@
         list-style: none;
 
         li div.list-item {
-          .list();
+          .nav-item();
 
           i {
             font-size: 20px;
@@ -113,7 +92,7 @@
           }
 
           i.icon-star {
-            color: #f5b6c2;
+            color: #fc98aa;
           }
 
           i.icon-plan {
@@ -133,7 +112,7 @@
           }
 
           span.item-title {
-            .title();
+            .nav-item-title();
           }
 
           span.item-count {
@@ -141,8 +120,23 @@
             justify-content: flex-end;
             flex-grow      : 1;
             font-size      : 12px;
-            color          : #939393;
+            color          : @text-color-grey;
             user-select    : none;
+          }
+
+          &.active {
+            background-color: @btn-color-hl;
+
+            &::before {
+              content         : "";
+              position        : absolute;
+              left            : 10px;
+              width           : 0.35rem;
+              height          : 1.25rem;
+              z-index         : 999;
+              border-radius   : 4px;
+              background-color: royalblue;
+            }
           }
         }
       }
@@ -160,14 +154,14 @@
     .side_list {
       ul {
         .list-items {
-          .list();
+          .nav-item();
 
           .list-icon>i {
             font-style: normal;
           }
 
           .list-title {
-            .title();
+            .nav-item-title();
           }
 
           .list-count {
@@ -184,7 +178,7 @@
 
     // 添加任务
     .side_add {
-      .list();
+      .nav-item();
 
       i.icon-add {
         font-size: 20px;
@@ -192,7 +186,7 @@
       }
 
       span {
-        .title();
+        .nav-item-title();
         color    : @text-color-grey;
         font-size: 15px;
       }
@@ -201,5 +195,8 @@
 }
 
 .open_side {
-  left: 0;
+  left      : 0;
+  box-shadow: 0 4px 12px rgb(0 0 0 / 15%);
+  // .shadow();
 }
+

@@ -202,32 +202,34 @@ table {
 
 // to-do item
 .item {
-	display      : flex;
-	align-items  : center;
-	width        : 90%;
-	height       : 55px;
-	z-index      : 1;
-	margin       : 5px auto;
-	padding      : 0 1rem;
-	border-radius: 5px;
-	overflow     : hidden;
+	display        : flex;
+	justify-content: flex-start;
+	align-items    : center;
+	width          : 90%;
+	height         : 55px;
+	z-index        : 1;
+	margin         : 5px auto;
+	padding        : 0 1rem;
+	border-radius  : 5px;
+	overflow       : hidden;
 }
 
 .scrollbar {
 	&::-webkit-scrollbar {
-		width: 2px;
+		width: 5px;
 	}
 
 	&::-webkit-scrollbar-track {
-		background   : @bg-color;
-		border-radius: 2px;
+		background: @bg-color;
+		border-radius: 5px;
+		}
 	}
 
 	&::-webkit-scrollbar-thumb {
-		background   : #858585;
-		border-radius: 10px;
+		background   : #00000050;
+		border-radius: 5px;
 	}
-}
+
 
 .ease {
 	transition: all .2s ease;
@@ -235,4 +237,25 @@ table {
 
 .shadow {
 	box-shadow: 0 0 20px 2px #918f8f;
+}
+
+// 导航项目
+.nav-item {
+	display      : flex;
+	align-items  : center;
+	padding      : .8rem 1rem;
+	border-radius: 5px;
+	.ease();
+
+	&:hover {
+		background-color: @btn-color-hl;
+		.ease();
+	}
+}
+
+.nav-item-title {
+	margin-inline-start: 10px;
+	font-size          : 15px;
+	color              : @text-color-black;
+	user-select        : none;
 }
