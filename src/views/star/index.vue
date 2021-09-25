@@ -5,7 +5,7 @@
       <div class="heading-main">
         <!-- icon -->
         <div class="heading-icon">
-          <i class="iconfont icon-home"></i>
+          <i class="iconfont icon-star"></i>
         </div>
         <!-- title -->
         <div class="heading-title">
