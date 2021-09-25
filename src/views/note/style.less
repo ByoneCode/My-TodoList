@@ -1,0 +1,67 @@
+@import "../common/style.less";
+
+.heading {
+
+    i,
+    span {
+        color: #efad03;
+    }
+}
+
+.noteAdd {
+    background : #1a1b1c;
+    height     : 100px;
+    position   : absolute;
+    bottom     : 0;
+    right      : 2px;
+    left       : 0;
+    user-select: none;
+
+    .add {
+        .item();
+        margin-top      : 15px;
+        background-color: #1f1f20;
+
+        @media (max-width: 768px) {
+            width: 80%;
+        }
+
+        i.icon-add {
+            .icon();
+        }
+
+        span {
+            margin-left: 15px;
+            color      : #fff;
+        }
+    }
+}
+
+.noteList {
+    .note-container {
+        .noteList-item {
+            margin          : 5px auto;
+            padding         : 0 1rem;
+            overflow        : hidden;
+            display         : flex;
+            flex-direction  : column;
+            z-index         : 1;
+            width           : 90%;
+            height          : 55px;
+            // align-items: center;
+            justify-content : center;
+            border-radius   : 5px;
+            background-color: #242426;
+
+            .note-time {
+                color     : #949494;
+                font-size : 12px;
+                align-self: flex-end;
+            }
+
+            .note-title {
+                color: white;
+            }
+        }
+    }
+}

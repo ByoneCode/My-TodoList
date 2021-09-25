@@ -13,31 +13,31 @@ const routes: RouteRecordRaw[] = [
     { 
       path: 'home',
       component: () => import('/@/views/task/index.vue'),
-      meta: { title: 'Home', icon: 'home' }
+      meta: { title: 'Home' }
     }
     ]
   },
   {
-    path: '/collect',
-    name: 'Collect',
+    path: '/star',
+    name: 'Star',
     component: Layout,
     children:[
     { 
       path: 'index',
-      component: () => import('/@/views/collect/index.vue') ,
-      meta: { title: 'Collect', icon: 'star' }
+      component: () => import('/@/views/star/index.vue') ,
+      meta: { title: 'Star' }
     }
     ]
   },
   {
-    path: '/sticky',
-    name: 'Sticky',
+    path: '/note',
+    name: 'Note',
     component: Layout,
     children:[
     { 
       path: 'index',
-      component: () => import('/@/views/sticky/index.vue') ,
-      meta: { title: 'Sticky', icon: 'star' }
+      component: () => import('/@/views/note/index.vue') ,
+      meta: { title: 'Note' }
     }
     ]
   }

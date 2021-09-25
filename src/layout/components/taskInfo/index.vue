@@ -3,8 +3,8 @@
     <div class="taskinfo_container">
       <div class="taskinfo-head">
         <div class="head-info">
-          <i class="iconfont icon-noselect" v-if="allstat.taskInfo.isok === 0"></i>
-          <i class="iconfont icon-select" v-else></i>
+          <i class="iconfont icon-undone" v-if="allstat.taskInfo.isok === 0"></i>
+          <i class="iconfont icon-done" v-else></i>
           <div class="head-title">
             <span v-if="allstat.taskInfo.isok === 0">{{allstat.taskInfo.name}}</span>
             <span v-else style="color: #919191;text-decoration: line-through;">{{allstat.taskInfo.name}}</span>
@@ -17,7 +17,7 @@
       </div>
       <div class="task-tools">
         <div class="tools-item">
-          <i class="iconfont icon-taiyang"></i>
+          <i class="iconfont icon-sun"></i>
           <span>添加到"我的一天"</span>
         </div>
       </div>
