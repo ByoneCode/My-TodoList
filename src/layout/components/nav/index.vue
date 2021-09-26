@@ -2,7 +2,6 @@
   <aside
     class="container__sidebar"
     :class="{ open_side: isopen }"
-    @click="emit('closeSide')"
   >
     <div class="sidebar">
       <div class="side_user">
@@ -26,6 +25,7 @@
       </div>
     </div>
   </aside>
+  <div class="shade" v-show="isopen" @click="emit('closeSide')"></div>
 </template>
 
 <script setup lang="ts">
