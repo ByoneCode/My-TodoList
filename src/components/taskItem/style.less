@@ -22,18 +22,41 @@
     }
 
     .item-title {
-        margin-left: 15px;
-        color      : @text-color-black;
+        margin-left : 15px;
+        margin-right: auto;
+        color       : @text-color-black;
     }
 
     .item-star,
     .item-del {
-        display        : flex;
-        justify-content: flex-end;
-        flex-grow      : 1;
-
         i {
-            .icon();
+            padding    : 0.2rem;
+            font-size  : 22px;
+            font-weight: bold;
+            color      : @icon-color;
+            transition : all 0.2s ease;
+
+            &:hover {
+                transition: all 0.2s ease;
+            }
+        }
+    }
+
+    .item-star {
+        i {
+            margin-right: 15px;
+            &:hover {
+                color: #efad03;
+            }
+        }
+    }
+
+    .item-del {
+        i {
+            margin-right: 10px;
+            &:hover {
+                color: #ff2323;
+            }
         }
     }
 }
