@@ -29,10 +29,6 @@
         <!-- done item list -->
        
       </div>
-      <!-- background -->
-      <div class="main-background">
-        <div class="background-lines"></div>
-      </div>
     </div>
     <!-- add -->
     <add-task></add-task>
@@ -57,6 +53,5 @@ onMounted(async () => {
 </script>
 
 <style lang="less" scoped>
-@import "../common/style.less";
 @import "./style";
 </style>
