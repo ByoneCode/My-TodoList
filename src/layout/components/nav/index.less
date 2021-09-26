@@ -1,16 +1,18 @@
 .shade {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  position        : fixed;
+  top             : 0;
+  left            : 0;
+  width           : 100%;
+  height          : 100%;
   background-color: #8795a0;
-  opacity: 0.5;
-  z-index: 5;
+  opacity         : 0.5;
+  z-index         : 5;
+
   @media (min-width: 768px) {
     display: none;
   }
 }
+
 .container__sidebar {
   position        : relative;
   width           : 280px;
@@ -34,10 +36,11 @@
     }
 
     .side_user {
-      display    : flex;
+      display        : flex;
       justify-content: flex-start;
-      align-items: center;
-      padding    : .8rem 0 0 1rem;
+      align-items    : center;
+      margin         : 15px 0 20px 0;
+      padding        : .8rem 0 0 .8rem;
 
       .avatar {
         width           : 30px;
@@ -52,7 +55,7 @@
 
       .info {
         margin-inline-start: 8px;
-        margin-right: auto;
+        margin-right       : auto;
 
         p {
           margin   : 0 0 2px 0;
@@ -81,9 +84,7 @@
           .ease();
 
           &:hover {
-            background-image       : -webkit-gradient(linear, 0 0, 0 bottom, from(#0cc6f0), to(#4e81df));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: #2db1ef;
             .ease();
           }
         }
@@ -128,7 +129,7 @@
           }
 
           i.icon-star {
-            color: #fc98aa;
+            color: #efad03;
           }
 
           i.icon-plan {
@@ -140,7 +141,7 @@
           }
 
           i.icon-note {
-            color: #efad03;
+            color: #2fbb46;
           }
 
           i.icon-home {
@@ -234,5 +235,4 @@
 .open_side {
   left      : 0;
   box-shadow: 0 4px 12px rgb(0 0 0 / 15%);
-  // .shadow();
 }
