@@ -6,9 +6,6 @@
     <!-- Main -->
     <main class="container__main">
       <div class="app-tools">
-        <div class="app-title">
-          <span>My TodoList</span>
-        </div>
         <div class="app-side">
           <i class="iconfont icon-nav" @click="open = true"></i>
         </div>
@@ -42,19 +39,17 @@ function close() {
       @media (min-width: 768px) {
         display: none;
       }
-      .app-title {
-        color: #fff;
-        padding: 0.5rem 0 0.5rem 1.2rem;
-        font-size: 10px;
-      }
       .app-side {
-        padding: 0 .8rem;
+        padding: 0 0.8rem;
+        margin: .3rem 0;
         i.icon-nav {
+          border-radius: 5px;
+          padding: 0.2rem;
           font-size: 35px;
-          color: #fff;
+          color: @text-color-grey;
           .ease();
           &:hover {
-            background-color: #282828;
+            background-color: @btn-color-hl;
             .ease();
           }
         }
