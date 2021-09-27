@@ -146,6 +146,7 @@ table {
 @bg-color-items-hl: #e8eaf0;
 @text-color-black : #1a1a1a;
 @text-color-grey  : #5f5f60;
+@text-color-white : #fff;
 @side_hr          : #d6d6d6;
 @icon-color       : #929292;
 @btn-color        : #fdfbfb;
@@ -252,25 +253,4 @@ table {
 
 .shadow {
 	box-shadow: 0 0 20px 2px #918f8f;
-}
-
-// 导航项目
-.nav-item {
-	display      : flex;
-	align-items  : center;
-	padding      : .8rem 1rem;
-	border-radius: 5px;
-	.ease();
-
-	&:hover {
-		background-color: @btn-color-hl;
-		.ease();
-	}
-}
-
-.nav-item-title {
-	margin-inline-start: 10px;
-	font-size          : 15px;
-	color              : @text-color-black;
-	user-select        : none;
 }

@@ -42,11 +42,13 @@
         padding  : 0 1rem;
         display  : flex;
         flex-wrap: wrap;
+
         &.note-edit {
-            .note-list-item:not(.edit){
+            .note-list-item:not(.edit) {
                 display: none;
             }
         }
+
         .note-list-item {
             display            : flex;
             flex-direction     : column;
@@ -60,26 +62,30 @@
             cursor             : default;
             .ease();
 
-            &.edit{
-                position: absolute;
-                width: 80%;
-                height: 50%;
-                left: 50%;
-                top: 50%;
-                transform: translate(-50%,-50%);
-                margin: 0;
+            &.edit {
+                position : absolute;
+                width    : 80%;
+                height   : 50%;
+                left     : 50%;
+                top      : 50%;
+                transform: translate(-50%, -50%);
+                margin   : 0;
+
                 .note-content {
                     overflow: auto;
+
                     &::-webkit-scrollbar {
                         display: none;
                     }
                 }
-                .note-content p{
-                    overflow: visible;
+
+                .note-content p {
+                    overflow          : visible;
                     -webkit-box-orient: unset;
                     -webkit-line-clamp: unset;
                 }
             }
+
             @media (min-width:1532px) {
                 width: 30%;
             }
@@ -154,11 +160,11 @@
                         .icon();
                         border-radius: 5px;
                         padding      : 0.2rem;
-                        transition   : all 0.2s ease;
+                        .ease();
 
                         &:hover {
-                            color     : #2fbb46;
-                            transition: all 0.2s ease;
+                            color: #2fbb46;
+                            .ease()
                         }
                     }
                 }
@@ -168,11 +174,11 @@
                         .icon();
                         border-radius: 5px;
                         padding      : 0.2rem;
-                        transition   : all 0.2s ease;
+                        .ease();
 
                         &:hover {
-                            color     : #efad03;
-                            transition: all 0.2s ease;
+                            color: #efad03;
+                            .ease();
                         }
                     }
                 }
@@ -184,15 +190,15 @@
                         .icon();
                         border-radius: 5px;
                         padding      : 0.2rem;
-                        transition   : all 0.2s ease;
+                        .ease();
 
                         &:hover {
-                            color     : #e64b36;
-                            transition: all 0.2s ease;
+                            color: #e64b36;
+                            .ease();
                         }
                     }
                 }
-                
+
             }
 
             .note-content {
@@ -215,6 +221,6 @@
 
             }
         }
-        
+
     }
 }
