@@ -136,21 +136,20 @@ table {
 // @bg-color: #1a1b1c;
 // @text-color: #d9d9d9;
 // @icon-color: #929292;
-// @btn-color:#252627;
-// @btn-color-hl: #2e2f30;
+// @bg-color-items:#252627;
+// @bg-color-items-hl: #2e2f30;
 
 // light mode
-@bg-color         : #f1f3f9;
-@bg-color-ac      : #bbbbbb88;
-@bg-color-items   : #fcfbfd;
-@bg-color-items-hl: #e8eaf0;
-@text-color-black : #1a1a1a;
-@text-color-grey  : #5f5f60;
-@text-color-white : #fff;
-@side_hr          : #d6d6d6;
-@icon-color       : #929292;
-@btn-color        : #fdfbfb;
-@btn-color-hl     : #e8eaf0;
+@bg-color          : #f1f3f9;
+@bg-color-items    : #fcfbfd;
+@bg-color-items-hl : #e8eaf0;
+@bg-color-items-ac : #bbbbbb88;
+@text-color-black  : #1a1a1a;
+@text-color-grey   : #5f5f60;
+@text-color-faded  : #919191;
+@text-color-white  : #fff;
+@side_hr           : #d6d6d6;
+@icon-color        : #929292;
 
 .note,
 .task,
@@ -175,8 +174,14 @@ table {
 			align-items: center;
 
 			// icon
-			i {
-				font-size: 30px;
+			.heading-icon {
+				padding: .25rem;
+				cursor : pointer;
+				.hov();
+
+				i {
+					font-size: 30px;
+				}
 			}
 
 			// title
@@ -186,9 +191,20 @@ table {
 
 				// text
 				span {
-					margin-left: 0.8rem;
-					font-size  : 30px;
+					padding    : .35rem;
+					font-size  : 2rem;
 					font-weight: bold;
+					outline    : 0px;
+					user-select: none;
+					cursor     : text;
+
+					&:focus {
+						background-color: @bg-color-items-hl;
+						outline         : 0px;
+						.ease();
+					}
+
+					.hov();
 				}
 			}
 		}
@@ -253,4 +269,39 @@ table {
 
 .shadow {
 	box-shadow: 0 0 20px 2px #918f8f;
+}
+
+.hov {
+	border-radius: 5px;
+	.ease();
+
+	&:focus {
+		span {
+			// background-color: @bg-color-items-ac;
+			opacity: 1;
+			.ease();
+		}
+	}
+
+	&:hover {
+		background-color: @bg-color-items-hl;
+		.ease();
+
+		span {
+			opacity: 0.75;
+			.ease();
+		}
+
+		&:active {
+			background-color: @bg-color-items-ac;
+			.ease();
+		}
+	}
+
+	&:active {
+		span {
+			opacity: 1;
+			.ease();
+		}
+	}
 }

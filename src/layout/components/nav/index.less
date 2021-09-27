@@ -48,11 +48,12 @@
   margin         : 1rem 0 .5rem 0;
   padding        : .75rem 1rem .75rem .5rem;
   border-radius  : 5px;
+  user-select: none;
   cursor         : default;
   .ease();
 
   &:hover {
-    background-color: @btn-color-hl;
+    background-color: @bg-color-items-hl;
     .ease();
 
     p {
@@ -61,7 +62,7 @@
     }
 
     &:active {
-      background-color: @bg-color-ac;
+      background-color: @bg-color-items-ac;
       .ease();
     }
   }
@@ -94,7 +95,6 @@
       margin     : 0 0 2px 0;
       font-size  : 14px;
       color      : @text-color-black;
-      user-select: none;
 
       &:last-child {
         font-size: 8px;
@@ -140,33 +140,10 @@
   align-items  : center;
   margin-top   : .25rem;
   padding      : .75rem 1rem;
-  border-radius: 5px;
-  .ease();
-
-  &:hover {
-    background-color: @btn-color-hl;
-    .ease();
-
-    span {
-      opacity: 0.75;
-      .ease();
-    }
-
-    &:active {
-      background-color: @bg-color-ac;
-      .ease();
-    }
-  }
-
-  &:active {
-    span {
-      opacity: 1;
-      .ease();
-    }
-  }
+  .hov();
 
   &.active {
-    background-color: @btn-color-hl;
+    background-color: @bg-color-items-hl;
 
     &::before {
       content         : "";

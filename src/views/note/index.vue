@@ -9,7 +9,7 @@
         </div>
         <!-- title -->
         <div class="heading-title">
-          <span>便笺</span>
+          <span contenteditable="true">便笺</span>
         </div>
       </div>
     </div>

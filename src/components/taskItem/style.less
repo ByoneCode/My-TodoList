@@ -9,9 +9,9 @@
     }
 
     &:active {
-        background-color: @bg-color-ac;
         .ease();
     }
+
 
     // mobile
     @media (max-width: 768px) {
@@ -22,14 +22,26 @@
 
         i {
             .icon();
+            cursor: pointer;
         }
-
     }
 
     .item-title {
         margin-left : 15px;
         margin-right: auto;
         color       : @text-color-black;
+        user-select : none;
+        cursor      : text;
+
+        span.done-item {
+            color          : @text-color-faded;
+            text-decoration: line-through;
+        }
+
+        span:focus {
+            outline        : 0px;
+            text-decoration: none;
+        }
     }
 
     .item-star,
@@ -44,13 +56,14 @@
             &:hover {
                 .ease();
             }
+
+            cursor: pointer;
         }
+
     }
 
     .item-star {
         i {
-            margin-right: 15px;
-
             &:hover {
                 color: #efad03;
             }
@@ -59,7 +72,7 @@
 
     .item-del {
         i {
-            margin-right: 10px;
+            margin-left: 10px;
 
             &:hover {
                 color: #e64b36;

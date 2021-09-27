@@ -47,7 +47,7 @@ const { isSide } = store.state
           color: @text-color-grey;
           .ease();
           &:hover {
-            background-color: @btn-color-hl;
+            background-color: @bg-color-items-hl;
             .ease();
           }
         }
