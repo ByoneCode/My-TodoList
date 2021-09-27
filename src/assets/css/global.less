@@ -216,20 +216,21 @@ table {
 }
 
 .scrollbar {
+	// 滚动条整体部分
 	&::-webkit-scrollbar {
-		width: 5px;
+		width: 8px;
 	}
-
+	// 外层轨道
 	&::-webkit-scrollbar-track {
 		background   : @bg-color;
 		border-radius: 5px;
 	}
+	&::-webkit-scrollbar-thumb {
+		background   : #00000050;
+		border-radius: 5px;
+	}
 }
 
-&::-webkit-scrollbar-thumb {
-	background   : #00000050;
-	border-radius: 5px;
-}
 
 
 .ease {

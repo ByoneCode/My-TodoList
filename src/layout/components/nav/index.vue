@@ -1,7 +1,7 @@
 <template>
   <aside
     class="container__sidebar"
-    :class="{ open_side: isopen }"
+    :class="{ 'open_side': allstat.isSide }"
   >
     <div class="sidebar">
       <div class="side_user">
@@ -25,20 +25,21 @@
       </div>
     </div>
   </aside>
-  <div class="shade" v-show="isopen" @click="emit('closeSide')"></div>
+  <div class="shade" v-show="allstat.isSide" @click="closeSide"></div>
 </template>
 
 <script setup lang="ts">
 import SideNav from "./SideNav.vue";
 import SideList from "./SideList.vue";
-
 import { reactive } from "vue";
-const props = defineProps({
-  isopen: {
-    type: Boolean,
-    default: false,
-  },
-});
+import { useStore } from "vuex";
+
+const store = useStore()
+const allstat = store.state
+
+const closeSide = () => {
+  store.commit("toggleSide")
+}
 
 const stat = reactive({
   navList: [

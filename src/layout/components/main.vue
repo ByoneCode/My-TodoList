@@ -1,13 +1,13 @@
 <template>
   <div class="container">
     <!-- Navigation -->
-    <Nav :isopen="open" @closeSide="close"></Nav>
+    <Nav />
 
     <!-- Main -->
     <main class="container__main">
       <div class="app-tools">
         <div class="app-side">
-          <i class="iconfont icon-nav" @click="open = true"></i>
+          <i class="iconfont icon-nav" @click="store.commit('toggleSide')"></i>
         </div>
       </div>
 
@@ -18,11 +18,9 @@
 
 <script setup lang="ts">
 import Nav from "./nav/index.vue";
-import { ref } from "vue";
-const open = ref(false);
-function close() {
-  open.value = false;
-}
+import { useStore } from "vuex";
+const store = useStore()
+const { isSide } = store.state
 </script>
 
 <style scoped lang="less">

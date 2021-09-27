@@ -17,6 +17,9 @@
 
 <script setup lang="ts">
 import { useRouter, useRoute } from 'vue-router'
+import { useStore } from "vuex";
+
+const store = useStore()
 
 const router = useRouter()
 const route = useRoute()
@@ -31,6 +34,7 @@ const props = defineProps({
 // 跳转
 function goto(path: string): void {
   router.push(path)
+  store.commit('toggleSide')
 }
 </script>
 
