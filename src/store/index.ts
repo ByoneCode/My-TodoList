@@ -2,6 +2,7 @@ import { createStore } from "vuex";
 
 export default createStore({
   state: {
+    isSide: false,
     openTaskInfo: false, 
     taskInfo: {
       id: undefined,
@@ -27,11 +28,18 @@ export default createStore({
 
     // 往任务清单添加数据
     addTaskList(stat,data){
-      stat.taskList.push(data)
+      stat.taskList.push(data as never)
     },
 
     getTaskList(stat,data){
       stat.taskList = data
+    },
+
+    // 切换侧滑栏
+    toggleSide(stat){
+      stat.isSide = !stat.isSide;
+      console.log(stat.isSide);
+      
     }
   }
 })
