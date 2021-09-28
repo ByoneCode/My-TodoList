@@ -11,6 +11,21 @@
         margin-top      : 15px;
         background-color: @bg-color-items;
         cursor          : text;
+        .ease();
+
+        &:focus-within {
+            background-color: @bg-color-items-hl;
+            .ease();
+        }
+    
+        &:hover {
+            background-color: @bg-color-items-hl;
+            .ease();
+        }
+    
+        &:active {
+            .ease();
+        }
 
         // mobile
         @media (max-width: 768px) {
@@ -20,6 +35,7 @@
         // add icon & undone icon
         i {
             .icon();
+            cursor: default;
         }
 
         // placeholder
@@ -33,9 +49,13 @@
             width      : 100%;
             margin-left: 10px;
             border     : none;
-            color      : #d9d9d9;
+            color      : @text-color-grey;
             background : transparent;
             outline    : none;
+
+            &:focus {
+                color      : @text-color-black;
+            }
         }
     }
 }
