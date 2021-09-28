@@ -1,20 +1,18 @@
 <template>
-  <div class="task-add">
-    <div class="add-container" @click="toggle(1)" v-show="toggleValue">
-      <i class="iconfont icon-add"></i>
-      <span>添加任务</span>
+    <div class="task-add">
+        <div class="add-container">
+            <i class="iconfont icon-add"></i>
+            <i class="iconfont icon-undone"></i>
+            <input
+                class="type-in-area"
+                type="text"
+                v-model="taskList.name"
+                @keyup.enter="addTask"
+                ref="focus"
+                placeholder="添加项目"
+            />
+        </div>
     </div>
-    <div class="add-container" v-show="!toggleValue">
-      <i class="iconfont icon-undone"></i>
-      <input
-        class="type-in-area"
-        type="text"
-        v-model="taskList.name"
-        @keyup.enter="addTask"
-        ref="focus"
-      />
-    </div>
-  </div>
 </template>
 
 <script lang="ts" setup>
@@ -25,29 +23,20 @@ const store = useStore();
 const toggleValue = ref(true);
 const focus = ref(null);
 const taskList = ref({
-  name: "",
-  isok: 0,
-});
-function toggle(num: number): void {
-  toggleValue.value = !toggleValue.value;
-  if (num === 1) {
-    nextTick(function () {
-      const { value }: any = focus;
-      value.focus();
-    });
-  }
-}
-
-function reset() {
-  taskList.value = {
     name: "",
     isok: 0,
-  };
+});
+
+function reset() {
+    taskList.value = {
+        name: "",
+        isok: 0,
+    };
 }
 
-function addTask() {
-  store.commit("addTaskList", taskList.value);
-  reset();
+function addTask(e: HTMLElement) {
+    store.commit("addTaskList", taskList.value);
+    reset();
 }
 </script>
 
