@@ -37,46 +37,43 @@
 // }
 
 .note-list {
-    padding-top: .5rem;
-    overflow-y: auto;
+    .scrollbar();
+    padding-top   : .5rem;
+    padding-bottom: 1rem;
+    overflow-y    : auto;
 
     .note-container {
-        padding  : 0 1rem;
-        display  : flex;
-        flex-wrap: wrap;
+        display              : grid;
+        grid-template-columns: repeat(auto-fill, minmax(18rem, 1.25fr));
+        gap                  : 20px;
+        place-items          : start center;
+        padding              : 0 1rem;
 
-        &.note-edit {
-            .note-list-item:not(.edit) {
-                display: none;
-            }
-        }
+        // &.note-edit {
+        //     .note-list-item:not(.edit) {
+        //         display: none;
+        //     }
+        // }
 
         .note-list-item {
-            display            : flex;
-            flex-direction     : column;
-            margin             : 0 10px 20px 10px;
-            // margin-right    : 20px;
-            // margin-bottom   : 20px;
-            padding            : 0 10px 12px 10px;
-            height             : 150px;
-            border-radius      : 5px;
-            background-color   : @bg-color-items;
-            cursor             : default;
+            display         : flex;
+            flex-direction  : column;
+            height          : 150px;
+            padding         : 0 10px 12px 10px;
+            border-radius   : 5px;
+            background-color: @bg-color-items;
+            cursor          : default;
             .ease();
 
             &.edit {
-                position : absolute;
-                width    : 80%;
-                height   : 50%;
-                left     : 50%;
-                top      : 50%;
-                transform: translate(-50%, -50%);
-                margin   : 0;
+                height: 300px;
+                .ease();
 
                 .note-content {
                     overflow: auto;
+                    .scrollbar();
 
-                    &::-webkit-scrollbar {
+                    &::-webkit-scrollbar-track {
                         display: none;
                     }
                 }
@@ -93,43 +90,6 @@
                 }
             }
 
-            @media (min-width:1532px) {
-                width: 30%;
-            }
-
-            @media (max-width:1532px) {
-                width: 29%;
-            }
-
-            @media (max-width:1255px) {
-                width: 45%;
-            }
-
-            @media (max-width:1132px) {
-                width: 44%;
-            }
-
-            @media (max-width:1083px) {
-                width: 44%;
-            }
-
-            @media (max-width:999px) {
-                width: 100%;
-            }
-
-            // mobile
-            @media (max-width: 768px) {
-                width: 44%;
-            }
-
-            @media (max-width: 700px) {
-                width: 43%;
-            }
-
-            @media (max-width: 604px) {
-                width: 100%;
-            }
-
             &:hover {
                 box-shadow: 0 4px 12px rgb(0 0 0 / 15%);
                 .ease();
@@ -140,18 +100,6 @@
                 }
             }
 
-            // 顶部添加方式
-            // &.note-add {
-            //     justify-content: center;
-            //     align-items    : center;
-
-            //     i {
-            //         font-size  : 18px;
-            //         font-weight: bold;
-            //         color      : @icon-color;
-            //     }
-            // }
-
             .note-toolbar {
                 display        : flex;
                 flex-direction : row;
@@ -161,7 +109,7 @@
                 opacity        : 0;
                 .ease();
 
-                .note-add {
+                .note-finish {
                     margin-right: auto;
 
                     i {
@@ -211,7 +159,7 @@
 
             .note-content {
                 padding  : 0 .8rem;
-                font-size: 13px;
+                font-size: .9rem;
                 color    : @text-color-grey;
 
                 p {
@@ -221,6 +169,11 @@
                     overflow          : hidden;
                     -webkit-box-orient: vertical;
                     -webkit-line-clamp: 5;
+                    cursor            : text;
+
+                    &:focus {
+                        outline: none;
+                    }
                 }
 
                 .note-title {
