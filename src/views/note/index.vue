@@ -34,7 +34,7 @@
                             <i class="iconfont icon-star"></i>
                         </div>
                         <div class="note-del">
-                            <i class="iconfont icon-delete"></i>
+                            <i class="iconfont icon-del"></i>
                         </div>
                     </div>
                     <div class="note-content">

@@ -58,8 +58,8 @@
         .note-list-item {
             display         : flex;
             flex-direction  : column;
-            height          : 150px;
-            padding         : 0 10px 12px 10px;
+            height          : 10rem;
+            padding         : 0 .8rem 2rem .8rem;
             border-radius   : 5px;
             background-color: @bg-color-items;
             cursor          : default;
@@ -87,6 +87,7 @@
                 .note-toolbar {
                     opacity: 1;
                     .ease();
+
                     .note-finish {
                         visibility: visible;
                     }
@@ -108,19 +109,23 @@
                 flex-direction : row;
                 justify-content: flex-end;
                 flex-wrap      : nowrap;
-                padding        : .5rem 0.5rem;
+                padding        : .8rem .5rem;
                 opacity        : 0;
                 .ease();
 
+                i {
+                    .icon();
+                    border-radius: 5px;
+                    padding      : 0.2rem;
+                    font-size: 1.5rem;
+                    .ease();
+                }
+
                 .note-finish {
                     margin-right: auto;
-                    visibility: hidden;
-                    i {
-                        .icon();
-                        border-radius: 5px;
-                        padding      : 0.2rem;
-                        .ease();
+                    visibility  : hidden;
 
+                    i {
                         &:hover {
                             color: #2fbb46;
                             .ease()
@@ -130,11 +135,6 @@
 
                 .note-star {
                     i {
-                        .icon();
-                        border-radius: 5px;
-                        padding      : 0.2rem;
-                        .ease();
-
                         &:hover {
                             color: #efad03;
                             .ease();
@@ -146,11 +146,6 @@
                     margin-left: 5px;
 
                     i {
-                        .icon();
-                        border-radius: 5px;
-                        padding      : 0.2rem;
-                        .ease();
-
                         &:hover {
                             color: #e64b36;
                             .ease();
