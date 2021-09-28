@@ -17,10 +17,9 @@
 </template>
 
 <script setup lang="ts">
-import Nav from "./nav/index.vue";
+import Nav from "/@/components/Sildbar/index.vue";
 import { useStore } from "vuex";
 const store = useStore()
-const { isSide } = store.state
 </script>
 
 <style scoped lang="less">
