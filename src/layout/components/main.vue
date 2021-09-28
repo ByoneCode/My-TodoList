@@ -17,7 +17,7 @@
 </template>
 
 <script setup lang="ts">
-import Nav from "/@/components/Sildbar/index.vue";
+import Nav from "/@/components/sidebar/index.vue";
 import { useStore } from "vuex";
 const store = useStore()
 </script>
