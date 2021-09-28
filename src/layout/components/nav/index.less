@@ -48,7 +48,7 @@
   margin         : 1rem 0 .5rem 0;
   padding        : .75rem 1rem .75rem .5rem;
   border-radius  : 5px;
-  user-select: none;
+  user-select    : none;
   cursor         : default;
   .ease();
 
@@ -92,9 +92,9 @@
     margin-right       : auto;
 
     p {
-      margin     : 0 0 2px 0;
-      font-size  : 14px;
-      color      : @text-color-black;
+      margin   : 0 0 2px 0;
+      font-size: 14px;
+      color    : @text-color-black;
 
       &:last-child {
         font-size: 8px;
@@ -102,26 +102,60 @@
       }
     }
   }
+}
 
-  // 用户菜单
-  .tool-menu {
-    position                  : absolute;
-    left                      : 0;
-    bottom                    : -55px;
-    width                     : 100%;
-    z-index                   : 10;
-    background                : #fff;
-    visibility                : hidden;
-    opacity                   : 0;
-    transform                 : scale(0);
-    border-radius             : 5px;
-    transition-timing-function: cubic-bezier(0, 0, .2, 1);
-    transition-duration       : .3s;
+// 用户菜单
+.tool-menu {
+  position                     : absolute;
+  left                         : 10px;
+  width                        : 280px;
+  z-index                      : 10;
+  background                   : #fff;
+  visibility                   : hidden;
+  border-radius                : 4px;
+  box-shadow                   : 0px 0px 10px 3px rgba(0, 0, 0, 0.1);
 
-    &.open-menu {
-      transform : scale(1);
-      visibility: visible;
-      opacity   : 1;
+  &.open-menu {
+    visibility   : visible;
+
+    li {
+      max-height: 70px;
+    }
+  }
+
+  li {
+    overflow           : hidden;
+    max-height         : 0;
+    -webkit-transition : max-height 500ms ease;
+    -moz-transition    : max-height 500ms ease;
+    -o-transition      : max-height 500ms ease;
+    transition         : max-height 500ms ease;
+    padding            : 18px 18px;
+
+    &:nth-child(2) {
+      border-top   : 1px solid rgba(0, 0, 0, 0.1);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    &:hover{
+      background-color: @bg-color-items-hl;
+      .ease();
+    }
+
+    &:active{
+      background-color: @bg-color-items-ac;
+      .ease();
+    }
+
+    i {
+      font-size: 20px;
+      color    : @icon-color;
+    }
+
+    span {
+      margin-left: 15px;
+      color      : @text-color-black;
+      font-size  : 16px;
     }
   }
 }
@@ -136,10 +170,10 @@
 
 // 导航项目
 .side-item {
-  display      : flex;
-  align-items  : center;
-  margin-top   : .25rem;
-  padding      : .75rem 1rem;
+  display    : flex;
+  align-items: center;
+  margin-top : .25rem;
+  padding    : .75rem 1rem;
   .hov();
 
   &.active {
