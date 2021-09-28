@@ -15,19 +15,19 @@
         </div>
         <!-- list -->
         <div class="note-list">
-            <div class="note-container" :class="{ 'note-edit': stat.isEdit }">
+            <div class="note-container">
                 <!-- <div class="note-list-item note-add">
           <i class="iconfont icon-add"></i>
         </div> -->
                 <div
                     class="note-list-item"
-                    :class="{ edit: item.isEdit }"
+                    :class="{ edit: stat.isEdit === index }"
                     v-for="(item, index) in stat.list"
-                    @click="toggleEdit(index)"
+                    @click="handleOpenEdit(index)"
                 >
                     <div class="note-toolbar">
                         <div class="note-finish">
-                            <i class="iconfont icon-finish"></i>
+                            <i class="iconfont icon-finish" @click.stop="hadleCloseEdit"></i>
                         </div>
                         <div class="note-star">
                             <i class="iconfont icon-star"></i>
@@ -50,7 +50,10 @@
 <script setup lang="ts">
 import { reactive } from "vue";
 const stat = reactive({
-    isEdit: false,
+    scroll: {
+        'overflow-y': 'hidden'
+    },
+    isEdit: -1,
     list: [
         {
             text: "滚滚长江东逝水，浪花淘尽英雄。是非成败转头空。青山依旧在，几度夕阳红。白发渔樵江渚上，惯看秋月春风。一壶浊酒喜相逢。古今多少事，都付笑谈中。",
@@ -74,10 +77,14 @@ const stat = reactive({
         },
     ],
 });
-const toggleEdit = (i: number) => {
-    stat.isEdit = !stat.isEdit;
-    stat.list[i].isEdit = !stat.list[i].isEdit;
-};
+// 打开编辑
+const handleOpenEdit = (i: number) => {
+    stat.isEdit = i
+}
+// 关闭编辑
+const hadleCloseEdit = () => {
+    stat.isEdit = -1
+}
 </script>
 
 <style lang="less" scoped>
