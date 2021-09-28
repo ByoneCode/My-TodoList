@@ -23,6 +23,7 @@
                     class="note-list-item"
                     :class="{ edit: stat.isEdit === index }"
                     v-for="(item, index) in stat.list"
+                    :key='index'
                     @click="handleOpenEdit(index)"
                 >
                     <div class="note-toolbar">
