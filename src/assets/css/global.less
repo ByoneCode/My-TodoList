@@ -136,20 +136,20 @@ table {
 // @bg-color: #1a1b1c;
 // @text-color: #d9d9d9;
 // @icon-color: #929292;
-// @btn-color:#252627;
-// @btn-color-hl: #2e2f30;
+// @bg-color-items:#252627;
+// @bg-color-items-hl: #2e2f30;
 
 // light mode
-@bg-color         : #f1f3f9;
-@bg-color-ac      : #bbbbbb88;
-@bg-color-items   : #fcfbfd;
-@bg-color-items-hl: #e8eaf0;
-@text-color-black : #1a1a1a;
-@text-color-grey  : #5f5f60;
-@side_hr          : #d6d6d6;
-@icon-color       : #929292;
-@btn-color        : #fdfbfb;
-@btn-color-hl     : #e8eaf0;
+@bg-color          : #f1f3f9;
+@bg-color-items    : #fcfbfd;
+@bg-color-items-hl : #e8eaf0;
+@bg-color-items-ac : #bbbbbb88;
+@text-color-black  : #1a1a1a;
+@text-color-grey   : #5f5f60;
+@text-color-faded  : #919191;
+@text-color-white  : #fff;
+@side_hr           : #d6d6d6;
+@icon-color        : #929292;
 
 .note,
 .task,
@@ -174,8 +174,14 @@ table {
 			align-items: center;
 
 			// icon
-			i {
-				font-size: 30px;
+			.heading-icon {
+				padding: .25rem;
+				cursor : pointer;
+				.hov();
+
+				i {
+					font-size: 30px;
+				}
 			}
 
 			// title
@@ -185,9 +191,20 @@ table {
 
 				// text
 				span {
-					margin-left: 0.8rem;
-					font-size  : 30px;
+					padding    : .35rem;
+					font-size  : 2rem;
 					font-weight: bold;
+					outline    : 0px;
+					user-select: none;
+					cursor     : text;
+
+					&:focus {
+						background-color: @bg-color-items-hl;
+						outline         : 0px;
+						.ease();
+					}
+
+					.hov();
 				}
 			}
 		}
@@ -216,19 +233,36 @@ table {
 }
 
 .scrollbar {
-	// 滚动条整体部分
+
+	// 整体
 	&::-webkit-scrollbar {
 		width: 8px;
 	}
-	// 外层轨道
+
+	// 轨道
 	&::-webkit-scrollbar-track {
+		border-radius: 5px;
 		background   : @bg-color;
-		border-radius: 5px;
 	}
+
+	// 滑块
 	&::-webkit-scrollbar-thumb {
-		background   : #00000050;
 		border-radius: 5px;
+		background   : #00000030;
+		.ease();
 	}
+
+	&::-webkit-scrollbar-thumb:hover {
+		border-radius: 5px;
+		background   : #00000050;
+		.ease();
+	}
+
+	// 失焦
+	&::-webkit-scrollbar:window-inactive {
+		display: none;
+	}
+
 }
 
 
@@ -241,23 +275,37 @@ table {
 	box-shadow: 0 0 20px 2px #918f8f;
 }
 
-// 导航项目
-.nav-item {
-	display      : flex;
-	align-items  : center;
-	padding      : .8rem 1rem;
+.hov {
 	border-radius: 5px;
 	.ease();
 
-	&:hover {
-		background-color: @btn-color-hl;
-		.ease();
+	&:focus {
+		span {
+			// background-color: @bg-color-items-ac;
+			opacity: 1;
+			.ease();
+		}
 	}
-}
 
-.nav-item-title {
-	margin-inline-start: 10px;
-	font-size          : 15px;
-	color              : @text-color-black;
-	user-select        : none;
+	&:hover {
+		background-color: @bg-color-items-hl;
+		.ease();
+
+		span {
+			opacity: 0.75;
+			.ease();
+		}
+
+		&:active {
+			background-color: @bg-color-items-ac;
+			.ease();
+		}
+	}
+
+	&:active {
+		span {
+			opacity: 1;
+			.ease();
+		}
+	}
 }
