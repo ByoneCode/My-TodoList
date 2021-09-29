@@ -65,7 +65,7 @@
 // 用户菜单
 .tool-menu {
     position     : absolute;
-    top          : 90px;
+    top          : 70px;
     width        : 280px;
     z-index      : 5;
     border       : 1px solid rgba(0, 0, 0, 0.1);
@@ -78,7 +78,7 @@
     .ease();
 
     &.open-menu {
-        top       : 100px;
+        top       : 88px;
         opacity   : 1;
         visibility: visible;
         .ease();
@@ -86,7 +86,8 @@
 
     li {
         padding: .8rem 1.2rem;
-
+        display: flex;
+        align-items: center;
 
         &:nth-child(1) {
             border-top-left-radius : 4px;
@@ -125,6 +126,7 @@
 
         i {
             font-size: 20px;
+            padding-top: .1rem;
             color    : @text-color-black;
         }
 
