@@ -1,7 +1,13 @@
+<script setup lang="ts">
+import Sidebar from "/@/components/sidebar/index.vue";
+import { useStore } from "vuex";
+const store = useStore()
+</script>
+
 <template>
   <div class="container">
     <!-- Navigation -->
-    <Nav />
+    <Sidebar />
 
     <!-- Main -->
     <main class="container__main">
@@ -15,12 +21,6 @@
     </main>
   </div>
 </template>
-
-<script setup lang="ts">
-import Nav from "/@/components/Sildbar/index.vue";
-import { useStore } from "vuex";
-const store = useStore()
-</script>
 
 <style scoped lang="less">
 .container {

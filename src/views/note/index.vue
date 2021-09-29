@@ -23,6 +23,7 @@
                     class="note-list-item"
                     :class="{ edit: stat.isEdit === index }"
                     v-for="(item, index) in stat.list"
+                    :key='index'
                     @click="handleOpenEdit(index)"
                 >
                     <div class="note-toolbar">
@@ -33,7 +34,7 @@
                             <i class="iconfont icon-star"></i>
                         </div>
                         <div class="note-del">
-                            <i class="iconfont icon-delete"></i>
+                            <i class="iconfont icon-del"></i>
                         </div>
                     </div>
                     <div class="note-content">

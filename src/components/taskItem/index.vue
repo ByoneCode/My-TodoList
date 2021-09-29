@@ -22,7 +22,7 @@
                 <i class="iconfont icon-star"></i>
             </div>
             <div class="item-del">
-                <i class="iconfont icon-delete"></i>
+                <i class="iconfont icon-del"></i>
             </div>
         </div>
     </template>
