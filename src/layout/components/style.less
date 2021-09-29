@@ -1,0 +1,41 @@
+.container {
+  display: flex;
+  height : 100vh;
+
+  .container__main {
+    display         : flex;
+    flex-direction  : column;
+    flex            : 1;
+    background-color: @bg-color;
+    overflow        : auto;
+
+    .app-tools {
+      @media (min-width: 768px) {
+        display: none;
+      }
+
+      .app-side {
+        margin : .3rem 0;
+        padding: 0 0.8rem;
+        
+        i.icon-nav {
+          padding      : 0.2rem;
+          border-radius: 5px;
+          font-size    : 35px;
+          color        : @text-color-grey;
+          .ease();
+
+          &:hover {
+            background-color: @bg-color-items-hl;
+            .ease();
+          }
+
+          &:active {
+            background-color: @bg-color-items-ac;
+            .ease();
+          }
+        }
+      }
+    }
+  }
+}
