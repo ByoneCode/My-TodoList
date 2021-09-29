@@ -243,7 +243,6 @@ table {
 	&::-webkit-scrollbar-track {
 		border-radius: 5px;
 		background   : @bg-color;
-
 	}
 
 	// 滑块
@@ -257,6 +256,11 @@ table {
 		border-radius: 5px;
 		background   : #00000050;
 		.ease();
+	}
+
+	// 失焦
+	&::-webkit-scrollbar:window-inactive {
+		display: none;
 	}
 
 }
