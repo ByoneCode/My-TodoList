@@ -12,7 +12,6 @@
     background    : #fff;
     opacity       : 0;
     visibility    : hidden;
-    user-select   : none;
     .ease();
 
     &.open-setuser {
@@ -29,6 +28,7 @@
         font-size  : 1rem;
         font-weight: bold;
         padding    : 1rem 0 1.8rem 0;
+        user-select   : none;
     }
 
     .setuser-item {
@@ -47,6 +47,7 @@
             line-height     : 1.75rem;
             color           : @text-color-white;
             background-color: #2d89ef;
+            user-select   : none;
         }
 
         .user-info {
@@ -74,6 +75,8 @@
             font-weight     : bold;
             font-size       : 14px;
             border-radius   : 2px;
+            user-select   : none;
+            cursor: pointer;
         }
     }
 
@@ -81,6 +84,8 @@
         display    : flex;
         padding:  1rem .8rem;
         align-items: center;
+        user-select   : none;
+        cursor: pointer;
 
         i {
             color      : @text-color-black;
@@ -92,6 +97,7 @@
         span {
             color    : @text-color-black;
             font-size: 14px;
+            margin-right: auto;
         }
     }
 
@@ -101,6 +107,8 @@
         margin          : 1rem;
         background-color: @bg-color;
         border-radius   : 2px;
+        user-select   : none;
+        cursor: pointer;
 
         span {
             font-size: 14px;
