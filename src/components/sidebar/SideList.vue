@@ -28,6 +28,10 @@
                 </div>
             </li>
         </ul>
+        <div class="side-add">
+            <i class="iconfont icon-add"></i>
+            <span>新建列表</span>
+        </div>
     </div>
 </template>
 

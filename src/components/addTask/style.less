@@ -1,16 +1,17 @@
 .task-add {
-    position  : absolute;
-    bottom    : 0;
-    left      : 0;
-    right     : 2px;
-    height    : 100px;
-    // background: @bg-color;
+    position     : absolute;
+    bottom       : 0;
+    left         : 0;
+    right        : 2px;
+    height       : 100px;
 
     .add-container {
         .item();
-        margin-top      : 15px;
+        margin          : 15px auto;
+        padding         : 0 1rem;
         background-color: @bg-color-items;
         cursor          : text;
+        .ease();
 
         // mobile
         @media (max-width: 768px) {
@@ -20,22 +21,56 @@
         // add icon & undone icon
         i {
             .icon();
+            cursor: default;
         }
 
-        // placeholder
-        span {
-            margin-left: 10px;
-            color      : @text-color-grey;
+        .icon-undone {
+            display: none;
         }
 
-        // type-in area
-        input.type-in-area {
-            width      : 100%;
-            margin-left: 10px;
-            border     : none;
-            color      : #d9d9d9;
-            background : transparent;
-            outline    : none;
+        &:focus-within {
+            color           : @text-color-black;
+            background-color: @bg-color-items-hl;
+            .ease();
+
+            .icon-add {
+                display: none;
+            }
+
+            .icon-undone {
+                display: inline;
+            }
+
+            &::placeholder {
+                opacity: 0;
+            }
+        }
+
+        &:hover {
+            background-color: @bg-color-items-hl;
+            .ease();
+        }
+
+        &:active {
+            background-color: @bg-color-items-ac;
+            .ease();
+        }
+    }
+    
+    // type-in area
+    input.type-in-area {
+        .item();
+        border          : none;
+        color           : @text-color-grey;
+        background-color: transparent;
+        outline         : none;
+
+        &:focus {
+            color: @text-color-black;
+
+            &::placeholder {
+                visibility: hidden;
+            }
         }
     }
 }
