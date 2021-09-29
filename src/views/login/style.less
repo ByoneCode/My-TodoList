@@ -4,66 +4,28 @@
     flex-direction : row;
     justify-content: center;
     padding-top    : 200px;
+
     // 表单
     form {
         display       : flex;
         flex-direction: column;
         width         : 350px;
-        // 用户输入框
-        .login-user {
-            display         : flex;
-            align-items     : center;
-            padding         : .5rem;
-            margin          : .5rem 0;
-            background-color: @bg-color-items;
-            border-radius   : 8px;
-            .ease();
 
-            i {
-                color    : @icon-color;
-                font-size: 19px;
-            }
-
-            input {
-                flex-grow       : 1;
-                height          : 30px;
-                padding         : 0 .5rem;
-                color           : @text-color-grey;
-                border          : none;
-                background-color: transparent;
-                outline         : none;
-
-                &:focus {
-                    &::placeholder {
-                        color: transparent;
-                    }
-                }
-            }
-
-            &:hover {
-                background-color: @bg-color-items-hl;
-                .ease();
-            }
-
-            &:active {
-                background-color: @bg-color-items-ac;
-                .ease();
-            }
-        }
-
-        //密码框
+        // 输入框
+        .login-user,
         .login-password {
             display         : flex;
             align-items     : center;
             padding         : .5rem;
             margin          : .5rem 0;
-            border-radius   : 8px;
             background-color: @bg-color-items;
+            border-radius   : 8px;
             .ease();
 
             i {
-                color    : @icon-color;
+                margin   : 0 .4rem;
                 font-size: 19px;
+                color    : @icon-color;
             }
 
             input {
@@ -71,8 +33,8 @@
                 height          : 30px;
                 padding         : 0 .5rem;
                 color           : @text-color-grey;
-                background-color: transparent;
                 border          : none;
+                background-color: transparent;
                 outline         : none;
 
                 &:focus {
@@ -93,68 +55,64 @@
             }
         }
 
-        // 记住账号
-        // .login-remember {
-        //     align-self: flex-end;
-        //     padding   : .5rem 0;
-        // }
+        // 按钮
+        div {
+            display        : flex;
+            justify-content: center;
+            margin         : .5rem 0;
 
-        // 登录按钮
-        .login-btn {
-            margin: 1.5rem auto 1rem auto;
+            .login-signin,
+            .login-signup {
 
-            input {
-                width        : 200px;
-                border       : none;
-                color        : white;
-                font-weight  : bold;
-                border-radius: 30px;
-                padding      : .8rem 0;
-                background   : #007acc;
-                cursor       : pointer;
-            }
-        }
+                input {
+                    width        : 8rem;
+                    margin       : 0 1rem;
+                    padding      : .5rem 0;
+                    border       : none;
+                    border-radius: 5px;
+                    font-size    : .9rem;
+                    cursor       : pointer;
+                    .ease();
 
-        // 注册按钮
-        .login-reg {
-            align-self : center;
-            color      : #22afff;
-            font-size  : 0.875rem;
-            margin     : .5rem 0;
-            user-select: none;
-            cursor     : pointer;
+                    &:hover {
+                        .ease();
+                    }
 
-            span {
-                position: relative;
-                padding : 0.25rem 0.75rem 0.25rem 0.75rem;
-
-                &:before {
-                    content: "";
-                    position: absolute;
-                    left: 50%;
-                    right: 50%;
-                    bottom: -2px;
-                    width: 0;
-                    height: 2px;
-                    background: #22afff;
-                    transition: all .2s;
-                }
-
-                &:hover {
-                    &::before {
-                        width: 100%;
-                        left : 0;
-                        right: 0;
+                    &:active {
+                        .ease();
                     }
                 }
             }
-        }
 
-        // 输入框边框投影
-        // 这个类的样式未引用，需要写一个当点击输入框时，给大的div盒子加上此类的事件
-        .input-ac {
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 10%), 0 2px 4px -1px rgb(0 0 0 / 6%);
-            .ease();
+            .login-signin input {
+                background-color: #007acc;
+                color           : white;
+
+                &:hover {
+                    background-color: #158fe0;
+                }
+
+                &:active {
+                    background-color: #0f7dc7;
+                }
+            }
+
+            .login-signup input {
+                border          : 1px solid #00000011;
+                background-color: white;
+                color           : black;
+
+
+                &:hover {
+                    background-color: #158fe0;
+                    color           : white;
+                }
+
+                &:active {
+                    background-color: #0f7dc7;
+                    color           : white;
+                }
+            }
         }
     }
 }
