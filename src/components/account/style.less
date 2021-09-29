@@ -1,0 +1,109 @@
+.setuser-menu {
+    display       : flex;
+    flex-direction: column;
+    position      : absolute;
+    top           : 70px;
+    left          : 9px;
+    width         : 350px;
+    z-index       : 5;
+    border        : 1px solid rgba(0, 0, 0, 0.1);
+    border-radius : 4px;
+    box-shadow    : 0px 0px 10px 3px rgba(0, 0, 0, 0.1);
+    background    : #fff;
+    opacity       : 0;
+    visibility    : hidden;
+    user-select   : none;
+    .ease();
+
+    &.open-setuser {
+        top       : 88px;
+        opacity   : 1;
+        visibility: visible;
+        .ease();
+    }
+
+
+
+    .setuser-title {
+        align-self : center;
+        font-size  : 1rem;
+        font-weight: bold;
+        padding    : 1rem 0 1.8rem 0;
+    }
+
+    .setuser-item {
+        display        : flex;
+        justify-content: flex-start;
+        align-items    : center;
+        padding        : 0 .8rem;
+        margin-bottom  : 18px;
+
+        .user-avatar {
+            width           : 30px;
+            height          : 30px;
+            border-radius   : 50%;
+            font-size       : 1rem;
+            text-align      : center;
+            line-height     : 1.75rem;
+            color           : @text-color-white;
+            background-color: #2d89ef;
+        }
+
+        .user-info {
+            display       : flex;
+            flex-direction: column;
+            margin-left   : 20px;
+
+            .user-name {
+                font-size    : 14px;
+                color        : @text-color-black;
+                margin-bottom: 2px;
+            }
+
+            .user-email {
+                font-size: 10px;
+                color    : @text-color-grey;
+            }
+        }
+
+        .user-logout {
+            margin-left     : auto;
+            padding         : .5rem 1.8rem;
+            background-color: #d82d2c;
+            color           : @text-color-white;
+            font-weight     : bold;
+            font-size       : 14px;
+            border-radius   : 2px;
+        }
+    }
+
+    .setuser-add {
+        display    : flex;
+        padding:  1rem .8rem;
+        align-items: center;
+
+        i {
+            color      : @text-color-black;
+            font-weight: bold;
+            font-size  : 22px;
+            margin     : 0 20px 0 5px;
+        }
+
+        span {
+            color    : @text-color-black;
+            font-size: 14px;
+        }
+    }
+
+    .setuser-close {
+        align-self      : flex-end;
+        padding         : .6rem 2rem;
+        margin          : 1rem;
+        background-color: @bg-color;
+        border-radius   : 2px;
+
+        span {
+            font-size: 14px;
+        }
+    }
+}

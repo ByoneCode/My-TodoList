@@ -66,15 +66,15 @@
 .tool-menu {
     position     : absolute;
     top          : 70px;
+    left         : 9px;
     width        : 280px;
     z-index      : 5;
     border       : 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 4px;
-
-    box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.1);
-    background: #fff;
-    opacity   : 0;
-    visibility: hidden;
+    box-shadow   : 0px 0px 10px 3px rgba(0, 0, 0, 0.1);
+    background   : #fff;
+    opacity      : 0;
+    visibility   : hidden;
     .ease();
 
     &.open-menu {
@@ -85,8 +85,8 @@
     }
 
     li {
-        padding: .8rem 1.2rem;
-        display: flex;
+        padding    : .8rem 1.2rem;
+        display    : flex;
         align-items: center;
 
         &:nth-child(1) {
@@ -125,9 +125,9 @@
         }
 
         i {
-            font-size: 20px;
+            font-size  : 20px;
             padding-top: .1rem;
-            color    : @text-color-black;
+            color      : @text-color-black;
         }
 
         span {

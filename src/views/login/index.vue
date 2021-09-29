@@ -1,30 +1,31 @@
 <template>
-  <div class="login">
-    <form action="">
-      <div class="login-user">
-        <i class="iconfont icon-people"></i>
-        <input type="text" placeholder="用户名或邮件地址">
-      </div>
-      <div class="login-password">
-        <i class="iconfont icon-password"></i>
-        <input type="password" placeholder="密码">
-      </div>
-      <!-- <div class="login-remember">
-        <input type="checkbox" class="remember">
-        <span>记住我</span>
-      </div> -->
-      <div class="login-btn">
-        <input type="button" value="登录">
-      </div>
-      <div class="login-reg">
-        <span>立即注册</span>
-      </div>
-    </form>
-  </div>
-    
+    <div class="login">
+        <form action="">
+            <div class="login-user">
+                <i class="iconfont icon-people"></i>
+                <input type="text" placeholder="邮箱" />
+            </div>
+            <div class="login-password">
+                <i class="iconfont icon-password"></i>
+                <input type="password" placeholder="密码" />
+            </div>
+            <div>
+                <div class="login-signin">
+                    <input type="button" value="登录" />
+                </div>
+                <div class="login-signup">
+                    <input type="button" value="注册" />
+                </div>
+            </div>
+        </form>
+        <Account />
+        <Profile />
+    </div>
 </template>
 
 <script setup lang="ts">
+import Account from "/@/components/account/index.vue";
+import Profile from "/@/components/profile/index.vue";
 </script>
 
 <style lang="less" scoped>
