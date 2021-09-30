@@ -1,6 +1,6 @@
 <template>
     <div class="user">
-        <div class="side-user" @click="toggleMenu">
+        <div class="side-user" @click="toggleMenu" tabindex="-1" outline="0" @blur="toggleMenu">
             <div class="avatar">
                 <span>杰</span>
             </div>

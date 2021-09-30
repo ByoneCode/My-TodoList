@@ -2,9 +2,9 @@
     <aside class="container__sidebar" :class="{ 'open-side': allstat.isSide }">
         <div class="sidebar">
             <User />
-            <SideNav :list="navList" />
+            <SideNav :list="stat.navList" />
             <div class="side-hr"></div>
-            <SideList />
+            <SideList :list="stat.taskList" @add-list="addList" />
         </div>
     </aside>
     <div class="shade" v-show="allstat.isSide" @click="closeSide"></div>
@@ -24,7 +24,8 @@ const closeSide = () => {
     store.commit("toggleSide");
 };
 
-const navList = [
+const stat = reactive({
+    navList: [
     {
         title: "星标",
         icon: "star",
@@ -43,9 +44,25 @@ const navList = [
         path: "/home/index",
         hidden: false,
     },
-];
+    ],
+    taskList: [
+        {
+            title: '入门',
+            icon: '👋'
+        },
+        {
+            title: '资源',
+            icon: '🛒'
+        }
+    ]
+})
 
-const emit = defineEmits(["closeSide"]);
+const addList = () => {
+    stat.taskList.push({
+        title: '新建列表',
+        icon: '🤹‍♀️'
+    })
+}
 </script>
 
 <style lang="less" scoped>
