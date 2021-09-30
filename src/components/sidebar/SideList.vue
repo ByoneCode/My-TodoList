@@ -1,26 +1,13 @@
 <template>
     <div class="side-list">
         <ul>
-            <li>
+            <li v-for="(item,index) in list" :key="`list-${index}`">
                 <div class="list-items">
                     <div class="list-icon">
-                        <i>👋</i>
+                        <i>{{item.icon}}</i>
                     </div>
                     <div class="list-title">
-                        <span>入门</span>
-                    </div>
-                    <div class="list-count">
-                        <span>6</span>
-                    </div>
-                </div>
-            </li>
-            <li>
-                <div class="list-items">
-                    <div class="list-icon">
-                        <i>🛒</i>
-                    </div>
-                    <div class="list-title">
-                        <span>资源</span>
+                        <span>{{item.title}}</span>
                     </div>
                     <div class="list-count">
                         <span>6</span>
@@ -28,7 +15,7 @@
                 </div>
             </li>
         </ul>
-        <div class="side-add">
+        <div class="side-add" @click="emit('addList')">
             <i class="iconfont icon-add"></i>
             <span>新建列表</span>
         </div>
@@ -40,8 +27,9 @@ const props = defineProps({
     list: {
         type: Array,
         default: [],
-    },
+    }
 });
+const emit = defineEmits(['addList'])
 </script>
 
 <style lang="less" scoped>

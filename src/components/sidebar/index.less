@@ -21,6 +21,11 @@
   height          : 100vh;
   padding         : 0 10px;
   background-color: @bg-color;
+  overflow-y: auto;
+  .scrollbar;
+  &::-webkit-scrollbar {
+		width: 4px;
+	}
 
   @media (max-width: 768px) {
     position  : absolute;
