@@ -17,10 +17,12 @@
     <div class="taskList">
       <div class="task-container">
         <collapsed
-        :list="stat.list"
+        :list="starTask"
+        :isok="0"
         name="待办事项"
+        done
         >
-          <task-item :list="stat.list" :done="1"></task-item>
+          <task-item :list="starTask" :done="0"></task-item>
         </collapsed>
       </div>
     </div>
@@ -30,16 +32,19 @@
 <script setup lang="ts">
 import Collapsed from "/@/components/collapsed/index.vue";
 import TaskItem from "/@/components/taskItem/index.vue";
-import { reactive } from 'vue'
+import { useStore } from 'vuex'
+import { computed } from "vue";
 
-const stat = reactive({
-  list:[
-    {
-      'name': '测试',
-      'isok': 1
-    }
-  ]
+const store = useStore()
+
+const allstat = store.state
+
+const starTask = computed(() => {
+  return allstat.taskList.filter((el: any) => (el.is_star === 1 && el.isok === 0))
 })
+
+
+
 </script>
 
 <style lang="less" scoped>

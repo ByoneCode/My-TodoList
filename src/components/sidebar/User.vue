@@ -1,6 +1,6 @@
 <template>
     <div class="user">
-        <div class="side-user" @click="toggleMenu" tabindex="-1" outline="0" @blur="toggleMenu">
+        <div class="side-user" id="open-tools" @click="toggleMenu">
             <div class="avatar">
                 <span>杰</span>
             </div>
@@ -28,9 +28,22 @@
 <script setup lang="ts">
 import { reactive } from "@vue/reactivity";
 
+
 let stat = reactive({
     isMenu: false,
 });
+
+// 关闭菜单
+let body: any = document.querySelector('body')
+body.addEventListener('click',(e: any)=>{    
+    if(stat.isMenu === true){
+        if(e.target.id === 'open-tools'){
+            stat.isMenu = true
+        }else {
+            stat.isMenu = false
+        }
+    }
+},true)
 
 const toggleMenu = () => {
     stat.isMenu = !stat.isMenu;

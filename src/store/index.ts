@@ -31,15 +31,18 @@ export default createStore({
       stat.taskList.push(data as never)
     },
 
+    // 删除项目
+    delTask(stat,index){
+      stat.taskList.splice(index,1)
+    },
+
     getTaskList(stat,data){
       stat.taskList = data
     },
 
     // 切换侧滑栏
     toggleSide(stat){
-      stat.isSide = !stat.isSide;
-      console.log(stat.isSide);
-      
+      stat.isSide = !stat.isSide;   
     }
   }
 })
