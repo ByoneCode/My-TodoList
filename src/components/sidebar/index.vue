@@ -14,15 +14,19 @@
 import SideNav from "./SideNav.vue";
 import SideList from "./SideList.vue";
 import User from "./User.vue";
-import { reactive } from "vue";
+import { reactive, computed } from "vue";
 import { useStore } from "vuex";
 
 const store = useStore();
 const allstat = store.state;
-
+ 
 const closeSide = () => {
     store.commit("toggleSide");
 };
+
+const taskCount = computed(() => {
+    return allstat.taskList.length
+})
 
 const stat = reactive({
     navList: [
@@ -31,18 +35,21 @@ const stat = reactive({
         icon: "star",
         path: "/star/index",
         hidden: false,
+        count: 6
     },
     {
         title: "便笺",
         icon: "note",
         path: "/note/index",
         hidden: false,
+        count: 6
     },
     {
         title: "任务",
         icon: "home",
         path: "/home/index",
         hidden: false,
+        count: taskCount
     },
     ],
     taskList: [
@@ -57,11 +64,12 @@ const stat = reactive({
     ]
 })
 
-const addList = () => {
-    stat.taskList.push({
-        title: '新建列表',
-        icon: '🤹‍♀️'
-    })
+const addList = (item: any,reset: any) => {
+    if(item.title === ''){
+        item.title = '无标题列表'
+    }
+    stat.taskList.push(item)
+    reset()
 }
 </script>
 

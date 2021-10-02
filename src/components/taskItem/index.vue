@@ -1,9 +1,6 @@
 <template>
     <template v-for="(item,index) in taskListItem()" :key="`task-${index}`">
-        <div
-            class="task-list-item"
-            @click="store.commit('toggleTaskInfo', item)"
-        >
+        <div class="task-list-item">
             <div class="item-isdone">
                 <i
                     title="完成"

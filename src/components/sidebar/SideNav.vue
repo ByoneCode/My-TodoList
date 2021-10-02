@@ -13,7 +13,7 @@
                     >
                         <i class="iconfont" :class="`icon-${item.icon}`"></i>
                         <span class="item-title">{{ item.title }}</span>
-                        <span class="item-count">6</span>
+                        <span class="item-count">{{item.count}}</span>
                     </div>
                 </li>
             </ul>

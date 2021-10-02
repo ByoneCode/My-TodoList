@@ -24,6 +24,14 @@
         >
           <task-item :list="starTask" :done="0"></task-item>
         </collapsed>
+        <collapsed
+        :list="starTask"
+        :isok="0"
+        name="便签"
+        done
+        >
+          <task-item :list="starTask" :done="0"></task-item>
+        </collapsed>
       </div>
     </div>
   </div>
