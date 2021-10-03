@@ -1,12 +1,13 @@
 <template>
     <aside class="container__sidebar" :class="{ 'open-side': allstat.isSide }">
         <div class="sidebar">
-            <User />
+            <User @open-account="openAccount"/>
             <SideNav :list="stat.navList" />
             <div class="side-hr"></div>
             <SideList :list="stat.taskList" @add-list="addList" />
         </div>
     </aside>
+    <Account :isopen="stat.isOpenUser" @close-user="closeAccount" />
     <div class="shade" v-show="allstat.isSide" @click="closeSide"></div>
 </template>
 
@@ -14,6 +15,7 @@
 import SideNav from "./SideNav.vue";
 import SideList from "./SideList.vue";
 import User from "./User.vue";
+import Account from "../account/index.vue";
 import { reactive, computed } from "vue";
 import { useStore } from "vuex";
 
@@ -25,10 +27,11 @@ const closeSide = () => {
 };
 
 const taskCount = computed(() => {
-    return allstat.taskList.length
+    return allstat.taskList.filter((e: any) => e.isok === 0).length
 })
 
 const stat = reactive({
+    isOpenUser: false,
     navList: [
     {
         title: "星标",
@@ -70,6 +73,13 @@ const addList = (item: any,reset: any) => {
     }
     stat.taskList.push(item)
     reset()
+}
+
+const openAccount = () => {
+    stat.isOpenUser = true
+}
+const closeAccount = () => {
+    stat.isOpenUser = false
 }
 </script>
 

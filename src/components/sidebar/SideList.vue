@@ -1,8 +1,8 @@
 <template>
     <div class="side-list">
         <ul>
-            <li v-for="(item,index) in list" :key="`list-${index}`">
-                <div class="list-items" @click.right="rightMenu">
+            <li :class="{active: stat.isRight === parseInt(index)}" v-for="(item,index) in list" :key="`list-${index}`">
+                <div class="list-items" @click.right="rightMenu(index)">
                     <div class="list-icon">
                         <i>{{item.icon}}</i>
                     </div>
@@ -13,6 +13,7 @@
                         <span>{{item.count}}</span>
                     </div>
                 </div>
+                <menu-tool></menu-tool>
             </li>
             <li v-show="stat.isCreate">
                 <div class="list-items">
@@ -35,9 +36,11 @@
 <script setup lang="ts">
 import { useStore } from "vuex";
 import { reactive, ref, nextTick } from "vue";
+import MenuTool from "../rightMenu/index.vue"
 const store = useStore()
 const title = ref(null)
 const stat = reactive({
+    isRight: -1,
     isCreate: false,
     tempItem: {
         icon: '🎉',
@@ -70,12 +73,12 @@ const reset = () => {
     }
 }
 // 右击菜单事件
-const rightMenu = () => {
+const rightMenu = (index: string) => {
     const items: any = document.querySelector('.side-list')
     items.oncontextmenu = function(){
         return false;
     }
-    console.log('你点击了右键菜单');
+    stat.isRight = parseInt(index)
 }
 </script>
 

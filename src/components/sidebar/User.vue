@@ -11,7 +11,7 @@
         </div>
         <div class="tool-menu" :class="{ 'open-menu': stat.isMenu }">
             <ul>
-                <li>
+                <li @click="emit('openAccount')">
                     <i class="iconfont icon-setuser"></i><span>管理账户</span>
                 </li>
                 <li>
@@ -28,6 +28,7 @@
 <script setup lang="ts">
 import { reactive } from "@vue/reactivity";
 
+const emit = defineEmits(['openAccount'])
 
 let stat = reactive({
     isMenu: false,
