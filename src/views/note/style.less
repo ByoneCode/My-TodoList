@@ -59,7 +59,7 @@
             display         : flex;
             flex-direction  : column;
             height          : 10rem;
-            padding         : 0 .8rem 2rem .8rem;
+            padding         : 0 .8rem 1.3rem .8rem;
             border-radius   : 5px;
             background-color: @bg-color-items;
             cursor          : default;
@@ -92,6 +92,12 @@
                         visibility: visible;
                     }
                 }
+
+                .note-tools {
+                    margin-top: auto;
+                    opacity: 1;
+                    .ease();
+                }
             }
 
             &:hover {
@@ -117,7 +123,7 @@
                     .icon();
                     border-radius: 5px;
                     padding      : 0.2rem;
-                    font-size: 1.5rem;
+                    font-size    : 1.5rem;
                     .ease();
                 }
 
@@ -157,6 +163,7 @@
 
             .note-content {
                 padding  : 0 .8rem;
+                margin-bottom: .5rem;
                 font-size: .9rem;
                 color    : @text-color-grey;
 
@@ -178,6 +185,34 @@
                     color: @text-color-black;
                 }
 
+            }
+
+            .note-tools {
+                display: flex;
+                align-items: center;
+                margin: 0;
+                padding   : 1rem .8rem 0 .8rem;
+                border-top: 1px solid rgb(0 0 0 / 15%);
+                opacity: 0;
+
+                i{
+                    padding: .3rem;
+                    margin-right:.5rem;
+                    color: @icon-color;
+                    border-radius: 5px;
+                    .ease();
+
+                    &:hover{
+                        background-color: @bg-color-items-hl;
+                        color: @text-color-black;
+                        .ease();
+                    }
+                    &:active{
+                        background-color: @bg-color-items-ac;
+                        color: @text-color-grey;
+                        .ease();
+                    }
+                }
             }
         }
 

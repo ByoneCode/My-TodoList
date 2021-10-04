@@ -42,6 +42,14 @@
                             {{ item.text }}
                         </p>
                     </div>
+                    <div class="note-tools">
+                        <i class="iconfont icon-bold"></i>
+                        <i class="iconfont icon-italic"></i>
+                        <i class="iconfont icon-underline"></i>
+                        <i class="iconfont icon-delline"></i>
+                        <i class="iconfont icon-list"></i>
+                        <i class="iconfont icon-image"></i>
+                    </div>
                 </div>
             </div>
         </div>

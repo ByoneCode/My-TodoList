@@ -5,24 +5,36 @@
     ul {
         li.active {
             position: relative;
+
             .right-menu {
                 display: block
             }
         }
+
         .list-items {
             .side-item();
 
+            .list-icon {
+                .icon-nav {
+                    font-size: 19px;
+                }
+            }
+
             .list-icon>i {
-                font-style: normal;
+                font-style : normal;
                 user-select: none;
             }
 
             .list-title {
                 .side-item-title();
+
                 input {
-                    border: 0;
+                    border          : 0;
                     background-color: transparent;
-                    outline: none;
+                    outline         : none;
+                    font-size       : 15px;
+                    line-height     : 1px;
+                    color           : @text-color-black;
                 }
             }
 
@@ -37,14 +49,16 @@
 .side-add {
     .side-item();
     margin-bottom: 1rem;
+
     i.icon-add {
-      font-size: 20px;
-      color    : @text-color-grey;
+        font-size: 17px;
+        color    : @text-color-grey;
+        margin   : 0 4px 0 1px;
     }
-  
+
     span {
-      .side-item-title();
-      color    : @text-color-grey;
-      font-size: 15px;
+        .side-item-title();
+        color    : @text-color-grey;
+        font-size: 15px;
     }
-  }
+}

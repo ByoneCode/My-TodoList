@@ -70,6 +70,12 @@
     
 
     .item-star {
+        .icon-star{
+            display: block;
+        }
+        .icon-star-selected{
+            display: none;
+        }
         i {
             &:hover {
                 color: #efad03;
@@ -77,6 +83,12 @@
         }
     }
     .active-star {
+        .icon-star{
+            display: none;
+        }
+        .icon-star-selected{
+            display: block;
+        }
         i {
             color: #efad03;
             &:hover {

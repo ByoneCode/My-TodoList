@@ -18,6 +18,7 @@
             </div>
             <div class="item-star" :class="{'active-star':  item.is_star === 1}">
                 <i class="iconfont icon-star" @click="starTask(item.id)"></i>
+                <i class="iconfont icon-star-selected" @click="starTask(item.id)"></i>
             </div>
             <div class="item-del">
                 <i class="iconfont icon-del" @click="delTask(item.id)"></i>
