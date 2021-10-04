@@ -1,5 +1,5 @@
 <template>
-  <div class="setuser-menu">
+  <div class="setuser-menu" :class="{'open-setuser':isopen}">
     <!-- 添加 open-setuser 类显示 -->
     <div class="setuser-title">
       <span>管理账户</span>
@@ -36,13 +36,22 @@
       <i class="iconfont icon-add"></i>
       <span>添加账户</span>
     </div>
-    <div class="setuser-close">
+    <div class="setuser-close" @click="emit('closeUser')">
       <span>关闭</span>
     </div>
   </div>
+  <div class="shade" v-if="isopen"></div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+
+const props = defineProps({
+  isopen: Boolean
+})
+
+const emit = defineEmits(['closeUser'])
+
+</script>
 
 <style lang="less" scoped>
 @import "./style";

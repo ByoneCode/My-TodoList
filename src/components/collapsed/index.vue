@@ -26,14 +26,26 @@ const props = defineProps({
     type: String,
     default: "已完成",
   },
+  isok: {
+    type: Number,
+    default: 1,
+  },
+  // 默认关闭列表
+  done: {
+    type: Boolean,
+    default: false,
+  }
 });
 
-const isdone = ref(false);
+const isdone = ref(props.done);
 const toggleDone = () => {
   isdone.value = !isdone.value;
 };
 const okCount = computed(() => {
-  return props.list.filter((item: any) => item.isok === 1).length;
+  if(props.isok === 1){
+    return props.list.filter((item: any) => item.isok === 1).length
+  }
+  return props.list.length
 });
 </script>
 

@@ -3,6 +3,12 @@
 // 自定义列表
 .side-list {
     ul {
+        li.active {
+            position: relative;
+            .right-menu {
+                display: block
+            }
+        }
         .list-items {
             .side-item();
 
@@ -13,6 +19,11 @@
 
             .list-title {
                 .side-item-title();
+                input {
+                    border: 0;
+                    background-color: transparent;
+                    outline: none;
+                }
             }
 
             .list-count {
@@ -26,7 +37,6 @@
 .side-add {
     .side-item();
     margin-bottom: 1rem;
-  
     i.icon-add {
       font-size: 20px;
       color    : @text-color-grey;

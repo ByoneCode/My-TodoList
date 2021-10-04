@@ -81,6 +81,11 @@ const stat = reactive({
 // 打开编辑
 const handleOpenEdit = (i: number) => {
     stat.isEdit = i
+    // 点开获取聚焦
+    setTimeout(() => {
+        const edit: any = document.querySelector('.edit p')
+        edit.focus()
+    },1)
 }
 // 关闭编辑
 const hadleCloseEdit = () => {

@@ -46,8 +46,10 @@ const store = useStore();
 const allStore = store.state;
 
 onMounted(async () => {
-  const { data } = await getTaskList();
-  store.commit("getTaskList", data);
+  if(allStore.taskList.length === 0){
+    const { data } = await getTaskList();
+    store.commit("getTaskList", data);
+  }
 });
 
 </script>

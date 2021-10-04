@@ -12,7 +12,8 @@ export default [
               {
                 'id|+1': 1,
                 'name': '@cname',
-                'isok|0-1': 0
+                'isok|0-1': 0,
+                'is_star|0-1': 0,
               }
             ],
         };
