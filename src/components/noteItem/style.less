@@ -1,0 +1,195 @@
+.note-list-item {
+    display         : flex;
+    flex-direction  : column;
+    height          : 10rem;
+    padding         : 0 .8rem 1.3rem .8rem;
+    border-radius   : 5px;
+    background-color: @bg-color-items;
+    cursor          : default;
+    .ease();
+
+    &.edit {
+        height: 300px;
+        .ease();
+
+        .note-content {
+            overflow: auto;
+            .scrollbar();
+
+            &::-webkit-scrollbar-track {
+                display: none;
+            }
+        }
+
+        .note-content p {
+            overflow          : visible;
+            -webkit-box-orient: unset;
+            -webkit-line-clamp: unset;
+        }
+
+        .note-toolbar {
+            opacity: 1;
+            .ease();
+
+            .note-finish {
+                visibility: visible;
+            }
+        }
+
+        .note-tools {
+            margin-top: auto;
+            opacity   : 1;
+            .ease();
+        }
+    }
+
+    &:hover {
+        box-shadow: 0 4px 12px rgb(0 0 0 / 15%);
+        .ease();
+
+        .note-toolbar {
+            opacity: 1;
+            .ease();
+        }
+    }
+
+    .note-toolbar {
+        display        : flex;
+        flex-direction : row;
+        justify-content: flex-end;
+        flex-wrap      : nowrap;
+        padding        : .8rem .5rem;
+        opacity        : 0;
+        .ease();
+
+        i {
+            .icon();
+            border-radius: 5px;
+            padding      : 0.2rem;
+            font-size    : 1.5rem;
+            .ease();
+        }
+
+        .note-finish {
+            margin-right: auto;
+            visibility  : hidden;
+
+            i {
+                &:hover {
+                    color: #2fbb46;
+                    .ease()
+                }
+            }
+        }
+
+        .note-star {
+            .icon-star{
+                display: inline;
+            }
+
+            .icon-star-selected{
+                display: none;
+            }
+
+            i {
+                &:hover {
+                    color: #efad03;
+                    .ease();
+                }
+            }
+        }
+
+        .active-star {
+            .ease();
+            .icon-star{
+                display: none;
+            }
+            .icon-star-selected{
+                display: inline;
+            }
+            i {
+                color: #efad03;
+            }
+    
+            &:hover{
+                .icon-star{
+                    display: inline;
+                    color: #efad03;
+                    opacity: 1;
+                    .ease();
+                }
+                .icon-star-selected{
+                    display: none;
+                    .ease();
+                }
+            }
+        }
+
+        .note-del {
+            margin-left: 5px;
+
+            i {
+                &:hover {
+                    color: #e64b36;
+                    .ease();
+                }
+            }
+        }
+
+    }
+
+    .note-content {
+        padding      : 0 .8rem;
+        margin-bottom: .5rem;
+        font-size    : .9rem;
+        color        : @text-color-grey;
+
+        &:focus {
+            outline: none;
+        }
+
+        p {
+            display           : -webkit-box;
+            text-align        : justify;
+            line-height       : 20px;
+            overflow          : hidden;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 5;
+            cursor            : text;
+        }
+
+        .note-title {
+            color: @text-color-black;
+        }
+
+    }
+
+    .note-tools {
+        display    : flex;
+        align-items: center;
+        margin     : 0;
+        padding    : 1rem .8rem 0 .8rem;
+        border-top : 1px solid rgb(0 0 0 / 15%);
+        opacity    : 0;
+
+        i {
+            padding      : .3rem;
+            margin-right : .5rem;
+            color        : @icon-color;
+            border-radius: 5px;
+            .ease();
+
+            &:hover {
+                background-color: @bg-color-items-hl;
+                color           : @text-color-black;
+                .ease();
+            }
+
+            &:active {
+                background-color: @bg-color-items-ac;
+                color           : @text-color-grey;
+                .ease();
+            }
+        }
+    }
+}

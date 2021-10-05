@@ -8,6 +8,8 @@
         </div>
     </aside>
     <Account :isopen="stat.isOpenUser" @close-user="closeAccount" />
+    <Profile />
+    <Theme />
     <div class="shade" v-show="allstat.isSide" @click="closeSide"></div>
 </template>
 
@@ -16,6 +18,8 @@ import SideNav from "./SideNav.vue";
 import SideList from "./SideList.vue";
 import User from "./User.vue";
 import Account from "../account/index.vue";
+import Profile from "../profile/index.vue";
+import Theme from "../theme/index.vue";
 import { reactive, computed } from "vue";
 import { useStore } from "vuex";
 
@@ -29,6 +33,12 @@ const closeSide = () => {
 const taskCount = computed(() => {
     return allstat.taskList.filter((e: any) => e.isok === 0).length
 })
+const noteCount = computed(() => {
+    return allstat.noteList.length
+})
+// const starCount = computed(() => {
+//     return 
+// })
 
 const stat = reactive({
     isOpenUser: false,
@@ -45,7 +55,7 @@ const stat = reactive({
         icon: "note",
         path: "/note/index",
         hidden: false,
-        count: 6
+        count: noteCount
     },
     {
         title: "任务",
@@ -58,11 +68,13 @@ const stat = reactive({
     taskList: [
         {
             title: '入门',
-            icon: '👋'
+            icon: '👋',
+            path: '/task/1'
         },
         {
             title: '资源',
-            icon: '🛒'
+            icon: '🛒',
+            path: '/task/2'
         }
     ]
 })

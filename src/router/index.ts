@@ -50,6 +50,18 @@ const routes: RouteRecordRaw[] = [
       meta: { title: 'Note' }
     }
     ]
+  },
+  {
+    path: '/task',
+    name: 'Task',
+    component: Layout,
+    children: [
+      {
+        path: '/task/:id',
+        component: () => import('/@/views/task/index.vue'),
+        meta: { title: 'Task' }
+      }
+    ]
   }
 ]
 

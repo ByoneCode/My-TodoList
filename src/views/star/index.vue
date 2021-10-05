@@ -30,7 +30,8 @@
         name="便签"
         done
         >
-          <task-item :list="starTask" :done="0"></task-item>
+        
+          <note-item></note-item>
         </collapsed>
       </div>
     </div>
@@ -38,8 +39,9 @@
 </template>
 
 <script setup lang="ts">
-import Collapsed from "/@/components/collapsed/index.vue";
-import TaskItem from "/@/components/taskItem/index.vue";
+import Collapsed from '/@/components/collapsed/index.vue';
+import TaskItem from '/@/components/taskItem/index.vue';
+import NoteItem from '/@/components/noteItem/index.vue'
 import { useStore } from 'vuex'
 import { computed } from "vue";
 

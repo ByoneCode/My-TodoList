@@ -83,6 +83,7 @@
         }
     }
     .active-star {
+        .ease();
         .icon-star{
             display: none;
         }
@@ -91,9 +92,19 @@
         }
         i {
             color: #efad03;
-            &:hover {
-                color: @icon-color;
-            } 
+        }
+
+        &:hover{
+            .icon-star{
+                display: block;
+                color: #efad03;
+                opacity: 1;
+                .ease();
+            }
+            .icon-star-selected{
+                display: none;
+                .ease();
+            }
         }
     }
     .item-del {

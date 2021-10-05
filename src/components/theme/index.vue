@@ -1,6 +1,6 @@
 <template>
   <div class="theme">
-    <div class="theme-menu">
+    <div class="theme-menu" :class="{'open-theme':allstat.isSetTheme}">
       <!-- 添加 open-theme 类显示 -->
       <div class="theme-title">
         <span>切换主题</span>
@@ -21,9 +21,15 @@
       </div>
     </div>
   </div>
+  <div class="shade" v-if="allstat.isSetTheme" @click="store.commit('toggleSetTheme')"></div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useStore } from 'vuex';
+
+const store = useStore();
+const allstat = store.state;
+</script>
 
 <style lang="less" scoped>
 @import "./style";

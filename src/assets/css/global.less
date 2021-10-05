@@ -172,6 +172,18 @@ body {
 	.heading {
 		padding: 0 0 1rem 1rem;
 
+		&.diy-list {
+			.heading-icon {
+				cursor: pointer;
+				.hov();
+			}
+
+			.heading-title span {
+				cursor: text;
+				.hov();
+			}
+		}
+
 		// pc & tablet
 		@media (min-width: 768px) {
 			padding-top: 2rem;
@@ -185,8 +197,6 @@ body {
 			.heading-icon {
 				margin-top: 5px;
 				padding   : .25rem;
-				cursor    : pointer;
-				.hov();
 
 				i {
 					font-size: 30px;
@@ -205,15 +215,12 @@ body {
 					font-weight: bold;
 					outline    : 0px;
 					user-select: none;
-					cursor     : text;
 
 					&:focus {
 						background-color: @bg-color-items-hl;
 						outline         : 0px;
 						.ease();
 					}
-
-					.hov();
 				}
 			}
 		}

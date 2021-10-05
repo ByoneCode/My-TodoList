@@ -18,16 +18,10 @@
                 </div>
             </div>
         </form>
-        <Account />
-        <Profile />
-        <Theme />
     </div>
 </template>
 
 <script setup lang="ts">
-import Account from "/@/components/account/index.vue";
-import Profile from "/@/components/profile/index.vue";
-import Theme from "/@/components/theme/index.vue";
 </script>
 
 <style lang="less" scoped>

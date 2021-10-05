@@ -9,13 +9,14 @@
     opacity         : 0.5;
     z-index         : 10;
 }
+
 .setuser-menu {
     display       : flex;
     flex-direction: column;
     position      : fixed;
     top           : 50%;
     left          : 50%;
-    transform     : translate(-50%,-50%) scale(0);
+    transform     : translate(-50%, -50%) scale(0);
     width         : 340px;
     z-index       : 15;
     border        : 1px solid rgba(0, 0, 0, 0.1);
@@ -25,11 +26,13 @@
     opacity       : 0;
     visibility    : hidden;
     .ease();
+
     @media (max-width: 768px) {
         width: 90%;
     }
+
     &.open-setuser {
-        transform : translate(-50%,-50%) scale(1);
+        transform : translate(-50%, -50%) scale(1);
         opacity   : 1;
         visibility: visible;
         .ease();
@@ -42,7 +45,7 @@
         font-size  : 1rem;
         font-weight: bold;
         padding    : 1rem 0 1.8rem 0;
-        user-select   : none;
+        user-select: none;
     }
 
     .setuser-item {
@@ -61,7 +64,7 @@
             line-height     : 1.75rem;
             color           : @text-color-white;
             background-color: #2d89ef;
-            user-select   : none;
+            user-select     : none;
         }
 
         .user-info {
@@ -89,17 +92,17 @@
             font-weight     : bold;
             font-size       : 14px;
             border-radius   : 2px;
-            user-select   : none;
-            cursor: pointer;
+            user-select     : none;
+            cursor          : pointer;
         }
     }
 
     .setuser-add {
         display    : flex;
-        padding:  1rem .8rem;
+        padding    : 1rem .8rem;
         align-items: center;
-        user-select   : none;
-        cursor: pointer;
+        user-select: none;
+        cursor     : pointer;
 
         i {
             color      : @text-color-black;
@@ -109,8 +112,8 @@
         }
 
         span {
-            color    : @text-color-black;
-            font-size: 14px;
+            color       : @text-color-black;
+            font-size   : 14px;
             margin-right: auto;
         }
     }
@@ -121,8 +124,8 @@
         margin          : 1rem;
         background-color: @bg-color;
         border-radius   : 2px;
-        user-select   : none;
-        cursor: pointer;
+        user-select     : none;
+        cursor          : pointer;
 
         span {
             font-size: 14px;

@@ -14,10 +14,10 @@
                 <li @click="emit('openAccount')">
                     <i class="iconfont icon-setuser"></i><span>管理账户</span>
                 </li>
-                <li>
+                <li @click="store.commit('toggleSetInfo')">
                     <i class="iconfont icon-setting"></i><span>修改资料</span>
                 </li>
-                <li>
+                <li @click="store.commit('toggleSetTheme')">
                     <i class="iconfont icon-theme"></i><span>切换主题</span>
                 </li>
             </ul>
@@ -27,6 +27,9 @@
 
 <script setup lang="ts">
 import { reactive } from "@vue/reactivity";
+import { useStore } from "vuex";
+
+const store = useStore()
 
 const emit = defineEmits(['openAccount'])
 
