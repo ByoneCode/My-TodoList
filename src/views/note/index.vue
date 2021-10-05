@@ -38,7 +38,7 @@
                         </div>
                     </div>
                     <div class="note-content">
-                        <p contenteditable="true" @blur="hadleCloseEdit">
+                        <p @blur="hadleCloseEdit">
                             {{ item.text }}
                         </p>
                     </div>
