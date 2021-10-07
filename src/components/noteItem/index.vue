@@ -73,7 +73,7 @@ const handleOpenEdit = (i: number) => {
             handleCloseEdit()
         }
         return false
-    },false)
+    },true)
     
 }
 </script>
