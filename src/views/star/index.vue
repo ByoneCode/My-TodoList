@@ -30,8 +30,14 @@
         name="便签"
         done
         >
-        
-          <note-item></note-item>
+        <div class="note-list">
+            <div class="note-container" id="note-container">
+                <!-- <div class="note-list-item note-add">
+          <i class="iconfont icon-add"></i>
+        </div> -->
+                <note-item></note-item>
+            </div>
+        </div>
         </collapsed>
       </div>
     </div>
