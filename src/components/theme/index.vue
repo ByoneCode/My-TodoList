@@ -1,9 +1,14 @@
 <template>
   <div class="theme">
-    <div class="theme-menu" :class="{'open-theme':allstat.isSetTheme}">
+    <div class="theme-menu" :class="{ 'open-theme': allstat.isSetTheme }">
       <!-- 添加 open-theme 类显示 -->
-      <div class="theme-title">
-        <span>切换主题</span>
+      <div class="theme-header">
+        <div class="theme-title">
+          <span>切换主题</span>
+        </div>
+        <div class="theme-close"  @click="store.commit('toggleSetTheme')">
+          <i class="iconfont icon-del"></i>
+        </div>
       </div>
       <div class="theme-list">
         <div class="theme-item">
@@ -21,7 +26,7 @@
       </div>
     </div>
   </div>
-  <div class="shade" v-if="allstat.isSetTheme" @click="store.commit('toggleSetTheme')"></div>
+  <div class="shade" v-if="allstat.isSetTheme"></div>
 </template>
 
 <script setup lang="ts">

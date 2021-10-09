@@ -1,22 +1,34 @@
 <template>
-  <div class="setinfo-menu" :class="{'open-setinfo':allstat.isSetInfo}">
+  <div class="setinfo-menu" :class="{ 'open-setinfo': allstat.isSetInfo }">
     <!-- 添加 open-setinfo 类显示 -->
-    <div class="setinfo-title">
-      <span>修改资料</span>
+    <div class="setinfo-header">
+      <div class="setinfo-title">
+        <span>修改资料</span>
+      </div>
+      <div class="setinfo-close"  @click="store.commit('toggleSetInfo')">
+        <i class="iconfont icon-del"></i>
+      </div>
     </div>
-    <div class="setinfo-name">
-      <input type="text" />
-    </div>
-    <div class="setinfo-avatar">
-      <span class="avatar-change">更改图片</span>
-      <span>图片更改最多可能需要24小时才会生效。</span>
+    <div class="setinfo-list">
+      <div class="setinfo-name">
+        <span>修改用户名</span>
+        <input type="text" />
+      </div>
+      <div class="setinfo-password">
+        <span>修改密码</span>
+        <input type="password" />
+      </div>
+      <div class="setinfo-confirm">
+        <span>确认密码</span>
+        <input type="password" />
+      </div>
+      <div class="setinfo-avatar">
+        <span class="avatar-change">更改图片</span>
+      </div>
     </div>
     <div class="setinfo-btn">
       <div class="setinfo-update">
         <span>更新</span>
-      </div>
-      <div class="setinfo-cancel" @click="store.commit('toggleSetInfo')">
-        <span>取消</span>
       </div>
     </div>
   </div>
