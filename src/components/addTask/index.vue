@@ -9,9 +9,6 @@
         <input class="type-in-area" type="text" v-model="taskList.name" @keyup.enter="addTask" @blur="toggle(2)" ref="focus" >
       </div>
     </div>
-    <!-- 
-        TODO: 样式待修复
-     -->
 </template>
 
 <script lang="ts" setup>

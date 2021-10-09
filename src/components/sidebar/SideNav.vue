@@ -9,7 +9,9 @@
                 >
                     <div
                         class="nav-item"
-                        :class="{ active: route.path === item.path }"
+                        :class="{ 
+                            'active': route.path === item.path
+                        }" 
                     >
                         <i class="iconfont" :class="`icon-${item.icon}`"></i>
                         <span class="item-title">{{ item.title }}</span>
@@ -24,6 +26,8 @@
 <script setup lang="ts">
 import { useRouter, useRoute } from "vue-router";
 import { useStore } from "vuex";
+import { reactive, ref } from "vue";
+import { stat } from "fs";
 
 const store = useStore();
 
@@ -37,7 +41,15 @@ const props = defineProps({
 });
 
 // 跳转
+
+const top = ref('0px')
+top.value = route.meta.top + 'px'
 function goto(path: string): void {
+    router.beforeEach((from) => {
+        if(from.meta.top !== undefined){
+            top.value =  from.meta.top + 'px'    
+        }  
+    })
     router.push(path);
     store.commit("toggleSide");
 }
@@ -46,4 +58,19 @@ function goto(path: string): void {
 <style lang="less" scoped>
 // @import "./index";
 @import "./sidenav";
+.side-nav {
+    nav>ul {
+        &::before{
+            content: "";
+            position: absolute;
+            left: 0;
+            top: v-bind(top);
+            width: 0.35rem;
+            height: 1.25rem;
+            border-radius: 4px;
+            background-color: royalblue;
+            transition: all .3s ease;
+        }
+    }
+}
 </style>

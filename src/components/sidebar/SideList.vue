@@ -2,11 +2,10 @@
   <div class="side-list">
     <ul>
       <li
-        :class="{ active: stat.isRight === parseInt(index) }"
         v-for="(item, index) in list"
         :key="`list-${index}`"
       >
-        <div class="list-items" @click.right="rightMenu(index)" @click="goto(item.path)">
+        <div class="list-items" @click="goto(item.path)">
           <div class="list-icon">
             <i>{{ item.icon }}</i>
           </div>
@@ -17,7 +16,6 @@
             <span>{{ item.count }}</span>
           </div>
         </div>
-        <menu-tool></menu-tool>
       </li>
       <li v-show="stat.isCreate">
         <div class="list-items" style="padding: .675rem 1rem;">
@@ -29,7 +27,8 @@
               type="text"
               v-model="stat.tempItem.title"
               ref="title"
-              @keyup.enter="emit('addList', stat.tempItem, reset)"
+              @keyup.enter="eventBlur"
+              @blur="emit('addList', stat.tempItem, reset)"
             />
           </div>
         </div>
@@ -46,13 +45,12 @@
 import { useStore } from "vuex";
 import { useRouter } from 'vue-router'
 import { reactive, ref, nextTick } from "vue";
-import MenuTool from "../rightMenu/index.vue";
+import { log } from "console";
 
 const router = useRouter()
 const store = useStore()
 const title = ref(null)
 const stat = reactive({
-  isRight: -1,
   isCreate: false,
   tempItem: {
     icon: "🎉",
@@ -67,6 +65,12 @@ const props = defineProps({
 });
 
 const emit = defineEmits(["addList"]);
+
+// 把事件转发给blur
+const eventBlur = (event: any) => {
+  event.target.blur()
+}
+
 
 const createList = () => {
   stat.isCreate = true;
@@ -83,14 +87,6 @@ const reset = () => {
     icon: "🎉",
     title: "无标题列表",
   };
-};
-// 右击菜单事件
-const rightMenu = (index: string) => {
-  const items: any = document.querySelector(".side-list");
-  items.oncontextmenu = function () {
-    return false;
-  };
-  stat.isRight = parseInt(index);
 };
 // 跳转
 const goto = (path: string) => {

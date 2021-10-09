@@ -23,7 +23,7 @@ const routes: RouteRecordRaw[] = [
     { 
       path: 'index',
       component: () => import('/@/views/task/index.vue'),
-      meta: { title: 'Home' }
+      meta: { title: 'Home', top: 108 }
     }
     ]
   },
@@ -35,7 +35,7 @@ const routes: RouteRecordRaw[] = [
     { 
       path: 'index',
       component: () => import('/@/views/star/index.vue') ,
-      meta: { title: 'Star' }
+      meta: { title: 'Star', top: 12 }
     }
     ]
   },
@@ -47,7 +47,7 @@ const routes: RouteRecordRaw[] = [
     { 
       path: 'index',
       component: () => import('/@/views/note/index.vue') ,
-      meta: { title: 'Note' }
+      meta: { title: 'Note', top: 60 }
     }
     ]
   },
@@ -58,7 +58,7 @@ const routes: RouteRecordRaw[] = [
     children: [
       {
         path: '/task/:id',
-        component: () => import('/@/views/task/index.vue'),
+        component: () => import('/@/views/diyTask/index.vue'),
         meta: { title: 'Task' }
       }
     ]
