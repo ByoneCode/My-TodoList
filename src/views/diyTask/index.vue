@@ -12,7 +12,8 @@
           <span>入门</span>
         </div>
         <div class="tool-btn">
-          <button>删除列表</button>
+          <i class="iconfont icon-delete"></i>
+          <!-- <button>删除列表</button> -->
         </div>
       </div>
     </div>

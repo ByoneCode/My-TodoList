@@ -62,6 +62,8 @@
     }
 
     .setinfo-list {
+        display: flex;
+        flex-direction: column;
 
         .setinfo-name,
         .setinfo-password,
@@ -72,7 +74,7 @@
             margin-bottom : .4rem;
 
             span {
-                color: @text-color-black;
+                color        : @text-color-black;
                 font-weight  : bold;
                 font-size    : 14px;
                 margin-bottom: .5rem;
@@ -80,28 +82,26 @@
 
             input {
                 background-color: @bg-color-input;
-                color: @text-color-black;
-                width     : 100%;
-                box-sizing: border-box;
-                padding   : .5rem .5rem;
-                outline   : none;
-                border: none;
+                color           : @text-color-black;
+                width           : 100%;
+                box-sizing      : border-box;
+                padding         : .5rem .5rem;
+                outline         : none;
+                border          : none;
             }
         }
 
         .setinfo-avatar {
             display       : flex;
             flex-direction: column;
-            padding       : 0 1.3rem;
+            margin : 0 auto 0 1.3rem;
+            padding: .5rem;
+            border: 1px dashed @icon-color;
+            cursor: pointer;
 
-            .avatar-change {
-                font-size     : 14px;
-                margin-bottom : .5rem;
-                padding-bottom: .1rem;
-                margin-right  : auto;
-                color         : @text-color-avatar-change;
-                border-bottom : 1px solid @text-color-avatar-change;
-                cursor        : pointer;
+            i{
+                color: @icon-color;
+                font-size: 1.5rem;
             }
         }
     }
@@ -124,7 +124,7 @@
                 .ease();
             }
 
-            &:active{
+            &:active {
                 background-color: #3987c2;
                 .ease();
             }

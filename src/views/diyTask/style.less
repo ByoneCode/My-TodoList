@@ -7,8 +7,28 @@
 
     .tool-btn{
         display: flex;
-        flex-grow: 1;
-        justify-content: right;
+        margin-left: auto;
+        // flex-grow: 1;
+        // justify-content: right;
+        border-radius: 5px;
+        .ease();
+
+        i{
+            color: @icon-color;
+            font-size: 1.5rem;
+            font-weight: bold;
+            padding: .5rem;
+        }
+
+        &:hover{
+            background-color: @bg-color-items-hl;
+            .ease();
+        }
+
+        &:active{
+            background-color: @bg-color-items-ac;
+            .ease();
+        }
     }
 }
 

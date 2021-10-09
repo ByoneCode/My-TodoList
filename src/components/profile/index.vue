@@ -23,7 +23,7 @@
         <input type="password" />
       </div>
       <div class="setinfo-avatar">
-        <span class="avatar-change">更改图片</span>
+        <i class="iconfont icon-add"></i>
       </div>
     </div>
     <div class="setinfo-btn">
