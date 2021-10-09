@@ -4,17 +4,25 @@
 
     // done items list is invisible normally 
     .done-item-list {
-        display: none;
+        // display: none;
     }
 
+    .collapsed-content{
+        height: 0px;
+        overflow: hidden;
+        .ease;
+    }
     // done items list is visible when opened
     &.done-visible {
         i.icon-up {
             transform: rotate(90deg);
         }
 
-        .done-item-list {
-            display: block;
+        // .done-item-list {
+        //     display: block;
+        // }
+        .collapsed-content{
+            height: auto;
         }
     }
 

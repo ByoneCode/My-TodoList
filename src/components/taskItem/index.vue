@@ -23,14 +23,18 @@
             <div class="item-del">
                 <i class="iconfont icon-del" @click="delTask(item.id)"></i>
             </div>
+            <div class="item-send">
+                <i class="iconfont icon-transfer" @click="emit('mvTask',item,$event)"></i>
+            </div>
         </div>
     </template>
 </template>
 
 <script setup lang="ts">
 import { useStore } from "vuex";
-
+import { reactive } from "vue";
 const store = useStore();
+
 
 const props = defineProps({
     list: {
@@ -41,7 +45,9 @@ const props = defineProps({
         type: Number,
         default: 0,
     },
-});
+})
+
+const emit = defineEmits(['mvTask'])
 // 过滤未完成和已完成
 function taskListItem() {
     if (props.done === 0) {
@@ -80,4 +86,10 @@ function starTask(id: number): void {
 
 <style lang="less" scoped>
 @import "./style";
+.test{
+    position: fixed;
+    width: 100px;
+    height: 100px;
+    background-color: aqua;
+}
 </style>
