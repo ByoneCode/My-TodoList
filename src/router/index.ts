@@ -58,6 +58,7 @@ const routes: RouteRecordRaw[] = [
     children: [
       {
         path: '/task/:id',
+        name: 'taskGroup',
         component: () => import('/@/views/diyTask/index.vue'),
         meta: { title: 'Task' }
       }

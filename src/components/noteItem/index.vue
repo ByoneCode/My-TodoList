@@ -63,8 +63,8 @@ const handleCloseEdit = () => {
 const handleOpenEdit = (i: number) => {
     stat.isEdit = i
     // 点开获取聚焦
+    const edit: any = document.querySelector('div.edit .note-content')
     setTimeout(() => {
-        const edit: any = document.querySelector('div.edit .note-content')
         edit.focus()
     },1)
     const item: any = document.querySelector('.note-container')
@@ -74,7 +74,6 @@ const handleOpenEdit = (i: number) => {
         }
         return false
     },true)
-    
 }
 </script>
 

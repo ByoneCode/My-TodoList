@@ -4,7 +4,7 @@
             <User @open-account="openAccount"/>
             <SideNav :list="stat.navList" />
             <div class="side-hr"></div>
-            <SideList :list="stat.taskList" @add-list="addList" />
+            <SideList :list="allstat.taskGroup" @add-list="addList" />
         </div>
     </aside>
     <Account :isopen="stat.isOpenUser" @close-user="closeAccount" />
@@ -20,8 +20,9 @@ import User from "./User.vue";
 import Account from "../account/index.vue";
 import Profile from "../profile/index.vue";
 import Theme from "../theme/index.vue";
-import { reactive, computed } from "vue";
+import { reactive, computed, onMounted } from "vue";
 import { useStore } from "vuex";
+import { getTaskGroup, addTaskGroup } from "/@/api/taskGroup";
 
 const store = useStore();
 const allstat = store.state;
@@ -29,16 +30,6 @@ const allstat = store.state;
 const closeSide = () => {
     store.commit("toggleSide");
 };
-
-const taskCount = computed(() => {
-    return allstat.taskList.filter((e: any) => e.isok === 0).length
-})
-const noteCount = computed(() => {
-    return allstat.noteList.length
-})
-// const starCount = computed(() => {
-//     return 
-// })
 
 const stat = reactive({
     isOpenUser: false,
@@ -55,36 +46,36 @@ const stat = reactive({
         icon: "note",
         path: "/note/index",
         hidden: false,
-        count: noteCount
+        count: 0
     },
     {
         title: "任务",
         icon: "home",
         path: "/home/index",
         hidden: false,
-        count: taskCount
+        count: 0
     },
     ],
-    taskList: [
-        {
-            title: '入门',
-            icon: '👋',
-            path: '/task/1'
-        },
-        {
-            title: '资源',
-            icon: '🛒',
-            path: '/task/2'
-        }
-    ]
+    taskList: []
 })
 
-const addList = (item: any,reset: any) => {
+onMounted(async() => {
+    const { data } = await getTaskGroup(0)
+    store.commit('groupList',data.items)
+})
+
+
+const addList = async (item: any,reset: any) => {
     if(item.title === ''){
         item.title = '无标题列表'
     }
-    stat.taskList.push(item)
-    reset()
+    const res: any = await addTaskGroup(item)
+
+    if(res.code === 200){
+        item.id = parseInt(res.data.id) 
+        store.commit('addGroup',item)
+        reset()
+    }
 }
 
 const openAccount = () => {

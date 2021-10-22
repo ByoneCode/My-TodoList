@@ -8,7 +8,7 @@
       </div>
     </div>
     <div class="collapsed-content" ref="content">
-      <div class="done-item-list">
+      <div class="done-item-list" ref="lists">
         <slot>slot list</slot>
       </div>
     </div>
@@ -16,7 +16,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed, ref, onMounted } from "vue";
 const props = defineProps({
   list: {
     type: Array,
@@ -38,36 +38,40 @@ const props = defineProps({
 });
 
 const isdone = ref(props.done);
-const content = ref(null)
-const elHeight = ref(0)
+// const content = ref(null)
+// const lists = ref(null)
+// const elHeight = ref(0)
+// const listHeight = ref(0)
+
+
 const toggleDone = () => {
   isdone.value = !isdone.value;
   // 获取coll-content的高度
-  const el: any = content.value
-  let height = el.offsetHeight
-  if(props.done === false){
-    if(height === elHeight.value){
-      el.style.height = 'auto'
-      height = el.offsetHeight
-      el.style.height = elHeight.value + 'px'
-      let f = document.body.offsetHeight  // 必加
-      el.style.height = height + 'px'
-    }else{
-      el.style.height = elHeight.value + 'px' 
-    }
-  }else{
-     if(height === elHeight.value){
-      el.style.height = 'auto'
-      height = el.offsetHeight
-      el.style.height = elHeight.value + 'px'
-      let f = document.body.offsetHeight  // 必加
-      el.style.height = height + 'px'
-    }else{
-      el.style.height = height + 'px'
-      let f = document.body.offsetHeight  // 必加
-      el.style.height = elHeight.value + 'px'
-    }
-  }
+  // const el: any = content.value
+  // let height = el.offsetHeight
+  // if(props.done === false){
+  //   if(height === elHeight.value){
+  //     el.style.height = 'auto'
+  //     height = el.offsetHeight
+  //     el.style.height = elHeight.value + 'px'
+  //     let f = document.body.offsetHeight  // 必加
+  //     el.style.height = height + 'px'
+  //   }else{
+  //     el.style.height = elHeight.value + 'px' 
+  //   }
+  // }else{
+  //    if(height === elHeight.value){
+  //     el.style.height = 'auto'
+  //     height = el.offsetHeight
+  //     el.style.height = elHeight.value + 'px'
+  //     let f = document.body.offsetHeight  // 必加
+  //     el.style.height = height + 'px'
+  //   }else{
+  //     el.style.height = height + 'px'
+  //     let f = document.body.offsetHeight  // 必加
+  //     el.style.height = elHeight.value + 'px'
+  //   }
+  // }
 };
 const okCount = computed(() => {
   if(props.isok === 1){

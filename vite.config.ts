@@ -83,5 +83,5 @@ export default defineConfig({
         additionalData: `@import "${pathResolve('./src/assets/css/global.less')}";`,
       },
     },
-  },
+  }
 })

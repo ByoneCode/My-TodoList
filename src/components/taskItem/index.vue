@@ -1,5 +1,5 @@
 <template>
-    <template v-for="(item,index) in taskListItem()" :key="`task-${index}`">
+    <template v-for="(item,index) in list" :key="`task-${index}`">
         <div class="task-list-item">
             <div class="item-isdone">
                 <i
@@ -21,7 +21,7 @@
                 <i class="iconfont icon-star-selected" @click="starTask(item.id)"></i>
             </div>
             <div class="item-del">
-                <i class="iconfont icon-del" @click="delTask(item.id)"></i>
+                <i class="iconfont icon-del" @click="delTask(item.id,index)"></i>
             </div>
             <div class="item-send">
                 <i class="iconfont icon-transfer" @click="emit('mvTask',item,$event)"></i>
@@ -31,11 +31,7 @@
 </template>
 
 <script setup lang="ts">
-import { useStore } from "vuex";
-import { reactive } from "vue";
-const store = useStore();
-
-
+import { delTaskList } from '/@/api/taskList';
 const props = defineProps({
     list: {
         type: Object,
@@ -47,30 +43,33 @@ const props = defineProps({
     },
 })
 
-const emit = defineEmits(['mvTask'])
+const emit = defineEmits(['mvTask','delTaskSuccess'])
 // 过滤未完成和已完成
-function taskListItem() {
-    if (props.done === 0) {
-        return props.list.filter((item: any) => item.isok == 0);
-    } else {
-        return props.list.filter((item: any) => item.isok == 1);
-    }
-}
+// function taskListItem() {
+//     if(props.list !== 0){
+//         if (props.done === 0) {
+//             return props.list.filter((item: any) => item.isok == 0);
+//         } else {
+//             return props.list.filter((item: any) => item.isok == 1);
+//         }
+//     }
+// }
 // 勾选完成、取消
 function toggleDone(i: number,id: number) {
-    const list = taskListItem()
-    const index = list.findIndex((el: any) => el.id === id)
-    if(i === 1){
-        list[index].isok = 1
-    }else {
-        list[index].isok = 0
-    }
+    // const list = taskListItem()
+    // const index = list.findIndex((el: any) => el.id === id)
+    // if(i === 1){
+    //     list[index].isok = 1
+    // }else {
+    //     list[index].isok = 0
+    // }
 }
 // 删除项目
-function delTask(id: number): void {
-    const list = store.state.taskList
-    const index = list.findIndex((el: any) => el.id === id)
-    store.commit('delTask',index)
+async function delTask(id: number,index: any) {
+    const res: any = await delTaskList(id)
+    if(res.code === 200){
+        emit('delTaskSuccess',index)
+    }
 }
 // 收藏项目
 function starTask(id: number): void {

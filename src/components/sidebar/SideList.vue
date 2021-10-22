@@ -5,9 +5,10 @@
         v-for="(item, index) in list"
         :key="`list-${index}`"
       >
-        <div class="list-items" @click="goto(item.path)">
+        <div class="list-items" @click="goto(item)">
           <div class="list-icon">
-            <i>{{ item.icon }}</i>
+            <i v-if="item.icon !== 'icon-nav'">{{ item.icon }}</i>
+            <i v-else class="iconfont icon-nav"></i>
           </div>
           <div class="list-title">
             <span>{{ item.title }}</span>
@@ -45,7 +46,6 @@
 import { useStore } from "vuex";
 import { useRouter } from 'vue-router'
 import { reactive, ref, nextTick } from "vue";
-import { log } from "console";
 
 const router = useRouter()
 const store = useStore()
@@ -53,7 +53,7 @@ const title = ref(null)
 const stat = reactive({
   isCreate: false,
   tempItem: {
-    icon: "🎉",
+    icon: "icon-nav",
     title: "无标题列表",
   },
 });
@@ -84,13 +84,14 @@ const createList = () => {
 const reset = () => {
   stat.isCreate = false;
   stat.tempItem = {
-    icon: "🎉",
+    icon: "icon-nav",
     title: "无标题列表",
   };
 };
 // 跳转
-const goto = (path: string) => {
-  router.push(path)
+const goto = (item: any) => {
+  store.commit('getGroupInfo',item)
+  router.push({ name: 'taskGroup', params: { id: item.id }})
 }
 </script>
 

@@ -58,19 +58,19 @@ function goto(path: string): void {
 <style lang="less" scoped>
 // @import "./index";
 @import "./sidenav";
-.side-nav {
-    nav>ul {
-        &::before{
-            content: "";
-            position: absolute;
-            left: 0;
-            top: v-bind(top);
-            width: 0.35rem;
-            height: 1.25rem;
-            border-radius: 4px;
-            background-color: royalblue;
-            transition: all .3s ease;
-        }
-    }
-}
+// .side-nav {
+//     nav>ul {
+//         &::before{
+//             content: "";
+//             position: absolute;
+//             left: 0;
+//             top: v-bind(top);
+//             width: 0.35rem;
+//             height: 1.25rem;
+//             border-radius: 4px;
+//             background-color: royalblue;
+//             transition: all .3s ease;
+//         }
+//     }
+// }
 </style>

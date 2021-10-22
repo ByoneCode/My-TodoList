@@ -25,7 +25,7 @@
           <task-item :list="starTask" :done="0"></task-item>
         </collapsed>
         <collapsed
-        :list="starTask"
+        :list="[]"
         :isok="0"
         name="便签"
         done
@@ -55,9 +55,6 @@ const store = useStore()
 
 const allstat = store.state
 
-const starTask = computed(() => {
-  return allstat.taskList.filter((el: any) => (el.is_star === 1 && el.isok === 0))
-})
 
 
 

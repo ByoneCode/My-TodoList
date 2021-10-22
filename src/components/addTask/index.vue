@@ -13,15 +13,19 @@
 
 <script lang="ts" setup>
 import { ref, nextTick } from "vue";
-import { useStore } from "vuex";
+import { addTaskList } from "/@/api/taskList";
 
-const store = useStore();
 const toggleValue = ref(true);
 const focus = ref(null);
 const taskList = ref({
-    name: "",
-    isok: 0,
+    name: ""
 });
+
+const props = defineProps({
+  gid: [Number,String,Array]
+})
+
+const emit = defineEmits(['addSuccess'])
 
 function toggle(num: number):void {
   toggleValue.value = !toggleValue.value
@@ -36,13 +40,15 @@ function toggle(num: number):void {
 function reset() {
     taskList.value = {
         name: "",
-        isok: 0,
     };
 }
 
-function addTask() {
-    store.commit("addTaskList", taskList.value);
-    reset();
+async function addTask() {
+    const res: any = await addTaskList({name:taskList.value.name,gid:props.gid})
+    if(res.code === 200){
+      emit('addSuccess',{id:res.data.id,gid:props.gid,isdel:0,isok:0,name:taskList.value.name})
+      reset();
+    }
 }
 </script>
 

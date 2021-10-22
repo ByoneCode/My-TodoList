@@ -3,7 +3,8 @@ import { createStore } from "vuex";
 export default createStore({
   state: {
     isSide: false,
-    taskList: [],
+    groupInfo: {},
+    taskGroup: [],
     noteList: [{
             text: "滚滚长江东逝水，浪花淘尽英雄。是非成败转头空。青山依旧在，几度夕阳红。白发渔樵江渚上，惯看秋月春风。一壶浊酒喜相逢。古今多少事，都付笑谈中。",
             isStar: true
@@ -27,21 +28,22 @@ export default createStore({
     isSetInfo: false,
     isSetTheme: false
   },
-  mutations: { 
-    // 往任务清单添加数据
-    addTaskList(stat,data){
-      stat.taskList.push(data as never)
+  mutations: {
+    // 获取组信息
+    getGroupInfo(stat,item){
+      stat.groupInfo = item
     },
-
-    // 删除项目
-    delTask(stat,index){
-      stat.taskList.splice(index,1)
+    // 组列表
+    groupList(stat,list){
+      stat.taskGroup = list
     },
-
-    getTaskList(stat,data){
-      stat.taskList = data
+    addGroup(stat,item){
+      stat.taskGroup.push(item as never)
     },
-
+    delGroup(stat,id){
+      const index = stat.taskGroup.findIndex((el: any) => el.id === parseInt(id))
+      stat.taskGroup.splice(index,1)
+    },
     // 切换侧滑栏
     toggleSide(stat){
       stat.isSide = !stat.isSide;   
