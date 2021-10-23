@@ -16,22 +16,24 @@
                 }}</span>
                 <span v-else contenteditable="true" class="done-item">{{ item.name }}</span>
             </div>
-            <div class="item-star" :class="{'active-star':  item.is_star === 1}">
-                <i class="iconfont icon-star" @click="starTask(item.id)"></i>
-                <i class="iconfont icon-star-selected" @click="starTask(item.id)"></i>
+            <!-- :class="{'active-star':  item.isstar === 1}" -->
+            <div class="item-star">
+                <i v-show="item.isstar === 0" class="iconfont icon-star" @click="toggleStar(item.id,1)"></i>
+                <i v-show="item.isstar === 1" class="iconfont icon-star-selected" @click="toggleStar(item.id,0)"></i>
             </div>
             <div class="item-del">
                 <i class="iconfont icon-del" @click="delTask(item.id,index)"></i>
             </div>
-            <div class="item-send">
-                <i class="iconfont icon-transfer" @click="emit('mvTask',item,$event)"></i>
+            <div class="item-send" v-if="isMove">
+                <i class="iconfont icon-transfer" @click="emit('mvTask',item.id,$event)"></i>
             </div>
         </div>
     </template>
 </template>
 
 <script setup lang="ts">
-import { delTaskList } from '/@/api/taskList';
+import { delTaskList, updTaskList } from '/@/api/taskList';
+import { computed } from 'vue';
 const props = defineProps({
     list: {
         type: Object,
@@ -41,28 +43,20 @@ const props = defineProps({
         type: Number,
         default: 0,
     },
+    isMove: {
+        type: Boolean,
+        default: true
+    }
 })
 
-const emit = defineEmits(['mvTask','delTaskSuccess'])
-// 过滤未完成和已完成
-// function taskListItem() {
-//     if(props.list !== 0){
-//         if (props.done === 0) {
-//             return props.list.filter((item: any) => item.isok == 0);
-//         } else {
-//             return props.list.filter((item: any) => item.isok == 1);
-//         }
-//     }
-// }
-// 勾选完成、取消
-function toggleDone(i: number,id: number) {
-    // const list = taskListItem()
-    // const index = list.findIndex((el: any) => el.id === id)
-    // if(i === 1){
-    //     list[index].isok = 1
-    // }else {
-    //     list[index].isok = 0
-    // }
+const emit = defineEmits(['mvTask','delTaskSuccess','doneSuccess','starSuccess'])
+
+// 勾选完成、取消 
+async function toggleDone(ok: number,id: number) {
+    const res: any = await updTaskList({ id: id, isok: ok })
+    if(res.code === 200){
+        emit('doneSuccess',id,ok)
+    }
 }
 // 删除项目
 async function delTask(id: number,index: any) {
@@ -72,13 +66,12 @@ async function delTask(id: number,index: any) {
     }
 }
 // 收藏项目
-function starTask(id: number): void {
-    const list = props.list
-    const index = list.findIndex((el: any) => el.id === id)
-    if(list[index].is_star === 0){
-        list[index].is_star = 1
-    }else {
-        list[index].is_star = 0
+async function toggleStar(id: number,status: number) {
+    console.log(status);
+    
+   const res: any = await updTaskList({ id: id, isstar: status })
+    if(res.code === 200){
+        emit('starSuccess',id,status)
     }
 }
 </script>

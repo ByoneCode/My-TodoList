@@ -46,7 +46,7 @@ function reset() {
 async function addTask() {
     const res: any = await addTaskList({name:taskList.value.name,gid:props.gid})
     if(res.code === 200){
-      emit('addSuccess',{id:res.data.id,gid:props.gid,isdel:0,isok:0,name:taskList.value.name})
+      emit('addSuccess',{id:res.data.id,gid:props.gid,isdel:0,isok:0,isstar:0,name:taskList.value.name})
       reset();
     }
 }

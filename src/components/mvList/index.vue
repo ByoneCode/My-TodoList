@@ -11,12 +11,7 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, onMounted, watchEffect  } from 'vue';
-import { getTaskGroup } from "/@/api/taskGroup";
 import { updTaskList } from '/@/api/taskList';
-const stat = reactive({
-  list: [{id: 0, title: undefined}]
-})
 const props = defineProps({
   list: {
     type: Object
@@ -33,29 +28,15 @@ const props = defineProps({
       top: '0px'
     }
   },
-  item: {
-    type: Object,
-    require: true,
-    default: {
-      id: undefined
-    }
+  id: {
+    type: Number,
+    require: true
   },
   gid: {
     type: [String,Number,Array],
     default: 0,
     require: true
   }
-})
-
-onMounted( async () => {
-  // 获取任务列表
-  // const { data } = await getTaskGroup(props.gid)
-  // stat.list = data.items
-})
-
-watchEffect(async () => {
-  // const { data } = await getTaskGroup(props.gid)
-  // stat.list = data.items
 })
 
 const emit = defineEmits(['closeMvList','onSuccess'])
@@ -75,10 +56,11 @@ window.addEventListener('resize',() => {
 
 // 移动任务
 const mvItem = async (gid: number) => {
-  const id = props.item.id
-  const res: any = await updTaskList({id:id,gid:gid})
+  console.log(props.id);
+  
+  const res: any = await updTaskList({id:props.id,gid:gid})
   if(res.code === 200){
-    emit('onSuccess',props.item.id)
+    emit('onSuccess',props.id)
   }
 }
 </script>

@@ -24,10 +24,12 @@
         <!-- undone item list -->
         <div class="undone-item-list">
           <task-item 
-          :list="stat.taskList" 
+          :list="taskListItem(0)" 
           :done="0" 
           @mv-task="mvTask"
           @del-task-success="delTask"
+          @done-success="doneSuccess"
+          @star-success="starSuccess"
           ></task-item>
         </div>
         <!-- collapsed list -->
@@ -35,10 +37,12 @@
         :list="stat.taskList"
         >
           <task-item 
-          :list="stat.taskList" 
+          :list="taskListItem(1)" 
           :done="1" 
           @mv-task="mvTask"
           @del-task-success="delTask"
+          @done-success="doneSuccess"
+          @star-success="starSuccess"
           ></task-item>
         </collapsed>
         <!-- done item list -->
@@ -54,7 +58,7 @@
     :list="stat.groupList"
     :is-show="stat.isShow" 
     :pos="stat.pos"
-    :item="stat.task_item"
+    :id="stat.group_id"
     :gid="route.params.id || 0"
     @on-success="mvSuccess"
     @close-mv-list="stat.isShow = false">
@@ -66,7 +70,7 @@
 import AddTask from "/@/components/addTask/index.vue";
 import TaskItem from "/@/components/taskItem/index.vue";
 import Collapsed from "/@/components/collapsed/index.vue";
-import { onMounted, reactive } from "vue";
+import { onMounted, reactive, computed } from "vue";
 import { useStore } from "vuex";
 import { useRoute, onBeforeRouteUpdate } from "vue-router"
 import { getTaskList } from "/@/api/taskList";
@@ -82,13 +86,13 @@ const allStore = store.state;
 const route = useRoute();
 
 const stat = reactive({
-  taskList: [],
+  taskList: [{isok: 0,isstar:0}],
   isShow: false,
   pos: {
     left: '0px',
     top: '0px'
   },
-  task_item: [],
+  group_id: -1,
   groupList: [],
 })
 
@@ -107,13 +111,20 @@ onBeforeRouteUpdate(async (to, from) => {
   stat.taskList = await (await getTaskList(to.params.id)).data.items;
 })
 
+// 过滤任务列表
+const taskListItem = computed(() => {
+  return (done: number) => {
+    return stat.taskList.filter((item: any) => item.isok === (done === 0 ? 0 : 1))
+  }
+})
+
 // 移动项目
-const mvTask = async (val: any,event: any) => {
+const mvTask = async (id: any,event: any) => {
   const position = event.target.getBoundingClientRect()
   stat.pos.top = position.top + position.height + 12 + 'px'
   stat.pos.left = position.left - 105 + 'px'
   stat.isShow = true
-  stat.task_item = val;
+  stat.group_id = id
   const { data } = await getTaskGroup(route.params.id || 0)
   stat.groupList = data.items
 }
@@ -138,6 +149,16 @@ const delGroup = async () => {
     console.log(route.params.id);
     router.replace('/home/index')
   }
+}
+// 切换状态（完成——未完成）
+const doneSuccess = (id: number,ok: number) => {
+  const index = stat.taskList.findIndex((el: any) => el.id === id)
+  stat.taskList[index].isok = ok
+}
+// 收藏状态
+const starSuccess = (id: number,status: number) => {
+  const index = stat.taskList.findIndex((el: any) => el.id === id)
+  stat.taskList[index].isstar = status
 }
 </script>
 

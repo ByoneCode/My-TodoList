@@ -35,3 +35,10 @@ export function addTaskList(data: object) {
     data
   })
 }
+
+export function getTaskStar() {
+  return request({
+    url: '/task/get_task_star',
+    method: 'get'
+  })
+}

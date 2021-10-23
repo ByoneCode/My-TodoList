@@ -17,12 +17,18 @@
     <div class="taskList">
       <div class="task-container">
         <collapsed
-        :list="starTask"
+        :list="stat.task_star"
         :isok="0"
         name="待办事项"
         done
         >
-          <task-item :list="starTask" :done="0"></task-item>
+          <task-item 
+          :list="stat.task_star" 
+          :done="0"
+          :is-move="false"
+          @del-task-success="delTask"
+          @star-success="starSuccess"
+          ></task-item>
         </collapsed>
         <collapsed
         :list="[]"
@@ -49,15 +55,31 @@ import Collapsed from '/@/components/collapsed/index.vue';
 import TaskItem from '/@/components/taskItem/index.vue';
 import NoteItem from '/@/components/noteItem/index.vue'
 import { useStore } from 'vuex'
-import { computed } from "vue";
+import { computed, onMounted, reactive } from "vue";
+import { getTaskStar } from '/@/api/taskList';
 
 const store = useStore()
 
 const allstat = store.state
 
+const stat = reactive({
+  task_star: [{isstar:0}]
+})
 
-
-
+// 获取星标任务
+onMounted(async () => {
+  const res = await getTaskStar()
+  stat.task_star = res.data.items
+})
+// 删除项目
+const delTask = (index: number) => {
+  stat.task_star.splice(index,1)
+}
+// 收藏状态
+const starSuccess = (id: number) => {
+  const index = stat.task_star.findIndex((el: any) => el.id === id)
+  stat.task_star.splice(index,1)
+}
 </script>
 
 <style lang="less" scoped>
