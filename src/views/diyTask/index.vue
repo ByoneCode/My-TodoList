@@ -98,7 +98,6 @@ const stat = reactive({
 
 onMounted(async () => {
   if(allStore.groupInfo.length === undefined){
-    console.log('group not data')
     const res: any = await getGroupInfo(route.params.id)
     store.commit('getGroupInfo',res.data.item)
   }

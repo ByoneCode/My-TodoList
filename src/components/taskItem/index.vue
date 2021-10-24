@@ -11,10 +11,8 @@
                 <i title="未完成" @click="toggleDone(0,item.id)" class="iconfont icon-done" v-else></i>
             </div>
             <div class="item-title">
-                <span v-if="done == 0" contenteditable="true">{{
-                    item.name
-                }}</span>
-                <span v-else contenteditable="true" class="done-item">{{ item.name }}</span>
+                <input v-if="done == 0" type="text" class="edit-item" v-model="item.name" @change="editTask(item.name,item.id)" @keyup.enter="eventChange">
+                <input v-else type="text" class="edit-item done-item" v-model="item.name" @change="editTask(item.name,item.id)" @keyup.enter="eventChange">
             </div>
             <!-- :class="{'active-star':  item.isstar === 1}" -->
             <div class="item-star">
@@ -33,7 +31,7 @@
 
 <script setup lang="ts">
 import { delTaskList, updTaskList } from '/@/api/taskList';
-import { computed } from 'vue';
+import { ref } from 'vue';
 const props = defineProps({
     list: {
         type: Object,
@@ -51,6 +49,9 @@ const props = defineProps({
 
 const emit = defineEmits(['mvTask','delTaskSuccess','doneSuccess','starSuccess'])
 
+// 显示编辑
+const showIndex = ref(-1)
+
 // 勾选完成、取消 
 async function toggleDone(ok: number,id: number) {
     const res: any = await updTaskList({ id: id, isok: ok })
@@ -67,12 +68,18 @@ async function delTask(id: number,index: any) {
 }
 // 收藏项目
 async function toggleStar(id: number,status: number) {
-    console.log(status);
-    
    const res: any = await updTaskList({ id: id, isstar: status })
     if(res.code === 200){
         emit('starSuccess',id,status)
     }
+}
+// 编辑项目
+async function editTask(name: string,id: number) {
+    const res: any = updTaskList({ id: id, name: name})
+}
+// 把事件转发给失去焦点
+const eventChange = (event: any) => {
+    event.target.blur()
 }
 </script>
 

@@ -28,6 +28,7 @@
           :is-move="false"
           @del-task-success="delTask"
           @star-success="starSuccess"
+          @done-success="doneSuccess"
           ></task-item>
         </collapsed>
         <collapsed
@@ -77,6 +78,11 @@ const delTask = (index: number) => {
 }
 // 收藏状态
 const starSuccess = (id: number) => {
+  const index = stat.task_star.findIndex((el: any) => el.id === id)
+  stat.task_star.splice(index,1)
+}
+// 切换状态（完成——未完成）
+const doneSuccess = (id: number,ok: number) => {
   const index = stat.task_star.findIndex((el: any) => el.id === id)
   stat.task_star.splice(index,1)
 }

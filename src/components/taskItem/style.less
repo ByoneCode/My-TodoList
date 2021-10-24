@@ -32,15 +32,24 @@
         color       : @text-color-black;
         user-select : none;
         cursor      : text;
+        flex: 1;
 
-        span.done-item {
+        .edit-item.done-item {
             color          : @text-color-faded;
             text-decoration: line-through;
         }
 
-        span:focus {
+        .edit-item:focus {
             outline        : 0px;
             text-decoration: none;
+        }
+
+        .edit-item{
+            background-color: transparent;
+            border: 0;
+            outline: none;
+            color: @text-color-black;
+            width: 90%;
         }
     }
 
