@@ -1,19 +1,20 @@
 // 布局
 .login {
     display        : flex;
-    flex-direction : row;
+    flex-direction : column;
     justify-content: center;
-    padding-top    : 200px;
+    align-items: center;
+    height: 100vh;
 
     // 表单
     form {
-        display       : flex;
-        flex-direction: column;
-        width         : 350px;
-
+        .form-login,.form-reg{
+            display       : flex;
+            flex-direction: column;
+            width: 350px;      
+        }
         // 输入框
-        .login-user,
-        .login-password {
+        .login-input {
             display         : flex;
             align-items     : center;
             padding         : .5rem;
@@ -34,7 +35,7 @@
                 padding         : 0 .5rem;
                 color           : @text-color-grey;
                 border          : none;
-                background-color: transparent;
+                background-color: transparent !important;
                 outline         : none;
 
                 &::placeholder {
@@ -60,7 +61,7 @@
         }
 
         // 按钮
-        div {
+        div:not(.form-reg){
             display        : flex;
             justify-content: center;
             margin         : .5rem 0;

@@ -81,7 +81,7 @@ const route = useRoute();
 
 
 const stat = reactive({
-  taskList: [{isok: 0,isstar:0}],
+  taskList: [],
   isShow: false,
   pos: {
     left: '0px',

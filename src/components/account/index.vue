@@ -109,7 +109,7 @@
         </div>
       </div>
     </div>
-    <div class="setuser-add">
+    <div class="setuser-add" @click="router.push('/login')">
       <i class="iconfont icon-add"></i>
       <span>添加账户</span>
     </div>
@@ -121,6 +121,11 @@
 </template>
 
 <script setup lang="ts">
+import { useRouter } from 'vue-router'
+
+const router = useRouter();
+
+
 
 const props = defineProps({
   isopen: Boolean

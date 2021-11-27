@@ -64,7 +64,7 @@ const store = useStore()
 const allstat = store.state
 
 const stat = reactive({
-  task_star: [{isstar:0}]
+  task_star: []
 })
 
 // 获取星标任务

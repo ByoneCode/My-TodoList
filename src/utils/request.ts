@@ -6,11 +6,26 @@ const service = axios.create({
   timeout: 5000 // request timeout
 })
 
+// request interceptor
+service.interceptors.request.use(
+  config => {
+    const token = localStorage.getItem('token')
+    if (token) {
+      config.headers['token'] = token
+    }
+    return config
+  },
+  error => {
+    console.log(error) // for debug
+    return Promise.reject(error)
+  }
+)
+
 service.interceptors.response.use(
   response => {
     const res = response.data
     if(res.code === 400){
-      console.log(res.msg)
+      alert(res.msg);
       return false
     }
     return res

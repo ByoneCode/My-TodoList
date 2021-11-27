@@ -1,7 +1,6 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import type { RouteRecordRaw } from 'vue-router';
 import Layout from '/@/layout/index.vue';
-import { useStore } from "vuex";
 
 const routes: RouteRecordRaw[] = [
   {
