@@ -3,6 +3,7 @@ import { createStore } from "vuex";
 export default createStore({
   state: {
     isSide: false,
+    userInfo: [],
     groupInfo: {},
     taskGroup: [],
     noteList: [{
@@ -55,6 +56,10 @@ export default createStore({
     // 关闭主题切换
     toggleSetTheme(stat){
       stat.isSetTheme = !stat.isSetTheme;
+    },
+    // 设置用户信息
+    setUserInfo(stat,item){
+      stat.userInfo = item;
     }
   }
 })

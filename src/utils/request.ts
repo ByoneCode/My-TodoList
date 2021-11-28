@@ -1,4 +1,7 @@
 import axios from 'axios'
+import { useRouter } from 'vue-router'
+
+const router = useRouter();
 
 const service = axios.create({
   baseURL: 'http://127.0.0.1:8000', // url = base url + request url
@@ -24,9 +27,12 @@ service.interceptors.request.use(
 service.interceptors.response.use(
   response => {
     const res = response.data
+    if(res.code === 401){
+      alert(res.msg)
+      return false
+    }
     if(res.code === 400){
       alert(res.msg);
-      return false
     }
     return res
   }

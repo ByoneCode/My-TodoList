@@ -45,6 +45,9 @@
 <script setup lang="ts">
 import { ref, reactive } from 'vue';
 import { register, login } from '/@/api/login';
+import { useRouter } from 'vue-router';
+
+const router = useRouter()
 
 const data = reactive({
     login: {
@@ -90,6 +93,7 @@ const loging = async () => {
         if(res.code === 200){
             alert('登录成功');
             localStorage.setItem('token',res.data.token);
+            router.replace('/');
         }
     }else{
         alert('填写完整');

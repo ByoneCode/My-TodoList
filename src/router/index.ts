@@ -65,15 +65,9 @@ const routes: RouteRecordRaw[] = [
   }
 ]
 
-export const router = createRouter({
+const router = createRouter({
   history: createWebHashHistory(),
   routes
 })
 
-router.beforeEach((to,from,next) => {
-  // if (!store.state.openTaskInfo) {
-  //   store.commit('toggleTaskInfo')
-  // }
-  next()
-})
-
+export default router

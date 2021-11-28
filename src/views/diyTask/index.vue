@@ -72,11 +72,10 @@ import TaskItem from "/@/components/taskItem/index.vue";
 import Collapsed from "/@/components/collapsed/index.vue";
 import { onMounted, reactive, computed } from "vue";
 import { useStore } from "vuex";
-import { useRoute, onBeforeRouteUpdate } from "vue-router"
+import { useRoute, onBeforeRouteUpdate, useRouter } from "vue-router"
 import { getTaskList } from "/@/api/taskList";
 import { delTaskGroup, getGroupInfo } from "/@/api/taskGroup";
 import MvList from "/@/components/mvList/index.vue"
-import { router } from "/@/router";
 import { getTaskGroup } from "/@/api/taskGroup";
 
 
@@ -84,9 +83,10 @@ const store = useStore();
 const allStore = store.state;
 
 const route = useRoute();
+const router = useRouter();
 
 const stat = reactive({
-  taskList: [{isok: 0,isstar:0}],
+  taskList: [],
   isShow: false,
   pos: {
     left: '0px',
@@ -145,7 +145,6 @@ const delGroup = async () => {
   const res: any = await delTaskGroup(route.params.id)
   if(res.code === 200){
     store.commit('delGroup',route.params.id)
-    console.log(route.params.id);
     router.replace('/home/index')
   }
 }

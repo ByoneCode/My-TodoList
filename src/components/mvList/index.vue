@@ -56,8 +56,6 @@ window.addEventListener('resize',() => {
 
 // 移动任务
 const mvItem = async (gid: number) => {
-  console.log(props.id);
-  
   const res: any = await updTaskList({id:props.id,gid:gid})
   if(res.code === 200){
     emit('onSuccess',props.id)
