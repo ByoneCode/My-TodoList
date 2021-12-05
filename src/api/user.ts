@@ -6,3 +6,11 @@ export function getUserInfo() {
     method: 'get'
   })
 }
+
+export function updUserInfo(data: object) {
+  return request({
+    url: '/profile/upd_user_info',
+    method: 'post',
+    data
+  })
+}

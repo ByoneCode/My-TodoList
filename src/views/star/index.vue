@@ -32,7 +32,7 @@
           ></task-item>
         </collapsed>
         <collapsed
-        :list="[]"
+        :list="allstat.noteList"
         :isok="0"
         name="便签"
         done
