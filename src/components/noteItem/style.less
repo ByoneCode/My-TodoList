@@ -44,13 +44,10 @@
     }
 
     &:hover {
+        // TODO 未使用变量
+        background-color: #414141;
         box-shadow: 0 4px 12px rgb(0 0 0 / 15%);
         .ease();
-
-        .note-toolbar {
-            opacity: 1;
-            .ease();
-        }
     }
 
     .note-toolbar {
@@ -59,14 +56,13 @@
         justify-content: flex-end;
         flex-wrap      : nowrap;
         padding        : .8rem .5rem;
-        opacity        : 0;
-        .ease();
 
         i {
             .icon();
             border-radius: 5px;
             padding      : 0.2rem;
             font-size    : 1.5rem;
+            cursor: pointer;
             .ease();
         }
 
@@ -110,19 +106,6 @@
             i {
                 color: #efad03;
             }
-    
-            &:hover{
-                .icon-star{
-                    display: inline;
-                    color: #efad03;
-                    opacity: 1;
-                    .ease();
-                }
-                .icon-star-selected{
-                    display: none;
-                    .ease();
-                }
-            }
         }
 
         .note-del {
@@ -155,7 +138,6 @@
             overflow          : hidden;
             -webkit-box-orient: vertical;
             -webkit-line-clamp: 5;
-            cursor            : text;
         }
 
         .note-title {
