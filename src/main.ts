@@ -5,6 +5,7 @@ import store from '/@/store'
 import './permission' // permission control
 import 'normalize.css/normalize.css'
 import '/@/assets/css/global.less'
+import 'animate.css'
 
 const app = createApp(App)
 app.use(router)

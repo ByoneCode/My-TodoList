@@ -18,6 +18,7 @@ const routes: RouteRecordRaw[] = [
     path: '/home',
     name: 'Home',
     component: Layout,
+    redirect: '/home/index',
     children:[
     { 
       path: 'index',
@@ -30,6 +31,7 @@ const routes: RouteRecordRaw[] = [
     path: '/star',
     name: 'Star',
     component: Layout,
+    redirect: '/star/index',
     children:[
     { 
       path: 'index',
@@ -42,6 +44,7 @@ const routes: RouteRecordRaw[] = [
     path: '/note',
     name: 'Note',
     component: Layout,
+    redirect: '/note/index',
     children:[
     { 
       path: 'index',

@@ -2,20 +2,16 @@
     <div class="side-nav">
         <nav aria-label="列表">
             <ul>
-                <li
-                    v-for="(item, index) in list"
-                    :key="`navlist${index}`"
-                    @click="goto(item.path)"
-                >
+                <li v-for="(item, index) in list" :key="`navlist${index}`" @click="goto(item.path)">
                     <div
                         class="nav-item"
-                        :class="{ 
+                        :class="{
                             'active': route.path === item.path
-                        }" 
+                        }"
                     >
                         <i class="iconfont" :class="`icon-${item.icon}`"></i>
                         <span class="item-title">{{ item.title }}</span>
-                        <span class="item-count">{{item.count}}</span>
+                        <!-- <span class="item-count"></span> -->
                     </div>
                 </li>
             </ul>
@@ -26,16 +22,16 @@
 <script setup lang="ts">
 import { useRouter, useRoute } from "vue-router";
 import { useStore } from "vuex";
-import { reactive, ref } from "vue";
 
 const store = useStore();
+const allstat = store.state;
 
 const router = useRouter();
 const route = useRoute();
 const props = defineProps({
     list: {
         type: Object,
-        default: () => {},
+        default: () => { },
     },
 });
 

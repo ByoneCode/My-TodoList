@@ -14,3 +14,21 @@ export function addNoteList(data: object) {
     data
   })
 }
+
+export function updNoteList(data: object) {
+  return request({
+    url: '/note/upd_note_list',
+    method: 'post',
+    data
+  })
+}
+
+export function delNoteList(id: number) {
+  return request({
+    url: '/note/del_note_list',
+    method: 'post',
+    data: {
+      id: id
+    }
+  })
+}

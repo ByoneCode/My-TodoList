@@ -31,21 +31,6 @@
           @done-success="doneSuccess"
           ></task-item>
         </collapsed>
-        <collapsed
-        :list="allstat.noteList"
-        :isok="0"
-        name="便签"
-        done
-        >
-        <div class="note-list">
-            <div class="note-container" id="note-container">
-                <!-- <div class="note-list-item note-add">
-          <i class="iconfont icon-add"></i>
-        </div> -->
-                <note-item></note-item>
-            </div>
-        </div>
-        </collapsed>
       </div>
     </div>
   </div>
@@ -54,7 +39,6 @@
 <script setup lang="ts">
 import Collapsed from '/@/components/collapsed/index.vue';
 import TaskItem from '/@/components/taskItem/index.vue';
-import NoteItem from '/@/components/noteItem/index.vue'
 import { useStore } from 'vuex'
 import { computed, onMounted, reactive } from "vue";
 import { getTaskStar } from '/@/api/taskList';

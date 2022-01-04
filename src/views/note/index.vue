@@ -8,7 +8,7 @@
                     <i class="iconfont icon-note"></i>
                 </div>
                 <!-- title -->
-                <div class="heading-title">
+                <div class="heading-title" @click="visible = true">
                     <span>便笺</span>
                 </div>
             </div>
@@ -20,7 +20,7 @@
         <!-- list -->
         <div class="note-list">
             <div class="note-container" id="note-container">
-                <note-item :list="stat.noteList" @handleOpenEdit="handleOpenEdit"></note-item>
+                <note-item :list="stat.noteList" @handleDel="handleDel" @handleOpenEdit="handleOpenEdit"></note-item>
             </div>
         </div>
 
@@ -29,7 +29,7 @@
                 <div class="btn quit" @click="handleCacel">
                     取消
                 </div>
-                <div class="btn save" @click="handleNote">
+                <div class="btn save" @click="handleNote()">
                     {{stat.btnText}}
                 </div>
             </div>
@@ -41,22 +41,31 @@
                 </div>
             </div>
         </div>
+        <modal
+        title="提示"
+        :msg="stat.noteMsg"
+        v-model:visible="visible"
+        />
     </div>
 </template>
 
 <script setup lang="ts">
 import { reactive, onMounted, ref, nextTick } from "vue";
-import { addNoteList, getNoteList } from "/@/api/note";
+import { addNoteList, delNoteList, getNoteList, updNoteList } from "/@/api/note";
 import noteItem from '/@/components/noteItem/index.vue'
-
-const stat = reactive({
+import Modal from '/@/components/modal/index.vue'
+const stat: any = reactive({
+    id: 0,
     content: '',
     isEdit: false,
     noteList: [],
     btnText: '保存',
-    type: 'add'
+    type: 'add',
+    noteMsg: ''
 })
 
+
+const visible = ref(false)
 
 onMounted( async () => {
   // 获取任务列表
@@ -65,7 +74,7 @@ onMounted( async () => {
 })
 
 const content = ref()
-const handleOpenEdit = (text: string,type: string) => {
+const handleOpenEdit = (text: string,type: string,id?: number) => {
     if(type === 'add'){
         stat.btnText = '保存'
         stat.type = 'add'
@@ -73,6 +82,7 @@ const handleOpenEdit = (text: string,type: string) => {
     }else{
         stat.type = 'edit'
         stat.btnText = '修改'
+        stat.id = id
     }
     stat.isEdit = true
     stat.content = text
@@ -82,29 +92,55 @@ const handleCacel = () => {
     stat.isEdit = false
 }
 
+
 // 添加/修改便签
 const handleNote = async () => {
+    let text = content.value.innerHTML
+    const htmlspecial = text.replace(/<[^>]+>|&nbsp;/g,"");
     if(stat.type === 'add'){
-        let text = content.value.innerHTML
         const res: any = await addNoteList({content: text})
         const { data } = res
         if(res.code === 200){
-            const htmlspecial = text.replace(/<[^>]+>/g,"");
             stat.noteList.push({
                 id: data.id,
                 content: text,
                 sort_content: htmlspecial
             } as never)
+            content.value.innerHTML = ''
             handleCacel()
         }else{
-            // TODO 添加失败事件
-            console.log('error');
-            
+           visible.value = true
+           stat.noteMsg = res.msg
         }
     }else{
-
+        if(stat.id !== null || stat.id != undefined ||stat.id !== 0){
+            const res: any = await updNoteList({id: stat.id,content: text})
+            if(res.code === 200){
+                const index = stat.noteList.findIndex((el: any) => el.id === stat.id)
+                stat.noteList[index].content = text
+                stat.noteList[index].sort_content = htmlspecial
+                handleCacel()
+            }else{
+                visible.value = true;
+                stat.noteMsg = res.msg
+            }
+        }else{
+           visible.value = true;
+           stat.noteMsg = '编辑错误'
+        }
     }
 
+}
+
+const handleDel = async (id: number) => {
+    const res: any = await delNoteList(id)
+    const index = stat.noteList.findIndex((el: any) => el.id === id)
+    if(res.code === 200){
+        stat.noteList.splice(index,1)
+    }else{
+        visible.value = true;
+        stat.noteMsg = '删除错误'
+    }
 }
 
 </script>

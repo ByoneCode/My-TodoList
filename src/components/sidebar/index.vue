@@ -20,7 +20,7 @@ import User from "./User.vue";
 import Account from "../account/index.vue";
 import Profile from "../profile/index.vue";
 import Theme from "../theme/index.vue";
-import { reactive, computed, onMounted } from "vue";
+import { reactive, onMounted } from "vue";
 import { useStore } from "vuex";
 import { getTaskGroup, addTaskGroup } from "/@/api/taskGroup";
 
@@ -38,22 +38,19 @@ const stat = reactive({
         title: "星标",
         icon: "star",
         path: "/star/index",
-        hidden: false,
-        count: 6
+        hidden: false
     },
     {
         title: "便笺",
         icon: "note",
         path: "/note/index",
-        hidden: false,
-        count: 0
+        hidden: false
     },
     {
         title: "任务",
         icon: "home",
         path: "/home/index",
-        hidden: false,
-        count: 0
+        hidden: false
     },
     ],
     taskList: []

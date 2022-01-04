@@ -13,9 +13,9 @@
           <div class="list-title">
             <span>{{ item.title }}</span>
           </div>
-          <div class="list-count">
+          <!-- <div class="list-count">
             <span>{{ item.count }}</span>
-          </div>
+          </div> -->
         </div>
       </li>
       <li v-show="stat.isCreate">

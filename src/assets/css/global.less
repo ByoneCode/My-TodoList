@@ -103,7 +103,8 @@ section {
 }
 
 body {
-	line-height: 1;
+	// line-height: 1;
+	overflow: hidden;
 }
 
 ol,
@@ -170,6 +171,7 @@ table {
 
 body {
 	background-color: @bg-color;
+	position: relative;
 }
 
 .note,
@@ -261,6 +263,27 @@ body {
 	padding        : 0 1rem;
 	border-radius  : 5px;
 	overflow       : hidden;
+}
+
+.initpos{
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+
+.task-btn{
+	background-color: transparent;
+	border: 1px solid #979797;
+	padding: .6rem 1.5rem;
+	display: inline-block;
+	cursor: pointer;
+	color: @text-color-grey;
+	font-size: .5rem;
+	border-radius: 3px;
+	&:hover{
+		background-color: @bg-color-items-ac;
+	}
 }
 
 .scrollbar {

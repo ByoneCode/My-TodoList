@@ -68,19 +68,11 @@ import TaskItem from "/@/components/taskItem/index.vue";
 import Collapsed from "/@/components/collapsed/index.vue";
 import MvList from "/@/components/mvList/index.vue"
 import { onMounted, reactive, computed } from "vue";
-import { useStore } from "vuex";
-import { useRoute } from "vue-router"
 import { getTaskList } from "/@/api/taskList";
 import { getTaskGroup } from "/@/api/taskGroup";
 
 
-const store = useStore();
-const allStore = store.state;
-
-const route = useRoute();
-
-
-const stat = reactive({
+const stat: any = reactive({
   taskList: [],
   isShow: false,
   pos: {
@@ -99,12 +91,15 @@ onMounted( async () => {
   const { data } = await getTaskList(0);
   stat.taskList = data.items
 })
+
+
 // 过滤任务列表
 const taskListItem = computed(() => {
   return (done: number) => {
     return stat.taskList.filter((item: any) => item.isok === (done === 0 ? 0 : 1))
   }
 })
+
 // 移动项目
 const mvTask = async (id: any,event: any) => {
   const position = event.target.getBoundingClientRect()

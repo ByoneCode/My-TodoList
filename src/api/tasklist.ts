@@ -42,3 +42,10 @@ export function getTaskStar() {
     method: 'get'
   })
 }
+
+export function getCount() {
+  return request({
+    url: '/task/get_count',
+    method: 'get'
+  })
+}

@@ -9,109 +9,20 @@
         <i class="iconfont icon-del"></i>
       </div>
     </div>
-    <div class="setuser-list">
-      <div class="setuser-item">
-        <div class="user-avatar">
-          <span>杰</span>
-        </div>
-        <div class="user-info">
-          <div class="user-name">
-            <span>ByoneJie</span>
-          </div>
-          <div class="user-email">2488068072@qq.com</div>
-        </div>
-        <div class="user-logout">
-          <span>注销</span>
-        </div>
+    <div class="setuser-content">
+      <div class="avatar">
+        <span>{{getAvatar()}}</span>
       </div>
-      <div class="setuser-item">
-        <div class="user-avatar">
-          <span>杰</span>
-        </div>
-        <div class="user-info">
-          <div class="user-name">
-            <span>ByoneJie</span>
-          </div>
-          <div class="user-email">2488068072@qq.com</div>
-        </div>
-        <div class="user-logout">
-          <span>注销</span>
-        </div>
+      <div class="nickname">
+        {{store.state.userInfo.nickname || store.state.userInfo.username}}
       </div>
-      <div class="setuser-item">
-        <div class="user-avatar">
-          <span>杰</span>
-        </div>
-        <div class="user-info">
-          <div class="user-name">
-            <span>ByoneJie</span>
-          </div>
-          <div class="user-email">2488068072@qq.com</div>
-        </div>
-        <div class="user-logout">
-          <span>注销</span>
-        </div>
-      </div>
-      <div class="setuser-item">
-        <div class="user-avatar">
-          <span>杰</span>
-        </div>
-        <div class="user-info">
-          <div class="user-name">
-            <span>ByoneJie</span>
-          </div>
-          <div class="user-email">2488068072@qq.com</div>
-        </div>
-        <div class="user-logout">
-          <span>注销</span>
-        </div>
-      </div>
-      <div class="setuser-item">
-        <div class="user-avatar">
-          <span>杰</span>
-        </div>
-        <div class="user-info">
-          <div class="user-name">
-            <span>ByoneJie</span>
-          </div>
-          <div class="user-email">2488068072@qq.com</div>
-        </div>
-        <div class="user-logout">
-          <span>注销</span>
-        </div>
-      </div>
-      <div class="setuser-item">
-        <div class="user-avatar">
-          <span>杰</span>
-        </div>
-        <div class="user-info">
-          <div class="user-name">
-            <span>ByoneJie</span>
-          </div>
-          <div class="user-email">2488068072@qq.com</div>
-        </div>
-        <div class="user-logout">
-          <span>注销</span>
-        </div>
-      </div>
-      <div class="setuser-item">
-        <div class="user-avatar">
-          <span>杰</span>
-        </div>
-        <div class="user-info">
-          <div class="user-name">
-            <span>ByoneJie</span>
-          </div>
-          <div class="user-email">2488068072@qq.com</div>
-        </div>
-        <div class="user-logout">
-          <span>注销</span>
-        </div>
+      <div class="email">
+        {{store.state.userInfo.email}}
       </div>
     </div>
-    <div class="setuser-add" @click="router.push('/login')">
-      <i class="iconfont icon-add"></i>
-      <span>添加账户</span>
+    <div class="setuser-add" @click="logout">
+      <i class="iconfont icon-logout"></i>
+      <span>退出账户</span>
     </div>
     <!-- <div class="setuser-close" >
       <span>关闭</span>
@@ -122,10 +33,12 @@
 
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
+import { useStore } from "vuex"
+
+
+const store = useStore()
 
 const router = useRouter();
-
-
 
 const props = defineProps({
   isopen: Boolean
@@ -133,6 +46,17 @@ const props = defineProps({
 
 const emit = defineEmits(['closeUser'])
 
+const logout = () => {
+  localStorage.removeItem('token');
+  router.replace('/login')
+}
+
+// 获取头像
+const getAvatar = () => {
+    const { nickname, username } = store.state.userInfo
+    let name = nickname || username
+    return name[0].toLocaleUpperCase();
+}
 </script>
 
 <style lang="less" scoped>

@@ -1,4 +1,6 @@
 import axios from 'axios'
+import { ref } from 'vue'
+import Modal from '/@/components/modal/modal'
 
 const service = axios.create({
   baseURL: 'http://127.0.0.1:8000', // url = base url + request url
@@ -26,11 +28,12 @@ service.interceptors.response.use(
     const res = response.data
     if(res.code === 401){
       alert(res.msg)
+      // Modal({title: '提醒',msg: 'lalla'})
       return false
     }
-    if(res.code === 400){
-      alert(res.msg);
-    }
+    // if(res.code === 400){
+    //   alert(res.msg);
+    // }
     return res
   }
 )

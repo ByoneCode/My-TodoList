@@ -1,5 +1,5 @@
 <template>
-  <teleport to="#app">
+  <teleport to="body">
     <div class="mv-list" v-show="isShow" :style="pos">
       <div class="mv-title">移动到</div>
       <div v-if="gid" class="mv-item" @click="mvItem(0)">任务</div>

@@ -31,7 +31,8 @@
 
 <script setup lang="ts">
 import { delTaskList, updTaskList } from '/@/api/taskList';
-import { ref } from 'vue';
+
+
 const props = defineProps({
     list: {
         type: Object,
@@ -48,9 +49,6 @@ const props = defineProps({
 })
 
 const emit = defineEmits(['mvTask','delTaskSuccess','doneSuccess','starSuccess'])
-
-// 显示编辑
-const showIndex = ref(-1)
 
 // 勾选完成、取消 
 async function toggleDone(ok: number,id: number) {

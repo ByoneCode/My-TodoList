@@ -3,7 +3,7 @@
         class="note-list-item"
         v-for="(item, index) in list"
         :key="index"
-        @click="emit('handleOpenEdit',item.content,'edit')"
+        @click="emit('handleOpenEdit',item.content,'edit',item.id)"
     >
         <div class="note-toolbar">
             <div class="note-finish">
@@ -17,7 +17,7 @@
                 <i class="iconfont icon-star-selected"></i>
             </div> -->
             <div class="note-del">
-                <i class="iconfont icon-del"></i>
+                <i class="iconfont icon-del" @click.stop="emit('handleDel',item.id)"></i>
             </div>
         </div>
         <div class="note-content">
@@ -47,7 +47,7 @@ const stat = reactive({
     isEdit: -1
 })
 
-const emit = defineEmits(['handleOpenEdit'])
+const emit = defineEmits(['handleOpenEdit','handleDel'])
 const props = defineProps({
     list: {
         type: Object,

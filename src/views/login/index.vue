@@ -39,6 +39,13 @@
                 </div>
             </div>
         </form>
+        <modal
+        title="提示"
+        :msg="data.msg"
+        :is-center="false"
+        offset-top="40px"
+        v-model:visible="visible"
+        />
     </div>
 </template>
 
@@ -46,10 +53,12 @@
 import { ref, reactive } from 'vue';
 import { register, login } from '/@/api/login';
 import { useRouter } from 'vue-router';
+import Modal from '/@/components/modal/index.vue'
 
 const router = useRouter()
 
 const data = reactive({
+    msg: '',
     login: {
         username: '',
         password: '',
@@ -59,6 +68,7 @@ const data = reactive({
 })
 
 const isLogin = ref(true);
+const visible = ref(false)
 const reset = () => {
     data.login = {
         username: '',
@@ -70,19 +80,23 @@ const reset = () => {
 const reg = async () => {
     const {username, password ,cpassword} = data.login;
     if(username === ''){
-        alert('填写完整');
+        visible.value = true
+        data.msg = '请填写完整';
         return false;
     }
     if(password !== cpassword){
-        alert('密码和确认密码必须一致');
+        visible.value = true
+        data.msg = '密码和确认密码必须一致';
         return false;
     }
     const res: any = await register(data.login);
     if(res.code === 200){
-        alert('注册成功');
+        visible.value = true
+        data.msg = '注册成功';
         reset();
     }else{
-        alert('注册失败');
+        visible.value = true
+        data.msg = '注册失败';
     }
 }
 
@@ -91,12 +105,15 @@ const loging = async () => {
     if(username !== '' && password !== ''){
         const res: any = await login({username: username, password: password});
         if(res.code === 200){
-            alert('登录成功');
             localStorage.setItem('token',res.data.token);
             router.replace('/');
+        }else{
+            visible.value = true
+            data.msg = res.msg;
         }
     }else{
-        alert('填写完整');
+        visible.value = true
+        data.msg = '填写完整';
     }
    
 }

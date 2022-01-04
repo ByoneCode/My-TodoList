@@ -85,7 +85,7 @@ const allStore = store.state;
 const route = useRoute();
 const router = useRouter();
 
-const stat = reactive({
+const stat: any = reactive({
   taskList: [],
   isShow: false,
   pos: {
