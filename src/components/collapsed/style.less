@@ -1,19 +1,28 @@
 // collapsed list
 .collapsed-container {
+    user-select: none;
 
     // done items list is invisible normally 
     .done-item-list {
-        display: none;
+        // display: none;
     }
 
+    .collapsed-content{
+        height: 0px;
+        overflow: hidden;
+        .ease;
+    }
     // done items list is visible when opened
     &.done-visible {
         i.icon-up {
             transform: rotate(90deg);
         }
 
-        .done-item-list {
-            display: block;
+        // .done-item-list {
+        //     display: block;
+        // }
+        .collapsed-content{
+            height: auto;
         }
     }
 
@@ -28,30 +37,34 @@
         }
 
         .collapsed-btn {
-            display         : flex;
-            place-items     : center;
-            padding         : 0.5rem 0;
-            padding-right   : .5rem;
-            border-radius   : 5px;
-            font-size       : 15px;
-            color           : @text-color-black;
-            background-color: @btn-color;
-            user-select     : none;
-            cursor          : default;
+            display            : flex;
+            place-items        : center;
+            padding            : 0.5rem 0;
+            padding-right      : .5rem;
+            border-radius      : 5px;
+            border             : 1px solid @btn-bd-color;
+            border-bottom-color: @btn-bd-bt-color;
+            font-size          : 15px;
+            color              : @text-color-black;
+            background-color   : @bg-color-items;
+            user-select        : none;
+            cursor             : default;
             .ease();
 
             &:hover {
-                background-color: @btn-color-hl;
+                border-bottom-color: @btn-bd-color;
+                background-color   : @btn-color-hl;
                 .ease();
             }
 
             &:active {
-                background-color: @bg-color-ac;
+                border-bottom-color: @btn-bd-color;
+                background-color   : @btn-color-ac;
                 .ease();
             }
 
             i.icon-up {
-                margin    : 0 0.3rem;
+                margin: 0 0.3rem;
                 .ease();
             }
 

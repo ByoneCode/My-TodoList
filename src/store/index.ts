@@ -2,36 +2,44 @@ import { createStore } from "vuex";
 
 export default createStore({
   state: {
-    openTaskInfo: false, 
-    taskInfo: {
-      id: undefined,
-    },
-    taskList: []
+    isSide: false,
+    userInfo: [],
+    groupInfo: {},
+    taskGroup: [],
+    isSetInfo: false,
+    isSetTheme: false
   },
-  mutations: { 
-    // 关闭清单信息
-    toggleTaskInfo(stat,data) {
-      if(data !== null){
-        // if(data.id !== stat.taskInfo.id && stat.taskInfo.id !== undefined){
-        //   stat.taskInfo = data;
-        //   return false;
-        // }
-        if(stat.openTaskInfo === false){
-          stat.openTaskInfo = true
-        }
-        stat.taskInfo = data;
-        return false;
-      }
-      stat.openTaskInfo = false;
+  mutations: {
+    // 获取组信息
+    getGroupInfo(stat,item){
+      stat.groupInfo = item
     },
-
-    // 往任务清单添加数据
-    addTaskList(stat,data){
-      stat.taskList.push(data)
+    // 组列表
+    groupList(stat,list){
+      stat.taskGroup = list
     },
-
-    getTaskList(stat,data){
-      stat.taskList = data
+    addGroup(stat,item){
+      stat.taskGroup.push(item as never)
+    },
+    delGroup(stat,id){
+      const index = stat.taskGroup.findIndex((el: any) => el.id === parseInt(id))
+      stat.taskGroup.splice(index,1)
+    },
+    // 切换侧滑栏
+    toggleSide(stat){
+      stat.isSide = !stat.isSide;   
+    },
+    // 关闭用户信息设置
+    toggleSetInfo(stat){
+      stat.isSetInfo = !stat.isSetInfo;
+    },
+    // 关闭主题切换
+    toggleSetTheme(stat){
+      stat.isSetTheme = !stat.isSetTheme;
+    },
+    // 设置用户信息
+    setUserInfo(stat,item){
+      stat.userInfo = item;
     }
   }
 })

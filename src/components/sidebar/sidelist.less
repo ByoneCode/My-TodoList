@@ -1,0 +1,65 @@
+@import "./index";
+
+// 自定义列表
+.side-list {
+    ul {
+        li.active {
+            position: relative;
+
+            .right-menu {
+                display: block
+            }
+        }
+
+        .list-items {
+            .side-item();
+
+            .list-icon {
+                .icon-nav {
+                    color: @icon-color;
+                    font-size: 19px;
+                }
+            }
+
+            .list-icon>i {
+                font-style : normal;
+                user-select: none;
+            }
+
+            .list-title {
+                .side-item-title();
+
+                input {
+                    border          : 0;
+                    background-color: transparent;
+                    outline         : none;
+                    font-size       : 15px;
+                    padding: 0;
+                    color           : @text-color-black;
+                }
+            }
+
+            .list-count {
+                .side-item-count();
+            }
+        }
+    }
+}
+
+// 新建列表
+.side-add {
+    .side-item();
+    margin-bottom: 1rem;
+
+    i.icon-add {
+        font-size: 17px;
+        color    : @text-color-grey;
+        margin   : 0 4px 0 1px;
+    }
+
+    span {
+        .side-item-title();
+        color    : @text-color-grey;
+        font-size: 15px;
+    }
+}

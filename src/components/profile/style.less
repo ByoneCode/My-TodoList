@@ -1,0 +1,134 @@
+// 遮罩
+.shade {
+    position        : fixed;
+    top             : 0;
+    left            : 0;
+    width           : 100%;
+    height          : 100%;
+    background-color: @bg-color-shade;
+    opacity         : 0.5;
+    z-index         : 10;
+}
+
+.setinfo-menu {
+    display       : flex;
+    flex-direction: column;
+    position      : fixed;
+    top           : 50%;
+    left          : 50%;
+    width         : 400px;
+    transform     : translate(-50%, -50%) scale(0);
+    z-index       : 15;
+    border        : 1px solid rgba(0, 0, 0, 0.1);
+    border-radius : 4px;
+    box-shadow    : 0px 0px 10px 3px rgba(0, 0, 0, 0.1);
+    background    : @bg-color-items;
+    opacity       : 0;
+    visibility    : hidden;
+    user-select   : none;
+    .ease();
+
+    @media (max-width: 768px) {
+        width: 80%;
+    }
+
+    &.open-setinfo {
+        transform : translate(-50%, -50%) scale(1);
+        opacity   : 1;
+        visibility: visible;
+        .ease();
+    }
+
+    .setinfo-header {
+        display    : flex;
+        align-items: center;
+        margin     : 1.5rem 1.3rem 1rem 1.3rem;
+
+        .setinfo-title {
+
+            span {
+                font-size  : 18px;
+                font-weight: bold;
+                color      : @text-color-black;
+            }
+        }
+
+        .setinfo-close {
+            margin-left: auto;
+            color      : @icon-color;
+            font-size  : 1.3rem;
+            cursor     : pointer;
+        }
+    }
+
+    .setinfo-list {
+        display: flex;
+        flex-direction: column;
+
+        .setinfo-name,
+        .setinfo-password,
+        .setinfo-confirm {
+            display       : flex;
+            flex-direction: column;
+            padding       : .3rem 1.3rem;
+            margin-bottom : .4rem;
+
+            span {
+                color        : @text-color-black;
+                font-weight  : bold;
+                font-size    : 14px;
+                margin-bottom: .5rem;
+            }
+
+            input {
+                background-color: @bg-color-input;
+                color           : @text-color-black;
+                width           : 100%;
+                box-sizing      : border-box;
+                padding         : .5rem .5rem;
+                line-height: normal;
+                outline         : none;
+                border          : none;
+            }
+        }
+
+        .setinfo-avatar {
+            display       : flex;
+            flex-direction: column;
+            margin : 0 auto 0 1.3rem;
+            padding: .5rem;
+            border: 1px dashed @icon-color;
+            cursor: pointer;
+
+            i{
+                color: @icon-color;
+                font-size: 1.5rem;
+            }
+        }
+    }
+
+    .setinfo-btn {
+        display        : flex;
+        justify-content: flex-end;
+        margin         : 1rem 1.3rem;
+
+        .setinfo-update {
+            padding         : .5rem 4rem;
+            border-radius   : 2px;
+            color           : @text-color-white;
+            background-color: #006cbe;
+            cursor          : pointer;
+            .ease();
+
+            &:hover {
+                background-color: #1b7ac2;
+                .ease();
+            }
+
+            &:active {
+                background-color: #3987c2;
+                .ease();
+            }
+        }
+    }
+}

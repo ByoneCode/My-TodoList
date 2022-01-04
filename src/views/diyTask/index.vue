@@ -5,11 +5,16 @@
       <div class="heading-main">
         <!-- icon -->
         <div class="heading-icon">
-          <i class="iconfont icon-home"></i>
+          <i v-if="allStore.groupInfo.icon === 'icon-nav'" class="iconfont icon-nav"></i>
+          <i v-else>{{allStore.groupInfo.icon}}</i>
         </div>
         <!-- title -->
         <div class="heading-title">
-          <span>任务</span>
+          <span>{{allStore.groupInfo.title}}</span>
+        </div>
+        <div class="tool-btn">
+          <i class="iconfont icon-delete" @click="delGroup"></i>
+          <!-- <button>删除列表</button> -->
         </div>
       </div>
     </div>
@@ -46,7 +51,7 @@
     </div>
     <!-- add -->
     <add-task
-    :gid="0"
+    :gid="route.params.id || 0"
     @add-success="addSuccess"
     ></add-task>
     <mv-list
@@ -54,10 +59,9 @@
     :is-show="stat.isShow" 
     :pos="stat.pos"
     :id="stat.group_id"
-    :gid="0"
-    @close-mv-list="stat.isShow = false"
+    :gid="route.params.id || 0"
     @on-success="mvSuccess"
-    >
+    @close-mv-list="stat.isShow = false">
     </mv-list>
   </div>
 </template>
@@ -66,11 +70,20 @@
 import AddTask from "/@/components/addTask/index.vue";
 import TaskItem from "/@/components/taskItem/index.vue";
 import Collapsed from "/@/components/collapsed/index.vue";
-import MvList from "/@/components/mvList/index.vue"
 import { onMounted, reactive, computed } from "vue";
+import { useStore } from "vuex";
+import { useRoute, onBeforeRouteUpdate, useRouter } from "vue-router"
 import { getTaskList } from "/@/api/taskList";
+import { delTaskGroup, getGroupInfo } from "/@/api/taskGroup";
+import MvList from "/@/components/mvList/index.vue"
 import { getTaskGroup } from "/@/api/taskGroup";
 
+
+const store = useStore();
+const allStore = store.state;
+
+const route = useRoute();
+const router = useRouter();
 
 const stat: any = reactive({
   taskList: [],
@@ -83,15 +96,19 @@ const stat: any = reactive({
   groupList: [],
 })
 
-
-
-
-onMounted( async () => {
-  // 获取任务列表
-  const { data } = await getTaskList(0);
-  stat.taskList = data.items
+onMounted(async () => {
+  if(allStore.groupInfo.length === undefined){
+    const res: any = await getGroupInfo(route.params.id)
+    store.commit('getGroupInfo',res.data.item)
+  }
+  stat.taskList = await (await getTaskList(route.params.id)).data.items;
 })
 
+// 路由更新后触发
+onBeforeRouteUpdate(async (to, from) => {
+  // 获取任务列表
+  stat.taskList = await (await getTaskList(to.params.id)).data.items;
+})
 
 // 过滤任务列表
 const taskListItem = computed(() => {
@@ -107,7 +124,7 @@ const mvTask = async (id: any,event: any) => {
   stat.pos.left = position.left - 105 + 'px'
   stat.isShow = true
   stat.group_id = id
-  const { data } = await getTaskGroup(0)
+  const { data } = await getTaskGroup(route.params.id || 0)
   stat.groupList = data.items
 }
 // 移动成功
@@ -122,6 +139,14 @@ const delTask = (index: number) => {
 // 添加项目
 const addSuccess = (item: object) => {
   stat.taskList.push(item as never)
+}
+// 删除组
+const delGroup = async () => {
+  const res: any = await delTaskGroup(route.params.id)
+  if(res.code === 200){
+    store.commit('delGroup',route.params.id)
+    router.replace('/home/index')
+  }
 }
 // 切换状态（完成——未完成）
 const doneSuccess = (id: number,ok: number) => {

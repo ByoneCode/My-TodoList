@@ -3,15 +3,15 @@
     background-color: @bg-color-items;
     .ease();
 
-    &:hover {
+    &:focus-within {
         background-color: @bg-color-items-hl;
         .ease();
     }
 
-    &:active {
-        background-color: @bg-color-ac;
+    &:hover {
+        background-color: @bg-color-items-hl;
         .ease();
-      }
+    }
 
     // mobile
     @media (max-width: 768px) {
@@ -22,42 +22,99 @@
 
         i {
             .icon();
+            cursor: pointer;
         }
-
     }
 
     .item-title {
         margin-left : 15px;
         margin-right: auto;
         color       : @text-color-black;
+        user-select : none;
+        cursor      : text;
+        flex: 1;
+
+        .edit-item.done-item {
+            color          : @text-color-faded;
+            text-decoration: line-through;
+        }
+
+        .edit-item:focus {
+            outline        : 0px;
+            text-decoration: none;
+        }
+
+        .edit-item{
+            background-color: transparent;
+            border: 0;
+            outline: none;
+            color: @text-color-black;
+            width: 90%;
+            line-height: normal;
+        }
     }
 
     .item-star,
-    .item-del {
+    .item-del,
+    .item-send {
         i {
             padding    : 0.2rem;
             font-size  : 22px;
             font-weight: bold;
             color      : @icon-color;
-            transition : all 0.2s ease;
+            .ease();
 
             &:hover {
-                transition: all 0.2s ease;
+                .ease();
             }
+
+            cursor: pointer;
         }
+
     }
+    
 
     .item-star {
+        .icon-star{
+            display: block;
+        }
+        .icon-star-selected{
+            color: #efad03;
+        }
+        // i {
+        //     &:hover {
+        //         color: #efad03;
+        //     }
+        // }
+    }
+    .active-star {
+        .ease();
+        // .icon-star{
+        //     display: none;
+        // }
+        // .icon-star-selected{
+        //     display: block;
+        // }
         i {
-            margin-right: 15px;
-            &:hover {
+            color: #efad03;
+        }
+
+        &:hover{
+            .icon-star{
+                display: block;
                 color: #efad03;
+                opacity: 1;
+                .ease();
+            }
+            .icon-star-selected{
+                // display: none;
+                .ease();
             }
         }
     }
-
     .item-del {
         i {
+            margin-left: 10px;
             margin-right: 10px;
             &:hover {
                 color: #e64b36;

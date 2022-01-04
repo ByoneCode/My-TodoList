@@ -1,0 +1,95 @@
+// 遮罩
+.shade {
+    position        : fixed;
+    top             : 0;
+    left            : 0;
+    width           : 100%;
+    height          : 100%;
+    background-color: @bg-color-shade;
+    opacity         : 0.5;
+    z-index         : 10;
+}
+
+.theme-menu {
+    display       : flex;
+    flex-direction: column;
+    position      : fixed;
+    top           : 50%;
+    left          : 50%;
+    transform     : translate(-50%, -50%) scale(0);
+    width         : 350px;
+    z-index       : 15;
+    border        : 1px solid rgba(0, 0, 0, 0.1);
+    border-radius : 4px;
+    box-shadow    : 0px 0px 10px 3px rgba(0, 0, 0, 0.1);
+    background    : @bg-color-items;
+    opacity       : 0;
+    visibility    : hidden;
+    user-select   : none;
+    .ease();
+
+    @media (max-width: 768px) {
+        width: 90%;
+    }
+
+    &.open-theme {
+        transform : translate(-50%, -50%) scale(1);
+        opacity   : 1;
+        visibility: visible;
+        .ease();
+    }
+
+    .theme-header {
+        display: flex;
+        align-items: center;
+        margin : 1.5rem 1.3rem 1rem 1.3rem;
+
+        .theme-title {
+            font-size  : 18px;
+            font-weight: bold;
+            color      : @text-color-black;
+        }
+
+        .theme-close{
+            margin-left: auto;
+            color      : @icon-color;
+            font-size  : 1.3rem;
+            cursor     : pointer;
+        }
+    }
+
+    .theme-list {
+        display       : flex;
+        flex-direction: column;
+        margin        : 0 .8rem 1rem .8rem;
+
+        .theme-item {
+            display      : flex;
+            align-items  : center;
+            padding      : .8rem .5rem;
+            margin       : .2rem 0;
+            border-radius: 2px;
+            .ease();
+
+            i {
+                font-size: 18px;
+                color    : @icon-color;
+            }
+
+            span {
+                margin-left: .8rem;
+                color      : @text-color-black;
+            }
+
+            &:hover {
+                background-color: @bg-color-items-hl;
+                .ease();
+            }
+
+            &:active {
+                background-color: @bg-color-items-ac;
+                .ease();
+            }
+        }
+    }
+}

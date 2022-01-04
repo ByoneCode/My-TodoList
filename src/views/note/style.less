@@ -1,11 +1,25 @@
 .heading {
-
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     i,
     span {
-        color: #efad03;
+        color: #2fbb46;
+    }
+
+    .add-icon{
+        // TODO  未使用变量
+        background-color: #272727;
+        padding: .5rem .6rem;
+        border-radius: 5px;
+        cursor: pointer;
+        i{
+            color: #fff;
+        }
     }
 }
 
+// 底部添加方式
 // .note-add {
 //     background : @bg-color-items;
 //     height     : 100px;
@@ -36,158 +50,78 @@
 // }
 
 .note-list {
-    overflow-y: auto;
+    .scrollbar();
+    padding-top   : .5rem;
+    padding-bottom: 1rem;
+    overflow-y    : auto;
+    height: 100%;
 
     .note-container {
-        padding  : 0 1rem;
-        display  : flex;
-        flex-wrap: wrap;
-
-        .note-list-item {
-            display         : flex;
-            flex-direction  : column;
-            margin: 0 10px 20px 10px;
-            // margin-right    : 20px;
-            // margin-bottom   : 20px;
-            padding         : 0 10px 12px 10px;
-            height          : 150px;
-            border-radius   : 5px;
-            background-color: @bg-color-items;
-            cursor          : default;
-            .ease();
-
-            @media (min-width:1532px) {
-                width: 30%;
-            }
-
-            @media (max-width:1532px) {
-                width: 29%;
-            }
-
-            @media (max-width:1255px) {
-                width: 45%;
-            }
-
-            @media (max-width:1132px) {
-                width: 44%;
-            }
-
-            @media (max-width:1083px) {
-                width: 44%;
-            }
-
-            @media (max-width:999px) {
-                width: 100%;
-            }
-
-            // mobile
-            @media (max-width: 768px) {
-                width: 44%;
-            }
-
-            @media (max-width: 699px) {
-                width: 43%;
-            }
-
-            @media (max-width: 604px) {
-                width: 100%;
-            }
-
-            &:hover {
-                box-shadow: 0 4px 12px rgb(0 0 0 / 15%);
-                .ease();
-
-                .note-toolbar {
-                    opacity: 1;
-                    .ease();
-                }
-            }
-
-            // &.note-add {
-            //     justify-content: center;
-            //     align-items    : center;
-
-            //     i {
-            //         font-size  : 18px;
-            //         font-weight: bold;
-            //         color      : @icon-color;
-            //     }
+        display              : grid;
+        grid-template-columns: repeat(auto-fill, minmax(18rem, 1.25fr));
+        gap                  : 20px;
+        place-items          : start stretch;
+        padding              : 0 1rem;
+    }
+   
+}
+.note-content {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    right: -100%;
+    overflow: overlay;
+    background-color: @bg-color;
+    .scrollbar();
+    .ease();
+    &.active{
+        right: 0;
+        box-shadow: inset 2px 0px 10px rgb(0 0 0 / 15%);
+        @media (max-width: 768px) {
+            box-shadow: none;
+        }
+    }
+    .header{
+        display: flex;
+        justify-content: space-between;
+        box-sizing: border-box;
+        padding: 1rem;
+        .btn{
+            border: 1px solid @bg-color-items;
+            padding: .6rem 1.5rem;
+            display: inline-block;
+            cursor: pointer;
+            color: @text-color-grey;
+            font-size: .5rem;
+            border-radius: 3px;
+            // &:hover{
+            //     background-color: #757575;
             // }
-
-            .note-toolbar {
-                display        : flex;
-                flex-direction : row;
-                justify-content: flex-end;
-                flex-wrap      : nowrap;
-                padding        : .5rem 0.5rem;
-                opacity        : 0;
-                .ease();
-
-                .note-add {
-                    margin-right: auto;
-
-                    i {
-                        .icon();
-                        border-radius: 5px;
-                        padding      : 0.2rem;
-                        transition   : all 0.2s ease;
-
-                        &:hover {
-                            background-color: #e8eaf0;
-                            transition      : all 0.2s ease;
-                        }
-                    }
-                }
-
-                .note-star {
-                    i {
-                        .icon();
-                        border-radius: 5px;
-                        padding      : 0.2rem;
-                        transition   : all 0.2s ease;
-
-                        &:hover {
-                            background-color: #e8eaf0;
-                            transition      : all 0.2s ease;
-                        }
-                    }
-                }
-
-                .note-del {
-                    margin-left: 5px;
-
-                    i {
-                        .icon();
-                        border-radius: 5px;
-                        padding      : 0.2rem;
-                        transition   : all 0.2s ease;
-
-                        &:hover {
-                            background-color: #e8eaf0;
-                            transition      : all 0.2s ease;
-                        }
-                    }
-                }
+        }
+    }
+    .container{
+        box-sizing: border-box;
+        .text{
+            padding: 0 1.5rem;
+            box-sizing: border-box;
+            background-color: transparent;
+            width: 100% !important;
+            outline: none;
+            border: 0;
+            color: @text-color-grey;
+            text-align: justify;
+            font-size: 1rem;
+            line-height: 1.6rem;
+            min-height: 1.6rem;
+            cursor: text;
+            padding-bottom: 2rem;
+            &:empty::before{
+                content: attr(placeholder);
+                color: @text-color-grey;
             }
-
-            .note-content {
-                padding  : 0 .8rem;
-                font-size: 13px;
-                color    : @text-color-grey;
-
-                p {
-                    display           : -webkit-box;
-                    text-align        : justify;
-                    line-height       : 20px;
-                    overflow          : hidden;
-                    -webkit-box-orient: vertical;
-                    -webkit-line-clamp: 5;
-                }
-
-                .note-title {
-                    color: @text-color-black;
-                }
-
+            &:focus::before{
+                content: none;
             }
         }
     }

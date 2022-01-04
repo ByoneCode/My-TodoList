@@ -1,0 +1,123 @@
+// 布局
+.login {
+    display        : flex;
+    flex-direction : column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+    // 表单
+    form {
+        .form-login,.form-reg{
+            display       : flex;
+            flex-direction: column;
+            width: 350px;      
+        }
+        // 输入框
+        .login-input {
+            display         : flex;
+            align-items     : center;
+            padding         : .5rem;
+            margin          : .5rem 0;
+            background-color: @bg-color-items;
+            border-radius   : 8px;
+            .ease();
+
+            i {
+                margin   : 0 .4rem;
+                font-size: 19px;
+                color    : @icon-color;
+            }
+
+            input {
+                flex-grow       : 1;
+                height          : 30px;
+                padding         : 0 .5rem;
+                color           : @text-color-grey;
+                border          : none;
+                background-color: transparent !important;
+                outline         : none;
+
+                &::placeholder {
+                    user-select: none;
+                }
+
+                &:focus {
+                    &::placeholder {
+                        color: transparent;
+                    }
+                }
+            }
+
+            &:hover {
+                background-color: @bg-color-items-hl;
+                .ease();
+            }
+
+            &:active {
+                background-color: @bg-color-items-ac;
+                .ease();
+            }
+        }
+
+        // 按钮
+        div:not(.form-reg){
+            display        : flex;
+            justify-content: center;
+            margin         : .5rem 0;
+
+            .login-signin,
+            .login-signup {
+
+                input {
+                    width        : 8rem;
+                    margin       : 0 1rem;
+                    padding      : .5rem 0;
+                    border       : none;
+                    border-radius: 5px;
+                    font-size    : .9rem;
+                    cursor       : pointer;
+                    .ease();
+
+                    &:hover {
+                        .ease();
+                    }
+
+                    &:active {
+                        .ease();
+                    }
+                }
+            }
+
+            .login-signin input {
+                background-color: #007acc;
+                color           : white;
+
+                &:hover {
+                    background-color: #158fe0;
+                }
+
+                &:active {
+                    background-color: #0f7dc7;
+                }
+            }
+
+            .login-signup input {
+                border          : 1px solid #00000011;
+                background-color: white;
+                color           : black;
+
+
+                &:hover {
+                    background-color: #158fe0;
+                    color           : white;
+                }
+
+                &:active {
+                    background-color: #0f7dc7;
+                    color           : white;
+                }
+            }
+        }
+    }
+}

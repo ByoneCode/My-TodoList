@@ -103,7 +103,8 @@ section {
 }
 
 body {
-	line-height: 1;
+	// line-height: 1;
+	overflow: hidden;
 }
 
 ol,
@@ -133,23 +134,45 @@ table {
 // :root {}
 
 // dark mode
-// @bg-color: #1a1b1c;
-// @text-color: #d9d9d9;
-// @icon-color: #929292;
-// @btn-color:#252627;
-// @btn-color-hl: #2e2f30;
+@bg-color                : #202020;
+@bg-color-items          : #2b2b2b;
+@bg-color-items-hl       : #323232;
+@bg-color-items-ac       : #3a3a3a;
+@bg-color-shade          : #1d1d1d;
+@bg-color-input          : #323232;
+@btn-bd-color            : rgba(255, 255, 255, 0.1);
+@btn-color-hl            : #2d2d2d;
+@btn-color-ac            : #313131;
+@btn-bd-bt-color         : rgba(255, 255, 255, 0.2);
+@text-color-black        : #efefef;
+@text-color-grey         : #c0c0c0;
+@text-color-faded        : #919191;
+@text-color-white        : #ffffff;
+@side_hr                 : #3d3d40;
+@icon-color              : #929292;
 
 // light mode
-@bg-color         : #f1f3f9;
-@bg-color-ac      : #cccccc;
-@bg-color-items   : #fcfbfd;
-@bg-color-items-hl: #e8eaf0;
-@text-color-black : #1a1a1a;
-@text-color-grey  : #5f5f60;
-@side_hr          : #d6d6d6;
-@icon-color       : #929292;
-@btn-color        : #fdfbfb;
-@btn-color-hl     : #e8eaf0;
+// @bg-color                : #f1f3f9;
+// @bg-color-items          : #fcfbfd;
+// @bg-color-items-hl       : #e8eaf0;
+// @bg-color-items-ac       : #bbbbbb88;
+// @bg-color-shade          : #8795a0;
+// @bg-color-input          : #e8eaf0;
+// @btn-bd-color            : rgba(0, 0, 0, 0.1);
+// @btn-color-hl            : rgba(255, 255, 255, 0.6);
+// @btn-color-ac            : rgba(255, 255, 255, 0.3);
+// @btn-bd-bt-color         : rgba(0, 0, 0, 0.2);
+// @text-color-black        : #1a1a1a;
+// @text-color-grey         : #5f5f60;
+// @text-color-faded        : #919191;
+// @text-color-white        : #fff;
+// @side_hr                 : #d6d6d6;
+// @icon-color              : #929292;
+
+body {
+	background-color: @bg-color;
+	position: relative;
+}
 
 .note,
 .task,
@@ -160,9 +183,22 @@ table {
 	position      : relative;
 	overflow      : hidden;
 	transition    : background-color 0.3s;
-
+	
 	.heading {
-		padding: 0 0 1rem 1rem;
+
+		padding: 0 2rem 1rem 1rem;
+
+		&.diy-list {
+			.heading-icon {
+				cursor: pointer;
+				.hov();
+			}
+
+			.heading-title span {
+				cursor: text;
+				.hov();
+			}
+		}
 
 		// pc & tablet
 		@media (min-width: 768px) {
@@ -174,8 +210,13 @@ table {
 			align-items: center;
 
 			// icon
-			i {
-				font-size: 30px;
+			.heading-icon {
+				margin-top: 5px;
+				padding   : .25rem;
+
+				i {
+					font-size: 30px;
+				}
 			}
 
 			// title
@@ -185,9 +226,17 @@ table {
 
 				// text
 				span {
-					margin-left: 0.8rem;
-					font-size  : 30px;
+					padding    : .35rem;
+					font-size  : 2rem;
 					font-weight: bold;
+					outline    : 0px;
+					user-select: none;
+
+					&:focus {
+						background-color: @bg-color-items-hl;
+						outline         : 0px;
+						.ease();
+					}
 				}
 			}
 		}
@@ -199,6 +248,7 @@ table {
 	font-size  : 20px;
 	font-weight: bold;
 	color      : @icon-color;
+	user-select: none;
 }
 
 // to-do item
@@ -215,21 +265,60 @@ table {
 	overflow       : hidden;
 }
 
+.initpos{
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+
+.task-btn{
+	background-color: transparent;
+	border: 1px solid #979797;
+	padding: .6rem 1.5rem;
+	display: inline-block;
+	cursor: pointer;
+	color: @text-color-grey;
+	font-size: .5rem;
+	border-radius: 3px;
+	&:hover{
+		background-color: @bg-color-items-ac;
+	}
+}
+
 .scrollbar {
+
+	// 整体
 	&::-webkit-scrollbar {
-		width: 5px;
+		width: 8px;
 	}
 
+	// 轨道
 	&::-webkit-scrollbar-track {
-		background   : @bg-color;
 		border-radius: 5px;
+		background   : @bg-color;
 	}
+
+	// 滑块
+	&::-webkit-scrollbar-thumb {
+		border-radius: 5px;
+		background   : #00000030;
+		.ease();
+	}
+
+	&::-webkit-scrollbar-thumb:hover {
+		border-radius: 5px;
+		background   : #00000050;
+		.ease();
+	}
+
+	// 失焦
+	&::-webkit-scrollbar:window-inactive {
+		display: none;
+	}
+
 }
 
-&::-webkit-scrollbar-thumb {
-	background   : #00000050;
-	border-radius: 5px;
-}
 
 
 .ease {
@@ -240,23 +329,37 @@ table {
 	box-shadow: 0 0 20px 2px #918f8f;
 }
 
-// 导航项目
-.nav-item {
-	display      : flex;
-	align-items  : center;
-	padding      : .8rem 1rem;
+.hov {
 	border-radius: 5px;
 	.ease();
 
-	&:hover {
-		background-color: @btn-color-hl;
-		.ease();
+	&:focus {
+		span {
+			// background-color: @bg-color-items-hl;
+			opacity: 1;
+			.ease();
+		}
 	}
-}
 
-.nav-item-title {
-	margin-inline-start: 10px;
-	font-size          : 15px;
-	color              : @text-color-black;
-	user-select        : none;
+	&:hover {
+		background-color: @bg-color-items-hl;
+		.ease();
+
+		span {
+			opacity: 0.75;
+			.ease();
+		}
+
+		&:active {
+			background-color: @bg-color-items-ac;
+			.ease();
+		}
+	}
+
+	&:active {
+		span {
+			opacity: 1;
+			.ease();
+		}
+	}
 }

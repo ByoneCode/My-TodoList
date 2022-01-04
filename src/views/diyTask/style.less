@@ -1,0 +1,52 @@
+.heading {
+
+    i,
+    span {
+        color: #788cde;
+    }
+
+    .tool-btn{
+        display: flex;
+        margin-left: auto;
+        // flex-grow: 1;
+        // justify-content: right;
+        border-radius: 5px;
+        .ease();
+
+        i{
+            color: @icon-color;
+            font-size: 1.5rem;
+            font-weight: bold;
+            padding: .5rem;
+        }
+
+        &:hover{
+            background-color: @bg-color-items-hl;
+            .ease();
+        }
+
+        &:active{
+            background-color: @bg-color-items-ac;
+            .ease();
+        }
+    }
+}
+
+.task-list {
+    display       : flex;
+    flex-direction: column;
+    flex          : 1 1 0px;
+    position      : relative;
+    padding-bottom: 100px;
+    overflow      : hidden;
+
+    .list-container {
+        position  : relative;
+        overflow-y: overlay;
+        overflow-x: hidden;
+        max-width: 99.5%;
+        .scrollbar();
+    }
+
+
+}

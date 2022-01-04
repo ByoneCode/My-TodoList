@@ -1,0 +1,38 @@
+@import "./index";
+
+// 默认列表
+.side-nav {
+    nav>ul {
+        margin    : 0;
+        padding   : 0;
+        list-style: none;
+        position: relative;
+        li div.nav-item {
+            .side-item();
+            .ease();    
+            i {
+                font-size: 20px;
+            }
+
+            i.icon-star {
+                color: #efad03;
+            }
+
+            i.icon-note {
+                color: #2fbb46;
+            }
+
+            i.icon-home {
+                color: #788cde;
+            }
+
+            span.item-title {
+                .side-item-title();
+            }
+
+            span.item-count {
+                .side-item-count();
+            }
+        }
+    }
+}

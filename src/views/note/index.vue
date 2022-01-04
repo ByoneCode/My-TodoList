@@ -1,119 +1,148 @@
 <template>
-  <div class="note">
-    <!-- heading -->
-    <div class="heading">
-      <div class="heading-main">
-        <!-- icon -->
-        <div class="heading-icon">
-          <i class="iconfont icon-note"></i>
+    <div class="note">
+        <!-- heading -->
+        <div class="heading">
+            <div class="heading-main">
+                <!-- icon -->
+                <div class="heading-icon">
+                    <i class="iconfont icon-note"></i>
+                </div>
+                <!-- title -->
+                <div class="heading-title" @click="visible = true">
+                    <span>便笺</span>
+                </div>
+            </div>
+
+            <div class="add-icon" @click="handleOpenEdit('','add')">
+                <i class="iconfont icon-add1"></i>
+            </div>
         </div>
-        <!-- title -->
-        <div class="heading-title">
-          <span>便笺</span>
+        <!-- list -->
+        <div class="note-list">
+            <div class="note-container" id="note-container">
+                <note-item :list="stat.noteList" @handleDel="handleDel" @handleOpenEdit="handleOpenEdit"></note-item>
+            </div>
         </div>
-      </div>
+
+        <div class="note-content" :class="{active: stat.isEdit}">
+            <div class="header">
+                <div class="btn quit" @click="handleCacel">
+                    取消
+                </div>
+                <div class="btn save" @click="handleNote()">
+                    {{stat.btnText}}
+                </div>
+            </div>
+            <div class="toolbar">
+                <!-- 工具栏 -->
+            </div>
+            <div class="container">
+                <div class="text" placeholder="记便笺..." contenteditable="true" ref="content" v-html="stat.content">
+                </div>
+            </div>
+        </div>
+        <modal
+        title="提示"
+        :msg="stat.noteMsg"
+        v-model:visible="visible"
+        />
     </div>
-    <!-- list -->
-    <div class="note-list scrollbar">
-      <div class="note-container">
-        <!-- <div class="note-list-item note-add">
-          <i class="iconfont icon-add"></i>
-        </div> -->
-        <div class="note-list-item">
-          <div class="note-toolbar">
-            <div class="note-add">
-              <i class="iconfont icon-add"></i>
-            </div>
-            <div class="note-star">
-              <i class="iconfont icon-star"></i>
-            </div>
-            <div class="note-del">
-              <i class="iconfont icon-del"></i>
-            </div>
-          </div>
-
-          <div class="note-content">
-            <p>
-              这是一个
-            </p>
-          </div>
-        </div>
-        <div class="note-list-item">
-          <div class="note-toolbar">
-            <div class="note-add">
-              <i class="iconfont icon-add"></i>
-            </div>
-            <div class="note-star">
-              <i class="iconfont icon-star"></i>
-            </div>
-            <div class="note-del">
-              <i class="iconfont icon-del"></i>
-            </div>
-          </div>
-
-          <div class="note-content">
-            <p>
-              这是一个记事本可以用来为源响应式对象上的某个 property 新创建一个
-              ref。然后，ref 可以被传递，它会保持对其源 property
-              的响应式连接即使源 property 不存在，toRef 也会返回一个可用的
-              ref。这使得它在使用可选 prop 时特别有用，可选 prop 并不会被 toRefs
-              处理。
-            </p>
-          </div>
-        </div>
-        <div class="note-list-item">
-          <div class="note-toolbar">
-            <div class="note-add">
-              <i class="iconfont icon-add"></i>
-            </div>
-            <div class="note-star">
-              <i class="iconfont icon-star"></i>
-            </div>
-            <div class="note-del">
-              <i class="iconfont icon-del"></i>
-            </div>
-          </div>
-
-          <div class="note-content">
-            <p>
-              这是一个记事本可以用来为源响应式对象上的某个 property 新创建一个
-              ref。然后，ref 可以被传递，它会保持对其源 property
-              的响应式连接即使源 property 不存在，toRef 也会返回一个可用的
-              ref。这使得它在使用可选 prop 时特别有用，可选 prop 并不会被 toRefs
-              处理。
-            </p>
-          </div>
-        </div>
-        <div class="note-list-item">
-          <div class="note-toolbar">
-            <div class="note-add">
-              <i class="iconfont icon-add"></i>
-            </div>
-            <div class="note-star">
-              <i class="iconfont icon-star"></i>
-            </div>
-            <div class="note-del">
-              <i class="iconfont icon-del"></i>
-            </div>
-          </div>
-
-          <div class="note-content">
-            <p>
-              这是一个记事本可以用来为源响应式对象上的某个 property 新创建一个
-              ref。然后，ref 可以被传递，它会保持对其源 property
-              的响应式连接即使源 property 不存在，toRef 也会返回一个可用的
-              ref。这使得它在使用可选 prop 时特别有用，可选 prop 并不会被 toRefs
-              处理。
-            </p>
-          </div>
-        </div>
-        
-      </div>
-    </div>
-  </div>
 </template>
 
 <script setup lang="ts">
+import { reactive, onMounted, ref, nextTick } from "vue";
+import { addNoteList, delNoteList, getNoteList, updNoteList } from "/@/api/note";
+import noteItem from '/@/components/noteItem/index.vue'
+import Modal from '/@/components/modal/index.vue'
+const stat: any = reactive({
+    id: 0,
+    content: '',
+    isEdit: false,
+    noteList: [],
+    btnText: '保存',
+    type: 'add',
+    noteMsg: ''
+})
+
+
+const visible = ref(false)
+
+onMounted( async () => {
+  // 获取任务列表
+  const { data } = await getNoteList();
+  stat.noteList = data.items
+})
+
+const content = ref()
+const handleOpenEdit = (text: string,type: string,id?: number) => {
+    if(type === 'add'){
+        stat.btnText = '保存'
+        stat.type = 'add'
+        content.value.focus()
+    }else{
+        stat.type = 'edit'
+        stat.btnText = '修改'
+        stat.id = id
+    }
+    stat.isEdit = true
+    stat.content = text
+}
+
+const handleCacel = () => {
+    stat.isEdit = false
+}
+
+
+// 添加/修改便签
+const handleNote = async () => {
+    let text = content.value.innerHTML
+    const htmlspecial = text.replace(/<[^>]+>|&nbsp;/g,"");
+    if(stat.type === 'add'){
+        const res: any = await addNoteList({content: text})
+        const { data } = res
+        if(res.code === 200){
+            stat.noteList.push({
+                id: data.id,
+                content: text,
+                sort_content: htmlspecial
+            } as never)
+            content.value.innerHTML = ''
+            handleCacel()
+        }else{
+           visible.value = true
+           stat.noteMsg = res.msg
+        }
+    }else{
+        if(stat.id !== null || stat.id != undefined ||stat.id !== 0){
+            const res: any = await updNoteList({id: stat.id,content: text})
+            if(res.code === 200){
+                const index = stat.noteList.findIndex((el: any) => el.id === stat.id)
+                stat.noteList[index].content = text
+                stat.noteList[index].sort_content = htmlspecial
+                handleCacel()
+            }else{
+                visible.value = true;
+                stat.noteMsg = res.msg
+            }
+        }else{
+           visible.value = true;
+           stat.noteMsg = '编辑错误'
+        }
+    }
+
+}
+
+const handleDel = async (id: number) => {
+    const res: any = await delNoteList(id)
+    const index = stat.noteList.findIndex((el: any) => el.id === id)
+    if(res.code === 200){
+        stat.noteList.splice(index,1)
+    }else{
+        visible.value = true;
+        stat.noteMsg = '删除错误'
+    }
+}
+
 </script>
 
 <style lang="less" scoped>
