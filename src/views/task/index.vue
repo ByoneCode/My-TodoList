@@ -59,6 +59,9 @@
     @on-success="mvSuccess"
     >
     </mv-list>
+    <!-- <audio id="audio">
+      <source src="../../assets/success.mp3" type="audio/mp3" />
+    </audio> -->
   </div>
 </template>
 
@@ -70,7 +73,6 @@ import MvList from "/@/components/mvList/index.vue"
 import { onMounted, reactive, computed } from "vue";
 import { getTaskList } from "/@/api/taskList";
 import { getTaskGroup } from "/@/api/taskGroup";
-
 
 const stat: any = reactive({
   taskList: [],
@@ -91,7 +93,6 @@ onMounted( async () => {
   const { data } = await getTaskList(0);
   stat.taskList = data.items
 })
-
 
 // 过滤任务列表
 const taskListItem = computed(() => {
@@ -125,14 +126,19 @@ const addSuccess = (item: object) => {
 }
 // 切换状态（完成——未完成）
 const doneSuccess = (id: number,ok: number) => {
+  const audio = new Audio('/src/assets/success.mp3');
   const index = stat.taskList.findIndex((el: any) => el.id === id)
   stat.taskList[index].isok = ok
+  if(ok === 1){
+    audio.play();
+  }
 }
 // 收藏状态
 const starSuccess = (id: number,status: number) => {
   const index = stat.taskList.findIndex((el: any) => el.id === id)
   stat.taskList[index].isstar = status
 }
+
 </script>
 
 <style lang="less" scoped>

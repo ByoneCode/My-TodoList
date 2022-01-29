@@ -14,7 +14,7 @@
         <span>{{getAvatar()}}</span>
       </div>
       <div class="nickname">
-        {{store.state.userInfo.nickname || store.state.userInfo.username}}
+        {{store.state.userInfo.nickname || store.state.userInfo.username}}({{store.state.userInfo.username}})
       </div>
       <div class="email">
         {{store.state.userInfo.email}}

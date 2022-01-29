@@ -150,8 +150,12 @@ const delGroup = async () => {
 }
 // 切换状态（完成——未完成）
 const doneSuccess = (id: number,ok: number) => {
+  const audio = new Audio('/src/assets/success.mp3')
   const index = stat.taskList.findIndex((el: any) => el.id === id)
   stat.taskList[index].isok = ok
+  if(ok === 1){
+    audio.play()
+  }
 }
 // 收藏状态
 const starSuccess = (id: number,status: number) => {

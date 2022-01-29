@@ -59,12 +59,6 @@ const submit = async () => {
     msg.value = '昵称不能为空'
     return false
   } else {
-    const { nickname, username } = store.state.userInfo
-    if (stat.nickname === nickname || stat.nickname === username) {
-      visible.value = true
-      msg.value = '未修改或修改失败'
-      return false
-    }
     if (stat.password !== '') {
       if (stat.password !== stat.repassword) {
         visible.value = true
@@ -76,10 +70,15 @@ const submit = async () => {
   const res: any = await updUserInfo({ nickname: stat.nickname, password: stat.password });
   if (res.code === 200) {
     store.commit('toggleSetInfo')
-    location.reload();
+    if( stat.password !== ''&& stat.repassword !== '') {
+      localStorage.removeItem('token')
+      location.reload()
+      return false
+    }
+    store.commit('updUserInfo',stat.nickname)
   } else {
-     visible.value = true
-     msg.value = '修改失败'
+    visible.value = true
+    msg.value = '修改失败或者未修改'
   }
 }
 </script>

@@ -92,6 +92,7 @@ const reset = () => {
 const goto = (item: any) => {
   store.commit('getGroupInfo',item)
   router.push({ name: 'taskGroup', params: { id: item.id }})
+  store.commit("toggleSide");
 }
 </script>
 
