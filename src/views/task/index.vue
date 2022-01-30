@@ -73,6 +73,7 @@ import MvList from "/@/components/mvList/index.vue"
 import { onMounted, reactive, computed } from "vue";
 import { getTaskList } from "/@/api/taskList";
 import { getTaskGroup } from "/@/api/taskGroup";
+import music from "/@/assets/success.mp3";
 
 const stat: any = reactive({
   taskList: [],
@@ -126,7 +127,7 @@ const addSuccess = (item: object) => {
 }
 // 切换状态（完成——未完成）
 const doneSuccess = (id: number,ok: number) => {
-  const audio = new Audio('/src/assets/success.mp3');
+  const audio = new Audio(music);
   const index = stat.taskList.findIndex((el: any) => el.id === id)
   stat.taskList[index].isok = ok
   if(ok === 1){
