@@ -61,7 +61,7 @@ async function toggleDone(ok: number,id: number) {
 async function delTask(id: number,index: any) {
     const res: any = await delTaskList(id)
     if(res.code === 200){
-        emit('delTaskSuccess',index)
+        emit('delTaskSuccess',id)
     }
 }
 // 收藏项目

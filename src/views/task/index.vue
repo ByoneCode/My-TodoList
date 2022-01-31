@@ -118,7 +118,8 @@ const mvSuccess = (id: any) => {
   stat.taskList.splice(index,1)
 }
 // 删除项目
-const delTask = (index: number) => {
+const delTask = (id: number) => {
+  const index = stat.taskList.findIndex((el: any) => el.id === id)
   stat.taskList.splice(index,1)
 }
 // 添加项目
