@@ -5,11 +5,15 @@
       <div class="setinfo-title">
         <span>修改资料</span>
       </div>
-      <div class="setinfo-close" @click="store.commit('toggleSetInfo')">
+      <div class="setinfo-close" @click="close">
         <i class="iconfont icon-del"></i>
       </div>
     </div>
     <div class="setinfo-list">
+      <div class="setinfo-name">
+        <span>用户名</span>
+        <input type="text" v-model="store.state.userInfo.username" disabled/>
+      </div>
       <div class="setinfo-name">
         <span>修改昵称</span>
         <input type="text" v-model="stat.nickname" />
@@ -53,6 +57,18 @@ const stat = reactive({
   repassword: ''
 })
 
+const reset = () => {
+  stat.nickname = store.state.userInfo.nickname || store.state.userInfo.username
+  stat.password = ''
+  stat.repassword = ''
+}
+
+
+const close = () => {
+  reset()
+  store.commit('toggleSetInfo')
+}
+
 const submit = async () => {
   if (stat.nickname === '') {
     visible.value = true
@@ -76,6 +92,7 @@ const submit = async () => {
       return false
     }
     store.commit('updUserInfo',stat.nickname)
+    reset()
   } else {
     visible.value = true
     msg.value = '修改失败或者未修改'

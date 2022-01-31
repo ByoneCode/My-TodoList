@@ -8,7 +8,7 @@
                     <i class="iconfont icon-note"></i>
                 </div>
                 <!-- title -->
-                <div class="heading-title" @click="visible = true">
+                <div class="heading-title">
                     <span>便笺</span>
                 </div>
             </div>
