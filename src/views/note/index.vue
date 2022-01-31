@@ -8,7 +8,7 @@
                     <i class="iconfont icon-note"></i>
                 </div>
                 <!-- title -->
-                <div class="heading-title" @click="visible = true">
+                <div class="heading-title">
                     <span>便笺</span>
                 </div>
             </div>
@@ -52,8 +52,6 @@
 <script setup lang="ts">
 import { reactive, onMounted, ref, nextTick } from "vue";
 import { addNoteList, delNoteList, getNoteList, updNoteList } from "/@/api/note";
-import noteItem from '/@/components/noteItem/index.vue'
-import Modal from '/@/components/modal/index.vue'
 const stat: any = reactive({
     id: 0,
     content: '',

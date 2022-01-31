@@ -9,12 +9,22 @@
 
     .add-icon{
         // TODO  未使用变量
-        background-color: #272727;
+        background-color   : @bg-color-items;
+        border: 1px solid @btn-bd-color;
+        border-bottom-color: @btn-bd-bt-color;
         padding: .5rem .6rem;
         border-radius: 5px;
         cursor: pointer;
         i{
-            color: #fff;
+            color: @text-color-grey;
+        }
+        &:hover {
+            background-color   : @btn-color-hl;
+            .ease();
+        }
+        &:active {
+            background-color   : @btn-color-ac;
+            .ease();
         }
     }
 }
@@ -88,16 +98,35 @@
         box-sizing: border-box;
         padding: 1rem;
         .btn{
-            border: 1px solid @bg-color-items;
+            border: 1px solid @btn-bd-color;
             padding: .6rem 1.5rem;
             display: inline-block;
             cursor: pointer;
             color: @text-color-grey;
             font-size: .5rem;
             border-radius: 3px;
-            // &:hover{
-            //     background-color: #757575;
-            // }
+        }
+        .quit{
+            background-color: @bg-color-items;
+            &:hover{
+                background-color: @btn-color-hl;
+                .ease();
+            }
+            &:active{
+                background-color: @btn-color-ac;
+                .ease();
+            }
+        }
+        .save{
+            background-color: @bg-color-items;
+            &:hover{
+                background-color: @btn-color-hl;
+                .ease();
+            }
+            &:active{
+                background-color: @btn-color-ac;
+                .ease();
+            }
         }
     }
     .container{
