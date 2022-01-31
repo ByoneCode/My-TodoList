@@ -34,7 +34,7 @@
                         <input type="button" @click="reg" value="注册" />
                     </div>
                     <div class="login-signup">
-                        <input type="button" @click="isLogin = true" value="去登录" />
+                        <input type="button" @click="isLogin = true" value="去登陆" />
                     </div>
                 </div>
             </div>
