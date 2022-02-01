@@ -86,6 +86,8 @@ const allStore = store.state;
 const route = useRoute();
 const router = useRouter();
 
+const audio = new Audio(music)
+
 const stat: any = reactive({
   taskList: [],
   isShow: false,
@@ -151,7 +153,6 @@ const delGroup = async () => {
 } 
 // 切换状态（完成——未完成）
 const doneSuccess = (id: number,ok: number) => {
-  const audio = new Audio(music)
   const index = stat.taskList.findIndex((el: any) => el.id === id)
   stat.taskList[index].isok = ok
   if(ok === 1){
