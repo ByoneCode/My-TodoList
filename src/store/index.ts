@@ -40,6 +40,10 @@ export default createStore({
     // 设置用户信息
     setUserInfo(stat,item){
       stat.userInfo = item;
+    },
+    // 更新用户信息
+    updUserInfo(stat: any,username){
+      stat.userInfo.nickname = username;
     }
   }
 })

@@ -75,8 +75,9 @@ import { useStore } from "vuex";
 import { useRoute, onBeforeRouteUpdate, useRouter } from "vue-router"
 import { getTaskList } from "/@/api/taskList";
 import { delTaskGroup, getGroupInfo } from "/@/api/taskGroup";
-import MvList from "/@/components/mvList/index.vue"
+import MvList from "/@/components/mvList/index.vue";
 import { getTaskGroup } from "/@/api/taskGroup";
+import music from "/@/assets/success.mp3";
 
 
 const store = useStore();
@@ -84,6 +85,8 @@ const allStore = store.state;
 
 const route = useRoute();
 const router = useRouter();
+
+const audio = new Audio(music)
 
 const stat: any = reactive({
   taskList: [],
@@ -147,11 +150,14 @@ const delGroup = async () => {
     store.commit('delGroup',route.params.id)
     router.replace('/home/index')
   }
-}
+} 
 // 切换状态（完成——未完成）
 const doneSuccess = (id: number,ok: number) => {
   const index = stat.taskList.findIndex((el: any) => el.id === id)
   stat.taskList[index].isok = ok
+  if(ok === 1){
+    audio.play()
+  }
 }
 // 收藏状态
 const starSuccess = (id: number,status: number) => {

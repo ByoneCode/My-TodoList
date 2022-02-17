@@ -59,6 +59,9 @@
     @on-success="mvSuccess"
     >
     </mv-list>
+    <!-- <audio id="audio">
+      <source src="../../assets/success.mp3" type="audio/mp3" />
+    </audio> -->
   </div>
 </template>
 
@@ -70,7 +73,9 @@ import MvList from "/@/components/mvList/index.vue"
 import { onMounted, reactive, computed } from "vue";
 import { getTaskList } from "/@/api/taskList";
 import { getTaskGroup } from "/@/api/taskGroup";
+import music from "/@/assets/success.mp3";
 
+const audio = new Audio(music);
 
 const stat: any = reactive({
   taskList: [],
@@ -91,7 +96,6 @@ onMounted( async () => {
   const { data } = await getTaskList(0);
   stat.taskList = data.items
 })
-
 
 // 过滤任务列表
 const taskListItem = computed(() => {
@@ -116,7 +120,8 @@ const mvSuccess = (id: any) => {
   stat.taskList.splice(index,1)
 }
 // 删除项目
-const delTask = (index: number) => {
+const delTask = (id: number) => {
+  const index = stat.taskList.findIndex((el: any) => el.id === id)
   stat.taskList.splice(index,1)
 }
 // 添加项目
@@ -127,12 +132,16 @@ const addSuccess = (item: object) => {
 const doneSuccess = (id: number,ok: number) => {
   const index = stat.taskList.findIndex((el: any) => el.id === id)
   stat.taskList[index].isok = ok
+  if(ok === 1){
+    audio.play();
+  }
 }
 // 收藏状态
 const starSuccess = (id: number,status: number) => {
   const index = stat.taskList.findIndex((el: any) => el.id === id)
   stat.taskList[index].isstar = status
 }
+
 </script>
 
 <style lang="less" scoped>

@@ -59,18 +59,23 @@
   margin-top : .25rem;
   padding    : .75rem 1rem;
   .hov();
-
+  &::before {
+    content         : "";
+    opacity: 0;
+    position        : absolute;
+    left            : 5px;
+    width           : 0.35rem;
+    height          : 2.25rem;
+    border-radius   : 4px;
+    background-color: royalblue;
+    transition: all .25s ease-in-out;
+  }
   &.active {
     background-color: @bg-color-items-hl;
 
     &::before {
-      content         : "";
-      position        : absolute;
-      left            : 5px;
-      width           : 0.35rem;
+      opacity: 1;
       height          : 1.25rem;
-      border-radius   : 4px;
-      background-color: royalblue;
     }
   }
 }

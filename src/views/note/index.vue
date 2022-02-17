@@ -8,7 +8,7 @@
                     <i class="iconfont icon-note"></i>
                 </div>
                 <!-- title -->
-                <div class="heading-title" @click="visible = true">
+                <div class="heading-title">
                     <span>便笺</span>
                 </div>
             </div>
@@ -142,6 +142,27 @@ const handleDel = async (id: number) => {
         stat.noteMsg = '删除错误'
     }
 }
+
+// 清除粘贴默认格式
+document.addEventListener('paste', (e: any) => {
+    // 阻止默认的复制事件
+    e.preventDefault()
+        
+    let txt = ''
+    let range = null
+    // 获取复制的文本
+    txt = e.clipboardData.getData('text/plain')
+    // 获取页面文本选区
+    range = (window.getSelection()!).getRangeAt(0)
+    // 删除默认选中文本
+    range.deleteContents()
+    // 创建一个文本节点，用于替换选区文本
+    let pasteTxt = document.createTextNode(txt)
+    // 插入文本节点
+    range.insertNode(pasteTxt)
+    // 将焦点移动到复制文本结尾
+    range.collapse(false)
+})
 
 </script>
 

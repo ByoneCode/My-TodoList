@@ -6,17 +6,21 @@
                     <i class="iconfont icon-people"></i>
                     <input type="text" placeholder="用户名" v-model="data.login.username" />
                 </div>
+                <div class="login-input" v-show="!isLogin">
+                    <i class="iconfont icon-nicheng"></i>
+                    <input type="text" placeholder="昵称" v-model="data.login.nickname" />
+                </div>
                 <div class="login-input">
                     <i class="iconfont icon-password"></i>
                     <input type="password" placeholder="密码" v-model="data.login.password" />
                 </div>
                 <div class="form-reg" v-show="!isLogin">
                     <div class="login-input">
-                        <i class="iconfont icon-password"></i>
+                        <i class="iconfont icon-querenmima"></i>
                         <input type="password" placeholder="确认密码" v-model="data.login.cpassword" />
                     </div>
                     <div class="login-input">
-                        <i class="iconfont icon-password"></i>
+                        <i class="iconfont icon-youxiang"></i>
                         <input type="email" placeholder="邮箱" v-model="data.login.email"/>
                     </div> 
                 </div>
@@ -53,14 +57,18 @@
 import { ref, reactive } from 'vue';
 import { register, login } from '/@/api/login';
 import { useRouter } from 'vue-router';
-import Modal from '/@/components/modal/index.vue'
+import Modal from '/@/components/modal/index.vue';
+import { useStore } from 'vuex';
 
 const router = useRouter()
+
+const store = useStore();
 
 const data = reactive({
     msg: '',
     login: {
         username: '',
+        nickname: '',
         password: '',
         cpassword: '',
         email: ''
@@ -72,14 +80,15 @@ const visible = ref(false)
 const reset = () => {
     data.login = {
         username: '',
+        nickname: '',
         password: '',
         cpassword: '',
         email: ''
     }
 }
 const reg = async () => {
-    const {username, password ,cpassword} = data.login;
-    if(username === ''){
+    const {username, nickname , password ,cpassword} = data.login;
+    if(username === '' || nickname === ''){
         visible.value = true
         data.msg = '请填写完整';
         return false;
@@ -101,11 +110,12 @@ const reg = async () => {
 }
 
 const loging = async () => {
-    const {username, password} = data.login;
+    const {username, password, nickname} = data.login;
     if(username !== '' && password !== ''){
-        const res: any = await login({username: username, password: password});
+        const res: any = await login({username: username,nickname:nickname, password: password});
         if(res.code === 200){
             localStorage.setItem('token',res.data.token);
+            store.commit('setUserInfo',res.data.userinfo);
             router.replace('/');
         }else{
             visible.value = true

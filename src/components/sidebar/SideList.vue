@@ -2,10 +2,15 @@
   <div class="side-list">
     <ul>
       <li
-        v-for="(item, index) in list"
-        :key="`list-${index}`"
+        v-for="item in list"
+        :key="item.id"
       >
-        <div class="list-items" @click="goto(item)">
+        <div 
+        class="list-items" 
+        :class="{
+            'active': route.path === `/task/${item.id}`
+        }" 
+        @click="goto(item)">
           <div class="list-icon">
             <i v-if="item.icon !== 'icon-nav'">{{ item.icon }}</i>
             <i v-else class="iconfont icon-nav"></i>
@@ -19,11 +24,11 @@
         </div>
       </li>
       <li v-show="stat.isCreate">
-        <div class="list-items" style="padding: .675rem 1rem;">
+        <div class="list-items" style="padding: 0 1rem;">
           <div class="list-icon">
             <i class="iconfont icon-nav"></i>
           </div>
-          <div class="list-title" style="margin-left: 12px;">
+          <div class="list-title">
             <input
               type="text"
               v-model="stat.tempItem.title"
@@ -44,10 +49,11 @@
 
 <script setup lang="ts">
 import { useStore } from "vuex";
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from "vue-router";
 import { reactive, ref, nextTick } from "vue";
 
 const router = useRouter()
+const route = useRoute();
 const store = useStore()
 const title = ref(null)
 const stat = reactive({
@@ -92,6 +98,7 @@ const reset = () => {
 const goto = (item: any) => {
   store.commit('getGroupInfo',item)
   router.push({ name: 'taskGroup', params: { id: item.id }})
+  store.commit("toggleSide");
 }
 </script>
 
