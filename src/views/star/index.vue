@@ -15,6 +15,7 @@
     </div>
     <!-- list -->
     <div class="taskList">
+      <empty text="暂无星标" v-show="stat.task_star.length === 0"></empty>
       <div class="task-container">
         <collapsed
         :list="stat.task_star"
@@ -39,13 +40,9 @@
 <script setup lang="ts">
 import Collapsed from '/@/components/collapsed/index.vue';
 import TaskItem from '/@/components/taskItem/index.vue';
-import { useStore } from 'vuex'
-import { computed, onMounted, reactive } from "vue";
+import { onMounted, reactive } from "vue";
 import { getTaskStar } from '/@/api/taskList';
-
-const store = useStore()
-
-const allstat = store.state
+import Empty from '/@/components/empty/index.vue';
 
 const stat = reactive({
   task_star: []

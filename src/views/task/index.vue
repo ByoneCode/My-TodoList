@@ -15,6 +15,7 @@
     </div>
     <!-- list -->
     <div class="task-list">
+      <empty text="暂无任务" v-show="stat.taskList.length === 0"></empty>
       <div class="list-container">
         <!-- undone item list -->
         <div class="undone-item-list">
@@ -74,6 +75,7 @@ import { onMounted, reactive, computed } from "vue";
 import { getTaskList } from "/@/api/taskList";
 import { getTaskGroup } from "/@/api/taskGroup";
 import music from "/@/assets/success.mp3";
+import Empty from '/@/components/empty/index.vue';
 
 const audio = new Audio(music);
 
