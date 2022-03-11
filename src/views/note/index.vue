@@ -19,6 +19,7 @@
         </div>
         <!-- list -->
         <div class="note-list">
+            <empty text="暂无便笺" v-show="stat.noteList.length === 0"></empty>
             <div class="note-container" id="note-container">
                 <note-item :list="stat.noteList" @handleDel="handleDel" @handleOpenEdit="handleOpenEdit"></note-item>
             </div>
@@ -54,6 +55,8 @@ import { reactive, onMounted, ref, nextTick } from "vue";
 import { addNoteList, delNoteList, getNoteList, updNoteList } from "/@/api/note";
 import noteItem from '/@/components/noteItem/index.vue'
 import Modal from '/@/components/modal/index.vue'
+import Empty from '/@/components/empty/index.vue';
+
 const stat: any = reactive({
     id: 0,
     content: '',

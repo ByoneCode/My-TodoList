@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import Sidebar from "/@/components/sidebar/index.vue";
 import { useStore } from "vuex";
+import { useRoute } from "vue-router";
 const store = useStore()
+const route = useRoute()
 </script>
 
 <template>
@@ -15,7 +17,7 @@ const store = useStore()
           <i class="iconfont icon-nav" @click="store.commit('toggleSide')"></i>
         </div>
       </div>
-      <RouterView />
+      <RouterView :key="route.path"/>
     </main>
   </div>
 </template>

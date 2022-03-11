@@ -20,6 +20,7 @@
     </div>
     <!-- list -->
     <div class="task-list">
+      <empty text="暂无任务" v-show="stat.taskList.length === 0"></empty>
       <div class="list-container">
         <!-- undone item list -->
         <div class="undone-item-list">
@@ -63,6 +64,15 @@
     @on-success="mvSuccess"
     @close-mv-list="stat.isShow = false">
     </mv-list>
+
+    <modal
+    title="提示"
+    :is-center="false"
+    offset-top="40px"
+    v-model:visible="visible"
+    >
+    <div class="info">确定要删除<span>{{allStore.groupInfo.title}}</span>分组吗</div>  
+    </modal>
   </div>
 </template>
 
@@ -70,7 +80,7 @@
 import AddTask from "/@/components/addTask/index.vue";
 import TaskItem from "/@/components/taskItem/index.vue";
 import Collapsed from "/@/components/collapsed/index.vue";
-import { onMounted, reactive, computed } from "vue";
+import { onMounted, reactive, computed, ref } from "vue";
 import { useStore } from "vuex";
 import { useRoute, onBeforeRouteUpdate, useRouter } from "vue-router"
 import { getTaskList } from "/@/api/taskList";
@@ -78,6 +88,8 @@ import { delTaskGroup, getGroupInfo } from "/@/api/taskGroup";
 import MvList from "/@/components/mvList/index.vue";
 import { getTaskGroup } from "/@/api/taskGroup";
 import music from "/@/assets/success.mp3";
+import Modal from '/@/components/modal/index.vue';
+import Empty from '/@/components/empty/index.vue';
 
 
 const store = useStore();
@@ -88,6 +100,8 @@ const router = useRouter();
 
 const audio = new Audio(music)
 
+
+const visible = ref(false)
 const stat: any = reactive({
   taskList: [],
   isShow: false,
@@ -136,7 +150,8 @@ const mvSuccess = (id: any) => {
   stat.taskList.splice(index,1)
 }
 // 删除项目
-const delTask = (index: number) => {
+const delTask = (id: number) => {
+  const index = stat.taskList.findIndex((el: any) => el.id === id)
   stat.taskList.splice(index,1)
 }
 // 添加项目
