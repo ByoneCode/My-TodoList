@@ -4,6 +4,7 @@ dist
 dist-ssr
 *.local
 *.log
+*.sql
 .npmrc
 .cache
 test.ts
